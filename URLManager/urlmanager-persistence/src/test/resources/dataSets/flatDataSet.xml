@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * URLManager - URL Indexer
+ * Copyright (C) 2008-2012  Open-S Company
+ *
+ * This file is part of URLManager.
+ *
+ * URLManager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contact us by mail: open-s AT open-s DOT com
+-->
+
+
+<dataset>
+    
+    <WEBPAGE Id_Webpage="1" URL="http://lol.com/"          Is_Root="1"/>
+    <WEBPAGE Id_Webpage="2" URL="http://lol.com/app/"      Is_Root="0"/>
+    <WEBPAGE Id_Webpage="3" URL="http://lol.com/page.html" Is_Root="0"/>
+    <WEBPAGE Id_Webpage="4" URL="http://toto.com/"         Is_Root="1"/>
+    <WEBPAGE Id_Webpage="5" URL="http://foreveralone.com/" Is_Root="1"/>
+    
+    <TAG Id_Tag="1" Label="lol"/>
+    <TAG Id_Tag="2" Label="lil"/>
+    <TAG Id_Tag="3" Label="toto"/>
+    <TAG Id_Tag="4" Label="titi"/>
+    
+    <LOCALE Id_Locale="1" Language="fr" Country="FR" Long_Language="french"  Long_Country="France"/>
+    <LOCALE Id_Locale="2" Language="fr" Country="CA" Long_Language="french"  Long_Country="Canada"/>
+    <LOCALE Id_Locale="3" Language="en" Country="GB" Long_Language="english" Long_Country="Great Britain"/>
+    <LOCALE Id_Locale="4" Language="en" Country="US" Long_Language="english" Long_Country="United States"/>
+    
+    <REQUEST Id_Request="1" Label="joker"/>
+    <REQUEST Id_Request="2" Label="french pages"/>
+    <REQUEST Id_Request="3" Label="lol related"/>
+    <REQUEST Id_Request="4" Label="lol french pages"/>
+    <REQUEST Id_Request="5" Label="lol and toto related"/>
+    
+    <!-- lol.com -->
+    <WEBPAGE_TAG Id_Webpage="1" Id_Tag="1"/>
+    <WEBPAGE_TAG Id_Webpage="1" Id_Tag="2"/>
+    <!-- lol.com/app -->
+    <WEBPAGE_TAG Id_Webpage="2" Id_Tag="1"/>
+    <!-- lol.com/page.html -->
+    <WEBPAGE_TAG Id_Webpage="3" Id_Tag="1"/>
+    <WEBPAGE_TAG Id_Webpage="3" Id_Tag="3"/>
+    <!-- toto.com -->
+    <WEBPAGE_TAG Id_Webpage="4" Id_Tag="2"/>
+    <WEBPAGE_TAG Id_Webpage="4" Id_Tag="3"/>
+    <!-- foreveralone.com -->
+    <!--     without tag -->
+    
+    <!-- lol.com -->
+    <WEBPAGE_LOCALE Id_Webpage="1" Id_Locale="1"/>
+    <WEBPAGE_LOCALE Id_Webpage="1" Id_Locale="3"/>
+    <WEBPAGE_LOCALE Id_Webpage="1" Id_Locale="4"/>
+    <!-- lol.com/app -->
+    <WEBPAGE_LOCALE Id_Webpage="2" Id_Locale="3"/>
+    <WEBPAGE_LOCALE Id_Webpage="2" Id_Locale="4"/>
+    <!-- lol.com/page.html -->
+    <WEBPAGE_LOCALE Id_Webpage="3" Id_Locale="3"/>
+    <WEBPAGE_LOCALE Id_Webpage="3" Id_Locale="4"/>
+    <!-- toto.com -->
+    <WEBPAGE_LOCALE Id_Webpage="4" Id_Locale="1"/>
+    <WEBPAGE_LOCALE Id_Webpage="4" Id_Locale="2"/>
+    <!-- foreveralone.com -->
+    <!--     without locale -->
+    
+    <!-- joker -->
+    <!--     without tag -->
+    <!-- french pages -->
+    <!--     without tag -->
+    <!-- lol related -->
+    <REQUEST_TAG Id_Request="3" Id_Tag="1"/>
+    <!-- lol french pages -->
+    <REQUEST_TAG Id_Request="4" Id_Tag="1"/>
+    <!-- lol and toto related -->
+    <REQUEST_TAG Id_Request="5" Id_Tag="1"/>
+    <REQUEST_TAG Id_Request="5" Id_Tag="3"/>
+    
+    <!-- joker -->
+    <!--     without locale -->
+    <!-- french pages -->
+    <REQUEST_LOCALE Id_Request="2" Id_Locale="1"/>
+    <REQUEST_LOCALE Id_Request="2" Id_Locale="2"/>
+    <!-- lol related -->
+    <!--     without locale -->
+    <!-- lol french pages -->
+    <REQUEST_LOCALE Id_Request="4" Id_Locale="1"/>
+    <REQUEST_LOCALE Id_Request="4" Id_Locale="2"/>
+    <!-- lol and toto related -->
+    <!--     without locale -->
+    
+</dataset>
