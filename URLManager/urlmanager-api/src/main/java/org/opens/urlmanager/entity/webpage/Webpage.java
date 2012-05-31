@@ -48,7 +48,7 @@ public interface Webpage extends Entity {
      * 
      * @return 
      */
-    Boolean isRoot();
+    Boolean getIsRoot();
     /**
      * 
      * @param isRoot 

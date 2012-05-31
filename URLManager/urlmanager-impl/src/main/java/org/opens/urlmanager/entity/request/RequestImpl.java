@@ -26,6 +26,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.opens.urlmanager.entity.locale.Locale;
 import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.tag.Tag;
@@ -36,6 +39,7 @@ import org.opens.urlmanager.entity.tag.TagImpl;
  * @author bcareil
  */
 @Entity
+@XmlRootElement(name = "request")
 @Table(name = "REQUEST")
 public class RequestImpl implements Request, Serializable {
 
@@ -44,6 +48,7 @@ public class RequestImpl implements Request, Serializable {
     @Column(name = "Id_Request")
     private Long id;
     
+    @Basic(optional = false)
     @Column(name = "Label")
     private String label;
     
@@ -112,6 +117,8 @@ public class RequestImpl implements Request, Serializable {
         this.label = label;
     }
 
+    @XmlElementWrapper(name = "locales")
+    @XmlElement(name = "locales", type = LocaleImpl.class)
     public Collection<? extends Locale> getLocales() {
         return locales;
     }
@@ -124,6 +131,8 @@ public class RequestImpl implements Request, Serializable {
         this.locales.add((LocaleImpl)locale);
     }
 
+    @XmlElementWrapper(name = "tags")
+    @XmlElement(name = "tags", type = TagImpl.class)
     public Collection<? extends Tag> getTags() {
         return tags;
     }

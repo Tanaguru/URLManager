@@ -26,6 +26,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.opens.urlmanager.entity.locale.Locale;
 import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.tag.Tag;
@@ -36,6 +39,7 @@ import org.opens.urlmanager.entity.tag.TagImpl;
  * @author bcareil
  */
 @Entity
+@XmlRootElement(name = "webpage")
 @Table(name = "WEBPAGE")
 public class WebpageImpl implements Webpage, Serializable {
     
@@ -44,9 +48,11 @@ public class WebpageImpl implements Webpage, Serializable {
     @Column(name = "Id_Webpage")
     private Long id;
     
+    @Basic(optional = false)
     @Column(name = "URL")
     private String url;
     
+    @Basic(optional = false)
     @Column(name = "Is_Root")
     private Boolean isRoot;
     
@@ -108,7 +114,7 @@ public class WebpageImpl implements Webpage, Serializable {
         this.id = id;
     }
 
-    public Boolean isRoot() {
+    public Boolean getIsRoot() {
         return isRoot;
     }
 
@@ -116,6 +122,8 @@ public class WebpageImpl implements Webpage, Serializable {
         this.isRoot = isRoot;
     }
 
+    @XmlElementWrapper(name = "locales")
+    @XmlElement(name = "locale", type = LocaleImpl.class)
     public Collection<? extends Locale> getLocales() {
         return locales;
     }
@@ -128,6 +136,8 @@ public class WebpageImpl implements Webpage, Serializable {
         this.locales.add((LocaleImpl)locale);
     }
 
+    @XmlElementWrapper(name = "tags")
+    @XmlElement(name = "tag", type = TagImpl.class)
     public Collection<? extends Tag> getTags() {
         return tags;
     }

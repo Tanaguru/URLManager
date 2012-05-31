@@ -26,6 +26,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -36,6 +38,7 @@ import org.opens.urlmanager.entity.webpage.WebpageImpl;
  * @author bcareil
  */
 @Entity
+@XmlRootElement(name = "locale")
 @Table(name = "LOCALE")
 public class LocaleImpl implements Locale, Serializable {
 
@@ -44,12 +47,14 @@ public class LocaleImpl implements Locale, Serializable {
     @Column(name = "Id_Locale")
     private Long id;
     
+    @Basic(optional = false)
     @Column(name = "Language")
     private String language;
     
     @Column(name = "Long_Language")
     private String longLanguage;
     
+    @Basic(optional = false)
     @Column(name = "Country")
     private String country;
     
@@ -141,6 +146,7 @@ public class LocaleImpl implements Locale, Serializable {
         this.longLanguage = longLanguage;
     }
 
+    @XmlTransient
     public Collection<? extends Webpage> getWebpages() {
         return this.webpages;
     }
@@ -153,6 +159,7 @@ public class LocaleImpl implements Locale, Serializable {
         this.webpages.add((WebpageImpl)webpage);
     }
 
+    @XmlTransient
     public Collection<? extends Request> getRequests() {
         return this.requests;
     }

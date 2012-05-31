@@ -10,6 +10,7 @@
         <module>urlmanager-api</module>
         <module>urlmanager-impl</module>
         <module>urlmanager-persistence</module>
+        <module>urlmanager-webservice</module>
     </modules>
     <build>
         <plugins>
@@ -32,7 +33,7 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-                      <!-- mysql connector dependencies -->
+            <!-- mysql connector -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -94,42 +95,6 @@
                 <artifactId>persistence-api</artifactId>
                 <version>1.0</version>
             </dependency>
-<!--            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>1.4.3</version>
-            </dependency>-->
-
-            <!-- commons dependencies -->
-<!--            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>2.6</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>3.2.1</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.milyn</groupId>
-                <artifactId>flute</artifactId>
-                <version>1.3</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>com.thoughtworks.xstream</groupId>
-                <artifactId>xstream</artifactId>
-                <version>1.3.1</version>
-            </dependency>-->
-
-            <!-- htmlCleaner dependencies -->
-<!--            <dependency>
-                <groupId>org.htmlcleaner</groupId>
-                <artifactId>htmlcleaner</artifactId>
-                <version>2.2</version>
-            </dependency>-->
 
             <!-- log4j dependencies -->
             <dependency>
@@ -159,21 +124,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-            <!-- 
-                 httpcomponents dependencies. Due to heritrix, these librairies
-                 cannot be upgraded up to 4.0.1
-            -->
-<!--            <dependency>
-                <groupId>${httpcomponentsGroupId}</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>${httpcomponentsGroupId}</groupId>
-                <artifactId>httpcore</artifactId>
-                <version>4.1.2</version>
-            </dependency>-->
 
             <!-- aspectj dependencies -->
             <dependency>
@@ -211,6 +161,11 @@
             <dependency>
                 <groupId>${springGroupId}</groupId>
                 <artifactId>spring-orm</artifactId>
+                <version>${springVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>${springGroupId}</groupId>
+                <artifactId>spring-oxm</artifactId>
                 <version>${springVersion}</version>
             </dependency>
             <dependency>
@@ -324,43 +279,6 @@
                 </exclusions>
             </dependency>
             
-            <!-- heritrix dependencies -->
-<!--            <dependency>
-                <groupId>${heritrixGroupId}</groupId>
-                <artifactId>heritrix-commons</artifactId>
-                <version>${heritrixVersion}</version>
-            </dependency>
-            <dependency>
-                <groupId>${heritrixGroupId}</groupId>
-                <artifactId>heritrix-engine</artifactId>
-                <version>${heritrixVersion}</version>
-            </dependency>
-            <dependency>
-                <groupId>${heritrixGroupId}</groupId>
-                <artifactId>heritrix-modules</artifactId>
-                <version>${heritrixVersion}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>${springGroupId}</artifactId>
-                        <groupId>spring-beans</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>${springGroupId}</artifactId>
-                        <groupId>spring-context</groupId>
-                    </exclusion>
-                    <exclusion>
-                        <artifactId>${springGroupId}</artifactId>
-                        <groupId>spring-core</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>-->
-            
-<!--            <dependency>
-                <groupId>com.googlecode.juniversalchardet</groupId>
-                <artifactId>juniversalchardet</artifactId>
-                <version>1.0.3</version>
-            </dependency>-->
-
             <!-- slf4j dependencies -->
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -385,77 +303,6 @@
                 <version>2.2.8</version>
             </dependency>
 
-            <!-- sac dependencies -->
-<!--            <dependency>
-                <groupId>org.w3c.css</groupId>
-                <artifactId>sac</artifactId>
-                <version>1.3</version>
-            </dependency>-->
-
-            <!-- xerces dependencies-->
-<!--            <dependency>
-                <groupId>xerces</groupId>
-                <artifactId>xercesImpl</artifactId>
-                <version>2.9.1</version>
-            </dependency>-->
-
-<!--             owasp dependencies 
-            <dependency>
-                <groupId>org.owasp.esapi</groupId>
-                <artifactId>esapi</artifactId>
-                <version>2.0.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.owasp.antisamy</groupId>
-                        <artifactId>antisamy</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-httpclient</groupId>
-                        <artifactId>commons-httpclient</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-beanutils</groupId>
-                        <artifactId>commons-beanutils</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-beanutils</groupId>
-                        <artifactId>commons-beanutils-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-collections</groupId>
-                        <artifactId>commons-collections</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-digester</groupId>
-                        <artifactId>commons-digester</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-configuration</groupId>
-                        <artifactId>commons-configuration</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>xalan</groupId>
-                        <artifactId>xalan</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>xerces</groupId>
-                        <artifactId>xml-apis</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>xerces</groupId>
-                        <artifactId>xmlParserAPIs</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>xerces</groupId>
-                        <artifactId>xercesImpl</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>xom</groupId>
-                        <artifactId>xom</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>-->
-
             <!-- web dependencies -->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -472,6 +319,16 @@
                 <artifactId>jstl</artifactId>
                 <version>1.1.2</version>
             </dependency>
+            <dependency>
+                <groupId>javax.faces</groupId>
+                <artifactId>javax.faces-api</artifactId>
+                <version>2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>1.1.2</version>
+            </dependency>
 
             <!-- easy mock -->
             <dependency>
@@ -480,6 +337,39 @@
                 <version>3.1</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- JSON mapper -->
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            
+            <!-- XML Marshlling -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>2.2.3</version>
+            </dependency>
+            
+            <!-- bean utils -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.8.3</version>
+            </dependency>
+            
+            <!-- xml test utils -->
+            <dependency>
+                <groupId>xmlunit</groupId>
+                <artifactId>xmlunit</artifactId>
+                <version>1.1</version>
+            </dependency>            
         </dependencies>
     </dependencyManagement>
 </project>
