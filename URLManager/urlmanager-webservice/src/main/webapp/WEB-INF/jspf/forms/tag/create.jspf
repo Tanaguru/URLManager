@@ -1,0 +1,17 @@
+<%@ page pageEncoding="UTF-8" %>
+<form action="/urlmanager/rest/tag/create"
+      method="POST"
+      class="well form-horizontal">
+    <input type="hidden" name="id" value="0"/>
+    <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
+    <div class="control-group">
+        <label class="control-label" for="create-tag-label"><abbr title="Required field" class="mandatory">*</abbr> Label</label>
+        <div class="controls">
+            <input id="create-tag-label" type="text" name="label" value=""/>
+            <p class="help-block">Mandatory field</p>
+        </div>
+    </div>
+    <div class="form-actions">
+        <%@include file="/WEB-INF/jspf/inline/buttons/create.jspf" %>
+    </div>
+</form>

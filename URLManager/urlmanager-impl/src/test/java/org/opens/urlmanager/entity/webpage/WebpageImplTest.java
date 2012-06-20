@@ -52,10 +52,20 @@ public class WebpageImplTest extends TestCase {
         WebpageImpl other;
         boolean result;
         
-        // check that only the url is tested
-        other = new WebpageImpl(0L, "http://lol.com", Boolean.FALSE);
+        // check that only the url and the id are tested
+        other = new WebpageImpl(1L, "http://lol.com", Boolean.FALSE);
         result = instance.equals(other);
         assertTrue(result);
+
+        // check that the url is not ignored
+        other = new WebpageImpl(1L, "blah", Boolean.FALSE);
+        result = instance.equals(other);
+        assertFalse(result);
+
+        // check that only the id is not ignored
+        other = new WebpageImpl(0L, "http://lol.com", Boolean.FALSE);
+        result = instance.equals(other);
+        assertFalse(result);
 
         // trivial
         other = new WebpageImpl(0L, "blah", Boolean.FALSE);
@@ -81,9 +91,17 @@ public class WebpageImplTest extends TestCase {
         int expResult = new WebpageImpl(1L, "http://lol.com/", Boolean.TRUE).hashCode();
         int result;
         
-        // check that only the url is hashed
-        result = new WebpageImpl(0L, "http://lol.com/", Boolean.FALSE).hashCode();
+        // check that only the url and the id are hashed
+        result = new WebpageImpl(1L, "http://lol.com/", Boolean.FALSE).hashCode();
         assertEquals(expResult, result);
+
+        // check that the url is not ignored
+        result = new WebpageImpl(1L, "blah", Boolean.FALSE).hashCode();
+        assertTrue(expResult != result);
+
+        // check that the id is not ignored
+        result = new WebpageImpl(0L, "http://lol.com/", Boolean.FALSE).hashCode();
+        assertTrue(expResult != result);
 
         // trivial
         result = new WebpageImpl(0L, "blah", Boolean.FALSE).hashCode();

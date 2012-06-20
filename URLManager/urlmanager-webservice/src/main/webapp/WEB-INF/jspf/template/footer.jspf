@@ -1,0 +1,28 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            Links
+            <ul class="unstyled">
+            <li><a href="/urlmanager/">Home</a><br/></li>
+            </ul>
+        </div>
+        <div class="span4">
+            Manage entity
+            <ul class="unstyled">
+            <li><a href="/urlmanager/request.jsp">Lists</a></li>
+            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
+            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            External links
+            <ul class="unstyled">
+            <li><a href="http://www.open-s.com">Open-S</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

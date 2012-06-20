@@ -23,18 +23,15 @@ package org.opens.urlmanager.entity.service.webpage;
 
 import java.util.List;
 import java.util.Set;
-import org.opens.tanaguru.sdk.entity.service.AbstractGenericDataService;
 import org.opens.urlmanager.entity.dao.webpage.WebpageDAO;
-import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.request.Request;
-import org.opens.urlmanager.entity.tag.Tag;
+import org.opens.urlmanager.entity.service.LocaleAndTagAssociatedDataService;
 import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
  *
  * @author bcareil
  */
-public class WebpageDataServiceImpl extends AbstractGenericDataService<Webpage, Long> 
+public class WebpageDataServiceImpl extends LocaleAndTagAssociatedDataService<Webpage>
     implements WebpageDataService {
 
     public static class Comparator implements java.util.Comparator<Webpage> {
@@ -45,20 +42,26 @@ public class WebpageDataServiceImpl extends AbstractGenericDataService<Webpage, 
 
     }
 
+    @Override
+    public void create(Webpage entity) {
+        entity.setTags(preprocessTags(entity.getTags(), true));
+        entity.setLocales(preprocessLocales(entity.getLocales()));
+        super.create(entity);
+    }
+    
+    @Override
+    public Webpage update(Webpage entity) {
+        entity.setTags(preprocessTags(entity.getTags(), true));
+        entity.setLocales(preprocessLocales(entity.getLocales()));
+        return super.update(entity);
+    }
+
     public Webpage getWebpageFromURL(String url) {
         return ((WebpageDAO)entityDao).findWebpageFromURL(url);
     }
 
     public Set<Webpage> getRootWebpageList() {
         return ((WebpageDAO)entityDao).findRootWebpageList();
-    }
-
-    public List<Webpage> getWebpageListFromRequest(Request request) {
-        return ((WebpageDAO)entityDao).findWebpageListFromRequest(request);
-    }
-
-    public List<Webpage> getWebpageListFromRequestParameters(List<Locale> locales, List<Tag> tags) {
-        return ((WebpageDAO)entityDao).findWebpageListFromRequestParameters(locales, tags);
     }
 
     public List<Webpage> getWebpagesWithoutTag() {

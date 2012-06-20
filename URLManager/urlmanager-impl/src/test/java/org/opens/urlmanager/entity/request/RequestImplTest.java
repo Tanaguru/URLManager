@@ -52,10 +52,20 @@ public class RequestImplTest extends TestCase {
         RequestImpl other;
         boolean result;
         
-        // check that only the label is tested
-        other = new RequestImpl(0L, "lol related");
+        // check that the label and the id are tested
+        other = new RequestImpl(1L, "lol related");
         result = instance.equals(other);
         assertTrue(result);
+
+        // check that the label is not ignored
+        other = new RequestImpl(1L, "blah");
+        result = instance.equals(other);
+        assertFalse(result);
+
+        // check that the id is not ignored
+        other = new RequestImpl(0L, "lol related");
+        result = instance.equals(other);
+        assertFalse(result);
 
         // trivial test
         other = new RequestImpl(0L, "LOL");
@@ -81,9 +91,17 @@ public class RequestImplTest extends TestCase {
         int expResult = new RequestImpl(1L, "lol related").hashCode();
         int result;
         
-        // check that only the label is hashed
-        result = new RequestImpl(0L, "lol related").hashCode();
+        // check that the label and the id are hashed
+        result = new RequestImpl(1L, "lol related").hashCode();
         assertEquals(expResult, result);
+        
+        // check that the label is not ignored
+        result = new RequestImpl(1L, "blah").hashCode();
+        assertTrue(expResult != result);
+        
+        // check that the id is not ignored
+        result = new RequestImpl(0L, "lol related").hashCode();
+        assertTrue(expResult != result);
         
         // trivial
         result = new RequestImpl(0L, "LOL").hashCode();

@@ -1,0 +1,171 @@
+<%-- 
+    Document   : matching-webpages
+    Created on : 12 juin 2012, 08:45:12
+    Author     : bcareil
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+    <%-- Set is Custom list, set to true whether the list as been created on the fly --%>
+    <c:set var="isCustomList" value="${request.label == null}"/>
+    <%-- Set localesAsString from the request.locales list --%>
+    <c:set var="localesAsString_locales" value="${request.locales}"/>
+    <%@include file="/WEB-INF/jspf/setter/locales-as-string.jspf" %>
+    <%-- Set tagsAsString from the request.tags list --%>
+    <c:set var="tagsAsString_tags" value="${request.tags}"/>
+    <%@include file="/WEB-INF/jspf/setter/tags-as-string.jspf" %>
+    <%-- Set the initial title --%>
+    <c:choose>
+        <c:when test="${isCustomList}">
+            <c:set var="title" value="Custom List"/>
+        </c:when>
+        <c:otherwise>
+            <c:set var="title" value="URLM - List ${request.label}"/>
+        </c:otherwise>
+    </c:choose>
+    <%-- Concant the tags and locales --%>
+    <c:if test="${tagsAsString.isEmpty() == false}">
+        <c:set var="title" value="${title}, ${tagsAsString}"/>
+    </c:if>
+    <c:if test="${localesAsString.isEmpty() == false}">
+        <c:set var="title" value="${title}, ${localesAsString}"/>
+    </c:if>
+    <%-- Concant the end of the title --%>
+    <c:set var="title" value="${title} - URLM"/>
+    <%@include file="/WEB-INF/jspf/template/head.jspf" %>
+    
+    <body>
+        <%@include file="/WEB-INF/jspf/template/header.jspf" %>
+        
+        <div class="container">
+            <div class="page-header">
+                <h1>
+                    Consulting
+                    <c:choose>
+                        <c:when test="${isCustomList}">
+                            a custom list
+                        </c:when>
+                        <c:otherwise>
+                            list <em>${request.label}</em>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:if test="${tagsAsString.isEmpty() == false}">
+                        of webpages containing the tags ${tagsAsString}
+                    </c:if>
+                    <c:if test="${localesAsString.isEmpty() == false}">
+                        <c:choose>
+                            <c:when test="${tagsAsString.isEmpty() }">
+                                of webpages containing one of the locales
+                            </c:when>
+                            <c:otherwise>
+                                and one of the locales
+                            </c:otherwise>
+                        </c:choose>
+                        ${localesAsString}
+                    </c:if>
+                </h1>
+            </div>
+            <div class="row span12">
+                <c:choose>
+                    <c:when test="${webpageList.list.isEmpty()}">
+                        <p class="alert alert-info">
+                            <strong>Empty</strong> : No webpages match the list criteria.
+                        </p>
+                    </c:when>
+                    <c:otherwise>
+                        <p class="alert alert-info">
+                            <strong>${webpageList.list.size()}</strong> webpages in this list.
+                        </p>
+                        <table class="data-table table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Is a website root</th>
+                                    <th scope="col"><abbr title="Uniform Resource Locator">URL</abbr></th>
+                                    <th scope="col">Tags</th>
+                                    <th scope="col">Locales</th>
+                                    <th scope="col">Details</th>                            
+                                </tr>
+                            </thead>
+                            <tbody>
+                    <c:forEach var="webpage" items="${webpageList.list}">
+                                <tr>
+                                    <td>${webpage.id}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${webpage.isRoot}">
+                                                <span class="icon-ok"></span> yes
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="icon-remove"></span> no
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td><a href="${webpage.URL}">${webpage.URL}</a></td>
+                                    <td>
+                                        <c:set var="isFirstLoop" value="${true}"/>
+                                        <c:forEach var="tag" items="${webpage.tags}">
+                                            <c:choose>
+                                                <c:when test="${isFirstLoop}">
+                                                    <c:set var="isFirstLoop" value="${false}"/>
+                                                </c:when>
+                                                <c:otherwise>,</c:otherwise>
+                                            </c:choose>
+                                                <a href="/urlmanager/rest/request/list-matching-webpages?id=0&amp;tags-label=${tag.label}"
+                                                title="Webpages having the tag of id ${tag.id}"
+                                                >${tag.label}</a>
+                                        </c:forEach>
+                                    </td>
+                                    <td>
+                                        <c:set var="isFirstLoop" value="${true}"/>
+                                        <c:forEach var="locale" items="${webpage.locales}">
+                                            <c:choose>
+                                                <c:when test="${isFirstLoop}">
+                                                    <c:set var="isFirstLoop" value="${false}"/>
+                                                </c:when>
+                                                <c:otherwise>,</c:otherwise>
+                                            </c:choose>
+                                                <a href="/urlmanager/rest/request/list-matching-webpages?id=0&amp;locales-label=${locale.label}"
+                                                title="Webpages having the locale of id ${locale.id}"
+                                                >${locale.label}</a>
+                                        </c:forEach>
+                                    </td>
+                                    <td>
+                                        <c:set var="details_link_url" value="/urlmanager/rest/webpage/read?id=${webpage.id}"/>
+                                        <c:set var="details_link_title" value="Details of the webpage of id ${webpage.id}"/>
+                                        <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
+                                    </td>
+                                </tr>
+                    </c:forEach>
+                            </tbody>
+                        </table>                            
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <c:choose>
+                <c:when test="${isCustomList}">
+                    <div class="page-header">
+                        <h1>Create this list</h1>                        
+                    </div>
+                    <div class="row span12">
+                        <%@include file="/WEB-INF/jspf/forms/request/create.jspf"%>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="page-header">
+                        <h1>List details</h1>
+                    </div>
+                    <div class="row span12">
+                        <div class="well">
+                            <a href="/urlmanager/rest/request/read?id=${request.id}">View list details</a>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <%@include file="/WEB-INF/jspf/template/footer.jspf" %>
+    </body>
+</html>

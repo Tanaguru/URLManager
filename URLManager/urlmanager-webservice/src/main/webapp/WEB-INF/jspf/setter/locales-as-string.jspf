@@ -1,0 +1,1 @@
+<c:set var="localesAsString"><c:set var="isFirstLoop" value="${true}"/><c:forEach var="locale" items="${localesAsString_locales}"><c:choose><c:when test="${isFirstLoop}"><c:set var="isFirstLoop" value="${false}"/></c:when><c:otherwise>, </c:otherwise></c:choose>${locale.label}</c:forEach></c:set>

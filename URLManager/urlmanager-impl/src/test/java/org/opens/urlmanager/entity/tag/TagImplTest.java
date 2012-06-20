@@ -52,11 +52,21 @@ public class TagImplTest extends TestCase {
         TagImpl other;
         boolean result;
 
-        // check that only the label is tested.
-        other = new TagImpl(0L, "lol");
+        // check that the label and the id are tested.
+        other = new TagImpl(1L, "lol");
         result = instance.equals(other);
         assertTrue(result);
 
+        // check that the label is not ignored.
+        other = new TagImpl(1L, "lil");
+        result = instance.equals(other);
+        assertFalse(result);
+
+        // check that the id is not ignored.
+        other = new TagImpl(0L, "lol");
+        result = instance.equals(other);
+        assertFalse(result);
+        
         // trivial test
         other = new TagImpl(0L, "lil");
         result = instance.equals(other);
@@ -81,9 +91,17 @@ public class TagImplTest extends TestCase {
         int expResult = new TagImpl(1L, "lol").hashCode();
         int result;
         
-        // check that only the tag is hashed
-        result = new TagImpl(0L, "lol").hashCode();
+        // check that the label and the id are hashed
+        result = new TagImpl(1L, "lol").hashCode();
         assertEquals(expResult, result);
+
+        // check that the label is not ignored
+        result = new TagImpl(1L, "lil").hashCode();
+        assertTrue(expResult != result);
+
+        // check that the label and the id are hashed
+        result = new TagImpl(0L, "lol").hashCode();
+        assertTrue(expResult != result);
 
         // error case : label null
         new TagImpl(0L, null).hashCode();

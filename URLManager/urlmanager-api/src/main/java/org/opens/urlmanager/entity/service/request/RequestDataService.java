@@ -21,8 +21,10 @@
  */
 package org.opens.urlmanager.entity.service.request;
 
+import java.util.Collection;
 import org.opens.tanaguru.sdk.entity.service.GenericDataService;
 import org.opens.urlmanager.entity.request.Request;
+import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
  *
@@ -37,4 +39,9 @@ public interface RequestDataService extends GenericDataService<Request, Long> {
      *         Return null if there is no match.
      */
     Request getRequestFromLabel(String label);
+    
+    /**
+     * @return The list of matching webpages
+     */
+    Collection<Webpage> getMatchingWebpages(Request request);
 }

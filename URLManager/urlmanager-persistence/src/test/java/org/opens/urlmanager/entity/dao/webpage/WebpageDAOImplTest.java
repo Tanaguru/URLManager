@@ -24,10 +24,8 @@ package org.opens.urlmanager.entity.dao.webpage;
 import java.util.*;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-import org.opens.urlmanager.entity.dao.request.RequestDAO;
 import org.opens.urlmanager.entity.locale.Locale;
 import org.opens.urlmanager.entity.locale.LocaleImpl;
-import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.service.webpage.WebpageDataServiceImpl;
 import org.opens.urlmanager.entity.tag.Tag;
 import org.opens.urlmanager.entity.tag.TagImpl;
@@ -75,6 +73,75 @@ public class WebpageDAOImplTest extends AbstractDaoTestCase {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of findAll method, of class WebpageDAOImpl
+     */
+    public void testFindAll() {
+        System.out.println("testFindAll");
+        Collection<Webpage> result;
+        Webpage expWebpage = new WebpageImpl(1L, "http://lol.com/", Boolean.TRUE);
+        Set<Tag> expTag = new HashSet<Tag>(Arrays.asList(
+                (Tag) new TagImpl(1L, "lol"),
+                (Tag) new TagImpl(2L, "lil")
+                ));
+        Set<Locale> expLocale = new HashSet<Locale>(Arrays.asList(
+                (Locale) new LocaleImpl(1L, "fr", "french",  "FR", "France"),
+                (Locale) new LocaleImpl(3L, "en", "english", "GB", "Great Britain"),
+                (Locale) new LocaleImpl(4L, "en", "english", "US", "United States")
+                ));
+        
+        
+        // run method
+        result = webpageDAO.findAll();
+        // expect 5 results
+        assertEquals(5, result.size());
+        Iterator<Webpage> it = result.iterator();
+        while (it.hasNext()) {
+            Webpage webpage = it.next();
+            
+            if (webpage.equals(expWebpage)) {
+                it = null;
+                assertEquals(expTag, webpage.getTags());
+                assertEquals(expLocale, webpage.getLocales());
+                break;
+            }
+        }
+        if (it != null) {
+            fail("Webpage with URL " + expWebpage.getURL() + " does not exist");
+        }
+    }
+    
+    /**
+     * Test of read method, of class WebpageDAOImpl
+     */
+    public void testRead() {
+        System.out.println("testRead");
+        Webpage result;
+        Webpage expWebpage = new WebpageImpl(1L, "http://lol.com/", Boolean.TRUE);
+        Set<Tag> expTag = new HashSet<Tag>(Arrays.asList(
+                (Tag) new TagImpl(1L, "lol"),
+                (Tag) new TagImpl(2L, "lil")
+                ));
+        Set<Locale> expLocale = new HashSet<Locale>(Arrays.asList(
+                (Locale) new LocaleImpl(1L, "fr", "french",  "FR", "France"),
+                (Locale) new LocaleImpl(3L, "en", "english", "GB", "Great Britain"),
+                (Locale) new LocaleImpl(4L, "en", "english", "US", "United States")
+                ));
+        
+        /* nominal UC */
+        // run method
+        result = webpageDAO.read(1L);
+        // test result;
+        assertEquals(expWebpage, result);
+        assertEquals(expTag, result.getTags());
+        assertEquals(expLocale, result.getLocales());
+        
+        /* error UC : invalid ID */
+        result = webpageDAO.read(0L);
+        // test result
+        assertNull(result);
+    }
+    
     /**
      * Test of findWebpageFromURL method, of class WebpageDAOImpl.
      */
@@ -125,129 +192,6 @@ public class WebpageDAOImplTest extends AbstractDaoTestCase {
         //
         assertNotNull(result);
         assertTrue(result.isEmpty());
-    }
-
-    /**
-     * Test of findWebpageListFromRequest method, of class WebpageDAOImpl.
-     */
-    public void testFindWebpageListFromRequest() {
-        System.out.println("findWebpageListFromRequest");
-        RequestDAO requestDAO = (RequestDAO) springBeanFactory.getBean("requestDAO");
-        Request request;
-        List<Webpage> result;
-        List<Webpage> expResult;
-
-        // fetch request
-        request = requestDAO.findRequestFromLabel("lol french pages");
-        // check request ID
-        assertNotNull(request);
-        assertEquals(Long.valueOf(4), request.getId());
-        // set expected result
-        expResult = Arrays.asList(
-                (Webpage) new WebpageImpl(1L, "http://lol.com/", true)
-                );
-        // do request
-        result = webpageDAO.findWebpageListFromRequest(request);
-        // compare results
-        assertEquals(0, new ListContentComparator<Webpage>().compare(
-                expResult, result,
-                new WebpageDataServiceImpl.Comparator()));
-    }
-
-    /**
-     * Test of findWebpageListFromRequestParameters method, of class WebpageDAOImpl.
-     */
-    public void testFindWebpageListFromRequestParameters() {
-        System.out.println("findWebpageListFromRequestParameters");
-        Collection<? extends Locale> locales;
-        Collection<? extends Tag> tags;
-        List<Webpage> expResult;
-        List<Webpage> result;
-
-        /*
-         * Request webpages matching a list of tags and locales
-         */
-        System.out.println("-> with locales and tags");
-        // set locales and tag for a request equivalent to "lol french pages"
-        locales = Arrays.asList(
-                (Locale) new LocaleImpl(1L, "fr", "french", "FR", "France"),
-                (Locale) new LocaleImpl(1L, "fr", "french", "CA", "Canada")
-                );
-        tags = Arrays.asList(
-                (Tag) new TagImpl(1L, "lol")
-                );
-        // set expected result
-        expResult = Arrays.asList(
-                (Webpage) new WebpageImpl(1L, "http://lol.com/", true)
-                );
-        // fetch results
-        result = webpageDAO.findWebpageListFromRequestParameters(locales, tags);
-        // compare result
-        assertEquals(0, new ListContentComparator<Webpage>().compare(
-                expResult, result,
-                new WebpageDataServiceImpl.Comparator()));
-
-        /*
-         * Request weboages matching a list of tags
-         */
-        System.out.println("-> with tags only");
-        // set locales and tags for a request equivalent to "lol and toto related"
-        locales = new ArrayList<Locale>();
-        tags = Arrays.asList(
-                (Tag) new TagImpl(1L, "lol"),
-                (Tag) new TagImpl(3L, "toto")
-                );
-        // set expected result
-        expResult = Arrays.asList(
-                (Webpage) new WebpageImpl(3L, "http://lol.com/page.html", false)
-                );
-        // fetch results
-        result = webpageDAO.findWebpageListFromRequestParameters(locales, tags);
-        // compare result
-        assertEquals(0, new ListContentComparator<Webpage>().compare(
-                expResult, result,
-                new WebpageDataServiceImpl.Comparator()));
-        
-        /*
-         * Request webpages matching a list of locales
-         */
-        System.out.println("-> with locales only");
-        // set locales and tag for a request equivalent to "french pages"
-        locales = Arrays.asList((Locale) new LocaleImpl(1L, "fr", "french", "FR", "France"));
-        tags = new ArrayList<Tag>();
-        // set expected result
-        expResult = Arrays.asList(
-                (Webpage) new WebpageImpl(1L, "http://lol.com/", true),
-                (Webpage) new WebpageImpl(4L, "http://toto.com/", true)
-                );
-        // fetch results
-        result = webpageDAO.findWebpageListFromRequestParameters(locales, tags);
-        // compare result
-        assertEquals(0, new ListContentComparator<Webpage>().compare(
-                expResult, result,
-                new WebpageDataServiceImpl.Comparator()));
-        
-        /*
-         * Request all webpages
-         */
-        System.out.println("-> without anything : joker research");
-        // set locales and tags for a request equivqlent to "joker"
-        locales = new ArrayList<Locale>();
-        tags = new ArrayList<Tag>();
-        // set expected result (all webpage entries)
-        expResult = Arrays.asList(
-                (Webpage) new WebpageImpl(1L, "http://lol.com/", true),
-                (Webpage) new WebpageImpl(2L, "http://lol.com/app/", false),
-                (Webpage) new WebpageImpl(3L, "http://lol.com/page.html", false),
-                (Webpage) new WebpageImpl(4L, "http://toto.com/", true),
-                (Webpage) new WebpageImpl(5L, "http://foreveralone.com/", true)
-                );
-        // fetch results
-        result = webpageDAO.findWebpageListFromRequestParameters(locales, tags);
-        // compare result
-        assertEquals(0, new ListContentComparator<Webpage>().compare(
-                expResult, result,
-                new WebpageDataServiceImpl.Comparator()));        
     }
 
     /**
@@ -317,45 +261,5 @@ public class WebpageDAOImplTest extends AbstractDaoTestCase {
         
         System.out.println("-> without matching webpages");
         // TODO: test without possible matching
-    }
-
-    /**
-     * Test of buildRequestQuery method, of class WebpageDAOImpl.
-     */
-    public void testBuildRequestQuery() {
-        System.out.println("buildRequestQuery");
-        WebpageDAOImpl instance = new WebpageDAOImpl();
-        String result;
-        String expResult;
-
-        System.out.println("-> with tags and locales");
-        expResult = "SELECT w FROM " + instance.getEntityClass().getName() + " w" +
-                " INNER JOIN w.locales l INNER JOIN w.tags t WHERE" +
-                " l IN (:locales) AND t IN (:tags)" +
-                " GROUP BY w";
-        result = instance.buildRequestQuery(true, true);
-        assertEquals(expResult, result);
-
-        System.out.println("-> with tags");
-        expResult = "SELECT w FROM " + instance.getEntityClass().getName() + " w" +
-                " INNER JOIN w.tags t WHERE" +
-                " t IN (:tags)" +
-                " GROUP BY w";
-        result = instance.buildRequestQuery(false, true);
-        assertEquals(expResult, result);
-
-        System.out.println("-> with locales");
-        expResult = "SELECT w FROM " + instance.getEntityClass().getName() + " w" +
-                " INNER JOIN w.locales l WHERE" +
-                " l IN (:locales)" +
-                " GROUP BY w";
-        result = instance.buildRequestQuery(true, false);
-        assertEquals(expResult, result);
-
-        System.out.println("-> without anything");
-        expResult = "SELECT w FROM " + instance.getEntityClass().getName() + " w" +
-                " GROUP BY w";
-        result = instance.buildRequestQuery(false, false);
-        assertEquals(expResult, result);
     }
 }

@@ -53,17 +53,22 @@ public class LocaleImplTest extends TestCase {
         boolean result;
 
         // check if a locale is well identified using only its language and country
-        other = new LocaleImpl(0L, "fr", "", "FR", "");
+        other = new LocaleImpl(1L, "fr", "", "FR", "");
         result = instance.equals(other);
         assertTrue(result);
 
+        // check if two locales differ if the id differ
+        other = new LocaleImpl(0L, "fr", "", "FR", "");
+        result = instance.equals(other);
+        assertFalse(result);
+
         // check if two locales differ if the country differ
-        other = new LocaleImpl(0L, "fr", "", "CA", "");
+        other = new LocaleImpl(1L, "fr", "", "CA", "");
         result = instance.equals(other);
         assertFalse(result);
 
         // check if two locales differ if the langauge differ
-        other = new LocaleImpl(0L, "pro", "", "FR", "");
+        other = new LocaleImpl(1L, "pro", "", "FR", "");
         result = instance.equals(other);
         assertFalse(result);
 
@@ -91,8 +96,8 @@ public class LocaleImplTest extends TestCase {
         int expResult = new LocaleImpl(1L, "fr", "french", "FR", "France").hashCode();
         int result;
 
-        // check that only the language and the country are hashed
-        result = new LocaleImpl(0L, "fr", "", "FR", "").hashCode();
+        // check that only the id, the language and the country are hashed
+        result = new LocaleImpl(1L, "fr", "", "FR", "").hashCode();
         assertEquals(expResult, result);
 
         // error case

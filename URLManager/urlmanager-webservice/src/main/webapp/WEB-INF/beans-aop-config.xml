@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="aePersistenceInhibitor" class="org.opens.urlmanager.inhibitor.AEPersistenceInhibitor"/>
+
+    <aop:config>
+        <aop:aspect ref="aePersistenceInhibitor">
+            <aop:pointcut
+                id="genericServicePointcut"
+                expression="execution(* org.opens.tanaguru.sdk.entity.service.*.*(..))"
+                />
+            <aop:pointcut
+                id="servicePointcut"
+                expression="execution(* org.opens.urlmanager.entity.service.*.*.*(..))"
+                />
+            <aop:after-throwing
+                method="inhibitException"
+                throwing="e"
+                pointcut-ref="servicePointcut"
+                />
+            <aop:after-throwing
+                method="inhibitException"
+                throwing="e"
+                pointcut-ref="genericServicePointcut"
+                />
+        </aop:aspect>
+    </aop:config>
+
+</beans>

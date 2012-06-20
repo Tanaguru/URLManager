@@ -25,10 +25,7 @@ import org.opens.urlmanager.entity.tag.*;
 import java.io.ByteArrayOutputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.ElementNameAndTextQualifier;
-import org.custommonkey.xmlunit.XMLTestCase;
-import org.custommonkey.xmlunit.XMLUnit;
+import org.custommonkey.xmlunit.*;
 import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.WebpageImpl;
@@ -84,9 +81,9 @@ public class RequestXMLSerializationTest extends XMLTestCase {
         expDoc = XMLUtils.createDocumentFromXMLContent(expOutput);
         genDoc = XMLUtils.createDocumentFromXMLContent(output);
         
-        Diff diff = new Diff(expDoc, genDoc);
+        Diff diff = new Diff(expDoc, genDoc, null, new ElementNameQualifier());
         
-        assertXMLEqual(diff, diff.identical());
+        assertXMLEqual(diff, diff.similar());
     }
 
     private RequestImpl createRequest() {

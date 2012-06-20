@@ -48,15 +48,16 @@ public class WebpageImpl implements Webpage, Serializable {
     @Column(name = "Id_Webpage")
     private Long id;
     
-    @Basic(optional = false)
-    @Column(name = "URL")
+    @Column(name = "URL",
+            nullable = false,
+            unique = true)
     private String url;
     
     @Basic(optional = false)
     @Column(name = "Is_Root")
     private Boolean isRoot;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "WEBPAGE_TAG",
             joinColumns = @JoinColumn(name = "Id_Webpage"),
@@ -65,7 +66,7 @@ public class WebpageImpl implements Webpage, Serializable {
     private Set<TagImpl> tags =
             new HashSet<TagImpl>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "WEBPAGE_LOCALE",
             joinColumns = @JoinColumn(name = "Id_Webpage"),
@@ -93,6 +94,9 @@ public class WebpageImpl implements Webpage, Serializable {
             return false;
         }
         final WebpageImpl other = (WebpageImpl) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
         if ((this.url == null) ? (other.url != null) : !this.url.equals(other.url)) {
             return false;
         }
@@ -101,8 +105,9 @@ public class WebpageImpl implements Webpage, Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + (this.url != null ? this.url.hashCode() : 0);
+        int hash = 7;
+        hash = 41 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 41 * hash + (this.url != null ? this.url.hashCode() : 0);
         return hash;
     }
 
@@ -129,6 +134,7 @@ public class WebpageImpl implements Webpage, Serializable {
     }
 
     public void setLocales(Collection<? extends Locale> locales) {
+        this.locales.clear();
         this.locales.addAll((Collection<LocaleImpl>)locales);
     }
 
@@ -143,6 +149,7 @@ public class WebpageImpl implements Webpage, Serializable {
     }
 
     public void setTags(Collection<? extends Tag> tags) {
+        this.tags.clear();
         this.tags.addAll((Collection<TagImpl>)tags);
     }
 

@@ -1,0 +1,9 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- FIXME: do something more generic (see others search-id) --%>
+<form action="/urlmanager/rest/webpage/read-url"
+      method="POST" class="well form-search">
+    <input type="hidden" name="id" value="0"/>
+    <input type="text" name="URL" value="" class="search-query" title="Webpage url to look for"/>
+    <c:set var="search_button_label" value="Search by url"/>
+    <%@include file="/WEB-INF/jspf/inline/buttons/search.jspf" %>
+</form>

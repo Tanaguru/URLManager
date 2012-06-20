@@ -1,0 +1,3 @@
+<button class="btn btn-warning"
+        <c:if test="${unlink_button_title != null}">title="${unlink_button_title}"</c:if>
+    ><span class="icon-white icon-resize-full"></span> Unlink</button>

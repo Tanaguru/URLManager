@@ -1,0 +1,7 @@
+<%@ page pageEncoding="UTF-8" %>
+<c:set var="delete_link_url" value="${delete_entity_url}"/>
+<c:set var="delete_link_title" value="${delete_entity_title}"/>
+<p class="alert alert-danger">
+    <strong>WARNING !</strong>
+    This operation can not be undone : <%@include file="/WEB-INF/jspf/inline/links/delete.jspf" %>
+</p>

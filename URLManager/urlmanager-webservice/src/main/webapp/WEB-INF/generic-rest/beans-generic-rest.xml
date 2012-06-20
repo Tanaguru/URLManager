@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * URLManager - URL Indexer
+ * Copyright (C) 2008-2012  Open-S Company
+ *
+ * This file is part of URLManager.
+ *
+ * URLManager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contact us by mail: open-s AT open-s DOT com
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+       http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd">
+
+    <import resource="operations/beans-rest-operations.xml"/>
+    <import resource="unserializers/beans-rest-unserializers.xml"/>
+    
+    <bean
+        id="restEntitiesOperationsMap"
+        class="java.util.HashMap"
+        autowire="byName"
+    >
+        <constructor-arg>
+            <map>
+                <!-- entity Locale -->
+                <entry key="locale">
+                    <map>
+                        <entry key="list">
+                            <ref bean="localeOperationList"/>
+                        </entry>
+                        <entry key="read">
+                            <ref bean="localeOperationRead"/>
+                        </entry>
+                    </map>
+                </entry>
+                <!-- entity Request -->
+                <entry key="request">
+                    <map>
+                        <entry key="create">
+                            <ref bean="requestOperationCreate"/>
+                        </entry>
+                        <entry key="list">
+                            <ref bean="requestOperationList"/>
+                        </entry>
+                        <entry key="read">
+                            <ref bean="requestOperationRead"/>
+                        </entry>
+                        <entry key="update">
+                            <ref bean="requestOperationUpdate"/>
+                        </entry>
+                        <entry key="delete">
+                            <ref bean="requestOperationDelete"/>
+                        </entry>
+                        <entry key="read-label">
+                            <ref bean="requestOperationGetFromLabel"/>
+                        </entry>
+                        <entry key="list-matching-webpages">
+                            <ref bean="requestOperationGetMatchingWebpages"/>
+                        </entry>
+                    </map>
+                </entry>
+                <!-- entity Tag -->
+                <entry key="tag">
+                    <map>
+                        <entry key="create">
+                            <ref bean="tagOperationCreate"/>
+                        </entry>
+                        <entry key="list">
+                            <ref bean="tagOperationList"/>
+                        </entry>
+                        <entry key="read">
+                            <ref bean="tagOperationRead"/>
+                        </entry>
+                        <entry key="update">
+                            <ref bean="tagOperationUpdate"/>
+                        </entry>
+                        <entry key="delete">
+                            <ref bean="tagOperationDelete"/>
+                        </entry>
+                        <entry key="read-label">
+                            <ref bean="tagOperationGetFromLabel"/>
+                        </entry>
+                    </map>
+                </entry>
+                <!-- entity Webpage -->
+                <entry key="webpage">
+                    <map>
+                        <entry key="create">
+                            <ref bean="webpageOperationCreate"/>
+                        </entry>
+                        <entry key="list">
+                            <ref bean="webpageOperationList"/>
+                        </entry>
+                        <entry key="read">
+                            <ref bean="webpageOperationRead"/>
+                        </entry>
+                        <entry key="update">
+                            <ref bean="webpageOperationUpdate"/>
+                        </entry>
+                        <entry key="delete">
+                            <ref bean="webpageOperationDelete"/>
+                        </entry>
+                        <entry key="read-url">
+                            <ref bean="webpageOperationGetFromURL"/>
+                        </entry>
+                        <entry key="list-root">
+                            <ref bean="webpageOperationListRoot"/>
+                        </entry>
+                        <entry key="list-without-tag">
+                            <ref bean="webpageOperationListWithoutTag"/>
+                        </entry>
+                        <entry key="list-without-locale">
+                            <ref bean="webpageOperationListWithoutLocale"/>
+                        </entry>
+                        <entry key="list-without-relation">
+                            <ref bean="webpageOperationListWithoutRelations"/>
+                        </entry>
+                    </map>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    
+</beans>

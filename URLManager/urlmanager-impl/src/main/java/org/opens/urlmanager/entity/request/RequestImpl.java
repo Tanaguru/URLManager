@@ -48,11 +48,12 @@ public class RequestImpl implements Request, Serializable {
     @Column(name = "Id_Request")
     private Long id;
     
-    @Basic(optional = false)
-    @Column(name = "Label")
+    @Column(name = "Label",
+            nullable = false,
+            unique = true)
     private String label;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "REQUEST_TAG",
             joinColumns = @JoinColumn(name = "Id_Request"),
@@ -61,7 +62,7 @@ public class RequestImpl implements Request, Serializable {
     private Set<TagImpl> tags = 
             new HashSet<TagImpl>();
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "REQUEST_LOCALE",
             joinColumns = @JoinColumn(name = "Id_Request"),
@@ -78,7 +79,7 @@ public class RequestImpl implements Request, Serializable {
         this.id = id;
         this.label = label;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -88,6 +89,9 @@ public class RequestImpl implements Request, Serializable {
             return false;
         }
         final RequestImpl other = (RequestImpl) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
         if ((this.label == null) ? (other.label != null) : !this.label.equals(other.label)) {
             return false;
         }
@@ -96,11 +100,12 @@ public class RequestImpl implements Request, Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + (this.label != null ? this.label.hashCode() : 0);
+        int hash = 7;
+        hash = 19 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 19 * hash + (this.label != null ? this.label.hashCode() : 0);
         return hash;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -118,12 +123,13 @@ public class RequestImpl implements Request, Serializable {
     }
 
     @XmlElementWrapper(name = "locales")
-    @XmlElement(name = "locales", type = LocaleImpl.class)
+    @XmlElement(name = "locale", type = LocaleImpl.class)
     public Collection<? extends Locale> getLocales() {
         return locales;
     }
 
     public void setLocales(Collection<? extends Locale> locales) {
+        this.locales.clear();
         this.locales.addAll((Collection<LocaleImpl>)locales);
     }
 
@@ -132,12 +138,13 @@ public class RequestImpl implements Request, Serializable {
     }
 
     @XmlElementWrapper(name = "tags")
-    @XmlElement(name = "tags", type = TagImpl.class)
+    @XmlElement(name = "tag", type = TagImpl.class)
     public Collection<? extends Tag> getTags() {
         return tags;
     }
 
     public void setTags(Collection<? extends Tag> tags) {
+        this.tags.clear();
         this.tags.addAll((Collection<TagImpl>)tags);
     }
     

@@ -28,6 +28,7 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -48,8 +49,9 @@ public class TagImpl implements Tag, Serializable {
     @Column(name = "Id_Tag")
     private Long id;
     
-    @Basic(optional = false)
-    @Column(name = "Label")
+    @Column(name = "Label",
+            unique = true,
+            nullable = false)
     private String label;
     
     @ManyToMany(
@@ -73,7 +75,7 @@ public class TagImpl implements Tag, Serializable {
         this.id = id;
         this.label = label;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -83,24 +85,23 @@ public class TagImpl implements Tag, Serializable {
             return false;
         }
         final TagImpl other = (TagImpl) obj;
-        if (this.label == null) {
-            return (other.label == null);
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
         }
-        return this.label.equals(other.label);
+        if ((this.label == null) ? (other.label != null) : !this.label.equals(other.label)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + (this.label != null ? this.label.hashCode() : 0);
+        int hash = 7;
+        hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 37 * hash + (this.label != null ? this.label.hashCode() : 0);
         return hash;
     }
-
-    @Override
-    public String toString() {
-        return "TagImpl{" + "id=" + id + ", label=" + label + ", webpages=" + webpages + ", requests=" + requests + '}';
-    }
-    
+        
     @Override
     public Long getId() {
         return id;
@@ -123,12 +124,14 @@ public class TagImpl implements Tag, Serializable {
 
     @Override
     @XmlTransient
+    @JsonIgnore
     public Collection<? extends Request> getRequests() {
         return requests;
     }
 
     @Override
     public void setRequests(Collection<? extends Request> requests) {
+        this.requests.clear();
         this.requests.addAll((Collection<RequestImpl>)requests);
     }
 
@@ -139,12 +142,14 @@ public class TagImpl implements Tag, Serializable {
 
     @Override
     @XmlTransient
+    @JsonIgnore
     public Collection<? extends Webpage> getWebpages() {
         return webpages;
     }
 
     @Override
     public void setWebpages(Collection<? extends Webpage> webpages) {
+        this.webpages.clear();
         this.webpages.addAll((Collection<WebpageImpl>)webpages);
     }
 

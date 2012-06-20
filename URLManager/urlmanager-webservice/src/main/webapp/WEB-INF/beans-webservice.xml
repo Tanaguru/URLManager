@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * URLManager - URL Indexer
+ * Copyright (C) 2008-2012  Open-S Company
+ *
+ * This file is part of URLManager.
+ *
+ * URLManager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contact us by mail: open-s AT open-s DOT com
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <bean id="localeDao"
+          class="org.opens.urlmanager.entity.dao.locale.LocaleDAOImpl"
+          />
+
+    <bean id="localeDataService"
+          class="org.opens.urlmanager.entity.service.locale.LocaleDataServiceImpl"
+          >
+        <property name="entityDao" ref="localeDao"/>
+    </bean>
+
+    <bean id="requestDao"
+          class="org.opens.urlmanager.entity.dao.request.RequestDAOImpl"
+          />
+
+    <bean id="requestDataService"
+          class="org.opens.urlmanager.entity.service.request.RequestDataServiceImpl"
+          >
+        <property name="entityDao" ref="requestDao"/>
+        <property name="tagDataService" ref="tagDataService"/>
+        <property name="localeDataService" ref="localeDataService"/>
+    </bean>
+
+    <bean id="tagDao"
+          class="org.opens.urlmanager.entity.dao.tag.TagDAOImpl"
+          />
+
+    <bean id="tagDataService"
+          class="org.opens.urlmanager.entity.service.tag.TagDataServiceImpl"
+          >
+        <property name="entityDao" ref="tagDao"/>
+    </bean>
+
+
+    <bean id="webpageDao"
+          class="org.opens.urlmanager.entity.dao.webpage.WebpageDAOImpl"
+          />
+
+    <bean id="webpageDataService"
+          class="org.opens.urlmanager.entity.service.webpage.WebpageDataServiceImpl"
+          >
+        <property name="entityDao" ref="webpageDao"/>
+        <property name="tagDataService" ref="tagDataService"/>
+        <property name="localeDataService" ref="localeDataService"/>
+    </bean>
+
+    <bean id="xmlMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>org.opens.urlmanager.entity.locale.LocaleImpl</value>
+                <value>org.opens.urlmanager.rest.utils.jaxb.entity.locale.LocaleList</value>
+                <value>org.opens.urlmanager.entity.request.RequestImpl</value>
+                <value>org.opens.urlmanager.rest.utils.jaxb.entity.request.RequestList</value>
+                <value>org.opens.urlmanager.entity.tag.TagImpl</value>
+                <value>org.opens.urlmanager.rest.utils.jaxb.entity.tag.TagList</value>
+                <value>org.opens.urlmanager.entity.webpage.WebpageImpl</value>
+                <value>org.opens.urlmanager.rest.utils.jaxb.entity.webpage.WebpageList</value>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

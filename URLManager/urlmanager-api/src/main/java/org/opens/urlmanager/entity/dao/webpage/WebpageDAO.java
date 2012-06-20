@@ -21,13 +21,9 @@
  */
 package org.opens.urlmanager.entity.dao.webpage;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import org.opens.tanaguru.sdk.entity.dao.GenericDAO;
-import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.request.Request;
-import org.opens.urlmanager.entity.tag.Tag;
 import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
@@ -49,25 +45,6 @@ public interface WebpageDAO extends GenericDAO<Webpage, Long> {
      * @return The list of Webpages set with the isRoot bit.
      */
     Set<Webpage> findRootWebpageList();
-    
-    /**
-     * 
-     * @param request The stored request to get the result
-     * @return The list of webpages matching the given request.
-     */
-    List<Webpage> findWebpageListFromRequest(Request request);
-    
-    /**
-     * 
-     * @param locales Restrict the research to the given locales. Use an empty
-     *                list to avoid restrictions.
-     * @param tags    Restrict the research to the given tags. Use an empty list
-     *                to avoid restrictions.
-     * @return The list of webpages matching the given locales and tags
-     */
-    List<Webpage> findWebpageListFromRequestParameters(
-            Collection<? extends Locale> locales,
-            Collection<? extends Tag> tags);
     
     /**
      * 

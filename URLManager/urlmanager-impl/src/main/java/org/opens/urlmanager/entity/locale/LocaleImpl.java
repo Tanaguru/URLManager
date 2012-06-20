@@ -28,6 +28,7 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -47,15 +48,15 @@ public class LocaleImpl implements Locale, Serializable {
     @Column(name = "Id_Locale")
     private Long id;
     
-    @Basic(optional = false)
-    @Column(name = "Language")
+    @Column(name = "Language",
+            nullable = false)
     private String language;
     
     @Column(name = "Long_Language")
     private String longLanguage;
     
-    @Basic(optional = false)
-    @Column(name = "Country")
+    @Column(name = "Country",
+            nullable = false)
     private String country;
     
     @Column(name = "Long_Country")
@@ -89,6 +90,9 @@ public class LocaleImpl implements Locale, Serializable {
             return false;
         }
         final LocaleImpl other = (LocaleImpl) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
         if ((this.language == null) ? (other.language != null) : !this.language.equals(other.language)) {
             return false;
         }
@@ -100,9 +104,10 @@ public class LocaleImpl implements Locale, Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + (this.language != null ? this.language.hashCode() : 0);
-        hash = 79 * hash + (this.country != null ? this.country.hashCode() : 0);
+        int hash = 3;
+        hash = 61 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 61 * hash + (this.language != null ? this.language.hashCode() : 0);
+        hash = 61 * hash + (this.country != null ? this.country.hashCode() : 0);
         return hash;
     }
 
@@ -147,11 +152,40 @@ public class LocaleImpl implements Locale, Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
+    public String getLabel() {
+        StringBuilder sb = new StringBuilder(language);
+        
+        if (country != null && country.isEmpty() == false) {
+            sb.append("_").append(country);
+        }
+        return sb.toString();
+    }
+
+    public void setLabel(String label) {
+        String[] tokens = label.split("_");
+        
+        if (tokens.length == 1) {
+            language = tokens[0];
+            country = "";
+        } else if (tokens.length == 2) {
+            language = tokens[0];
+            country = tokens[1];            
+        } else {
+            throw new IllegalArgumentException(
+                    "Invalid locale label \"" + label + "\""
+                    );
+        }
+    }
+    
+    @XmlTransient
+    @JsonIgnore
     public Collection<? extends Webpage> getWebpages() {
         return this.webpages;
     }
 
     public void setWebpages(Collection<? extends Webpage> webpages) {
+        this.webpages.clear();
         this.webpages.addAll((Collection<WebpageImpl>) webpages);
     }
 
@@ -160,11 +194,13 @@ public class LocaleImpl implements Locale, Serializable {
     }
 
     @XmlTransient
+    @JsonIgnore
     public Collection<? extends Request> getRequests() {
         return this.requests;
     }
 
     public void setRequests(Collection<? extends Request> requests) {
+        this.requests.clear();
         this.requests.addAll((Collection<RequestImpl>) requests);
     }
 

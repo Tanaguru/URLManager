@@ -21,17 +21,11 @@
  */
 package org.opens.urlmanager.entity.service.webpage;
 
-import java.util.ArrayList;
-import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import static org.easymock.EasyMock.*;
 import org.opens.urlmanager.entity.dao.webpage.WebpageDAO;
-import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.request.Request;
-import org.opens.urlmanager.entity.request.RequestImpl;
-import org.opens.urlmanager.entity.tag.Tag;
 
 /**
  *
@@ -105,57 +99,6 @@ public class WebpageDataServiceImplTest extends TestCase {
          */
         instance.setEntityDao(mock);
         instance.getRootWebpageList();
-        /*
-         * verify mock
-         */
-        verify(mock);
-    }
-
-    /**
-     * Test of getWebpageListFromRequest method, of class WebpageDataServiceImpl.
-     */
-    public void testGetWebpageListFromRequest() {
-        System.out.println("getWebpageListFromRequest");
-        Request request = new RequestImpl(1L, "lol related");
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
-        
-        /*
-         * set-up mock
-         */
-        // We dont care of the return value since getWebpageListFromRequest is just a return
-        expect(mock.findWebpageListFromRequest(request)).andReturn(null);
-        replay(mock);
-        /*
-         * run test
-         */
-        instance.setEntityDao(mock);
-        instance.getWebpageListFromRequest(request);
-        /*
-         * verify mock
-         */
-        verify(mock);
-    }
-
-    /**
-     * Test of getWebpageListFromRequestParameters method, of class WebpageDataServiceImpl.
-     */
-    public void testGetWebpageListFromRequestParameters() {
-        System.out.println("getWebpageListFromRequestParameters");
-        List<Locale> locales = new ArrayList<Locale>();
-        List<Tag> tags = new ArrayList<Tag>();
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
-        
-        /*
-         * set-up mock
-         */
-        // We dont care of the return value since getWebpageListFromRequestParameters is just a return
-        expect(mock.findWebpageListFromRequestParameters(locales, tags)).andReturn(null);
-        replay(mock);
-        /*
-         * run test
-         */
-        instance.setEntityDao(mock);
-        instance.getWebpageListFromRequestParameters(locales, tags);
         /*
          * verify mock
          */

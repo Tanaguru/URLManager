@@ -21,19 +21,66 @@
  */
 package org.opens.urlmanager.entity.service.request;
 
-import org.opens.tanaguru.sdk.entity.service.AbstractGenericDataService;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.LogFactory;
 import org.opens.urlmanager.entity.dao.request.RequestDAO;
 import org.opens.urlmanager.entity.request.Request;
+import org.opens.urlmanager.entity.service.LocaleAndTagAssociatedDataService;
+import org.opens.urlmanager.entity.service.exception.EntityNotFoundException;
+import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
  *
  * @author bcareil
  */
-public class RequestDataServiceImpl extends AbstractGenericDataService<Request, Long>
+public class RequestDataServiceImpl extends LocaleAndTagAssociatedDataService<Request>
     implements RequestDataService {
-
+    
     public Request getRequestFromLabel(String label) {
         return ((RequestDAO)entityDao).findRequestFromLabel(label);
     }
+
+    public Collection<Webpage> getMatchingWebpages(Request request) {
+        if (request.getId() != null && request.getId() != 0) {
+            preprocessRequest(request);
+        } else {
+            request.setTags(preprocessTags(request.getTags(), false));
+            request.setLocales(preprocessLocales(request.getLocales()));
+        }
+        return ((RequestDAO)entityDao).findMatchingWebpages(request);
+    }
+
+    @Override
+    public void create(Request entity) {
+        entity.setTags(preprocessTags(entity.getTags(), false));
+        entity.setLocales(preprocessLocales(entity.getLocales()));
+        super.create(entity);
+    }
+
+    @Override
+    public Request update(Request entity) {
+        entity.setTags(preprocessTags(entity.getTags(), false));
+        entity.setLocales(preprocessLocales(entity.getLocales()));
+        return super.update(entity);
+    }
+
+    
+    
+    private void preprocessRequest(Request request) {
+        Request persistedRequest = this.read(request.getId());
+
+        if (persistedRequest == null) {
+            throw new EntityNotFoundException("request", "invalid id");
+        }
+        try {
+            BeanUtils.copyProperties(request, persistedRequest);
+        } catch (Exception ex) {
+            LogFactory.getLog(RequestDataServiceImpl.class).error("Unable to copy 'Request' bean", ex);
+        }
+    }    
     
 }

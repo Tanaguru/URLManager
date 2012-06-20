@@ -1,0 +1,2 @@
+<c:if test="${search_button_label == null}"><c:set var="search_button_label" value="Search"/></c:if>
+<button class="btn btn-primary"><span class="icon-white icon-search"></span> ${search_button_label}</button>

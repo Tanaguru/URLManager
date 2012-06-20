@@ -21,8 +21,10 @@
  */
 package org.opens.urlmanager.entity.dao.request;
 
+import java.util.Collection;
 import org.opens.tanaguru.sdk.entity.dao.GenericDAO;
 import org.opens.urlmanager.entity.request.Request;
+import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
  *
@@ -37,4 +39,9 @@ public interface RequestDAO extends GenericDAO<Request, Long> {
      *         Return null if there is no match.
      */
     Request findRequestFromLabel(String label);
+    
+    /**
+     * @return The matching webpages
+     */
+    Collection<Webpage> findMatchingWebpages(Request request);
 }

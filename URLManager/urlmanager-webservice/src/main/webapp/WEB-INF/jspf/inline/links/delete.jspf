@@ -1,0 +1,3 @@
+<a href="${delete_link_url}" class="btn btn-danger"
+    <c:if test="${delete_link_title.isEmpty() == false}">title="${delete_link_title}"</c:if>
+    ><span class="icon-white icon-remove"></span> Delete</a>

@@ -24,9 +24,6 @@ package org.opens.urlmanager.entity.service.webpage;
 import java.util.List;
 import java.util.Set;
 import org.opens.tanaguru.sdk.entity.service.GenericDataService;
-import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.request.Request;
-import org.opens.urlmanager.entity.tag.Tag;
 import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
@@ -49,25 +46,6 @@ public interface WebpageDataService extends GenericDataService<Webpage, Long> {
     Set<Webpage> getRootWebpageList();
     
     /**
-     * 
-     * @param request The stored request to get the result
-     * @return The list of webpages matching the given request.
-     */
-    List<Webpage> getWebpageListFromRequest(Request request);
-    
-    /**
-     * 
-     * @param locales Restrict the research to the given locales. Use an empty
-     *                list to avoid restrictions.
-     * @param tags    Restrict the research to the given tags. Use an empty list
-     *                to avoid restrictions.
-     * @return The list of webpages matching the given locales and tags
-     */
-    List<Webpage> getWebpageListFromRequestParameters(
-            List<Locale> locales,
-            List<Tag> tags);
-    
-        /**
      * 
      * @return The list of webpages without tag
      */

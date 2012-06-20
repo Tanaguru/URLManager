@@ -1,0 +1,48 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- FIXME: do something more generic (see others search-id) --%>
+<form action="/urlmanager/rest/webpage/create"
+      method="POST" class="well form-horizontal">
+    <input type="hidden" name="id" value="0"/>
+    <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
+    <div class="control-group">
+        <label class="control-label" for="create-webpage-isRoot">Is Root</label>
+        <div class="controls">
+            <input id="create-webpage-isRoot" type="checkbox" name="isRoot" value="true"/>
+            <p class="help-block">
+                Check if the given URL lead to the root of a website.
+            </p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="create-webpage-URL">
+            <abbr title="Required field" class="mandatory">*</abbr> <abbr title="Uniform Resource Locator">URL</abbr>
+        </label>
+        <div class="controls">
+            <input id="create-webpage-URL" type="text" name="URL" value=""/>
+            <p class="help-block">
+                Mandatory field, the address of the webpage.
+            </p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="create-webpage-tags-label">Tags</label>
+        <div class="controls">
+            <input id="create-webpage-tags-label" type="text" name="tags-label" value=""/>
+            <p class="help-block">
+                Comma separated tags, exemple : <code>tv,&nbsp;sport</code>
+            </p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="create-webpage-locales-label">Locales</label>
+        <div class="controls">
+            <input id="create-webpage-locales-label" type="text" name="locales-label" value=""/>
+            <p class="help-block">
+                Comma separated locale, exemple : <code>fr_FR,&nbsp;fr_CA</code>
+            </p>
+        </div>
+    </div>
+    <div class="form-actions">
+        <%@include file="/WEB-INF/jspf/inline/buttons/create.jspf" %>
+    </div>
+</form>

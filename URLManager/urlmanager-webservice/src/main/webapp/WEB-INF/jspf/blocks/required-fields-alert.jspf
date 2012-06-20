@@ -1,0 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
