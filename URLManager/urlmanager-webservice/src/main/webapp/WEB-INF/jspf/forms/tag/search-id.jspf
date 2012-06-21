@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8" %>
 <%-- FIXME: do something more generic (see others search-id) --%>
-<form action="/urlmanager/rest/tag/read"
+<form action="${contextPath}/rest/tag/read"
       method="POST"
       class="well form-search">
     <input type="text" name="id" value="" class="search-query" title="Tag id to look for"/>

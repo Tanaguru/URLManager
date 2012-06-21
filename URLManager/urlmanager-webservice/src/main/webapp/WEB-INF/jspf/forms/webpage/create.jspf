@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8" %>
 <%-- FIXME: do something more generic (see others search-id) --%>
-<form action="/urlmanager/rest/webpage/create"
+<form action="${contextPath}/rest/webpage/create"
       method="POST" class="well form-horizontal">
     <input type="hidden" name="id" value="0"/>
     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>

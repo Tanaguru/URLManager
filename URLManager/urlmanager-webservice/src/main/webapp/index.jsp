@@ -23,10 +23,10 @@
                 <h2>Available operations</h2>
                 <p>
                     <ul>
-                        <li><a href="/urlmanager/request.jsp">Manage the Lists</a></li>
-                        <li><a href="/urlmanager/webpage.jsp">Manage the Webpages</a></li>
-                        <li><a href="/urlmanager/locale.jsp">Manage the Locales</a></li>
-                        <li><a href="/urlmanager/tag.jsp">Manage the Tags</a></li>
+                        <li><a href="${contextPath}/request.jsp">Manage the Lists</a></li>
+                        <li><a href="${contextPath}/webpage.jsp">Manage the Webpages</a></li>
+                        <li><a href="${contextPath}/locale.jsp">Manage the Locales</a></li>
+                        <li><a href="${contextPath}/tag.jsp">Manage the Tags</a></li>
                     </ul>
                 </p>
             </div>

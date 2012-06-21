@@ -35,12 +35,12 @@
                                 <td>${tag.id}</td>
                                 <td>${tag.label}</td>
                                 <td>
-                                    <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}&locales-label="
+                                    <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}&locales-label="
                                        title="Webpages associated with the tag ${tag.label} (id ${tag.id})"
                                        >Associated Webpages</a>
                                 </td>
                                 <td>
-                                    <c:set var="details_link_url" value="/urlmanager/rest/tag/read?id=${tag.id}"/>
+                                    <c:set var="details_link_url" value="${contextPath}/rest/tag/read?id=${tag.id}"/>
                                     <c:set var="details_link_title" value="Detail for tag no ${tag.id}"/>
                                     <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                 </td>

@@ -6,16 +6,16 @@
         <div class="span4">
             Links
             <ul class="unstyled">
-            <li><a href="/urlmanager/">Home</a><br/></li>
+            <li><a href="${contextPath}/">Home</a><br/></li>
             </ul>
         </div>
         <div class="span4">
             Manage entity
             <ul class="unstyled">
-            <li><a href="/urlmanager/request.jsp">Lists</a></li>
-            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
-            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
-            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            <li><a href="${contextPath}/request.jsp">Lists</a></li>
+            <li><a href="${contextPath}/webpage.jsp">Webpages</a></li>
+            <li><a href="${contextPath}/locale.jsp">Locales</a></li>
+            <li><a href="${contextPath}/tag.jsp">Tags</a></li>
             </ul>
         </div>
         <div class="span4">

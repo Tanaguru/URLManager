@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
-<form action="/urlmanager/rest/tag/create"
+<form action="${contextPath}/rest/tag/create"
       method="POST"
       class="well form-horizontal">
     <input type="hidden" name="id" value="0"/>

@@ -113,7 +113,7 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="/urlmanager/rest/request/list-matching-webpages?id=0&amp;tags-label=${tag.label}"
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=${tag.label}"
                                                 title="Webpages having the tag of id ${tag.id}"
                                                 >${tag.label}</a>
                                         </c:forEach>
@@ -127,13 +127,13 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="/urlmanager/rest/request/list-matching-webpages?id=0&amp;locales-label=${locale.label}"
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=${locale.label}"
                                                 title="Webpages having the locale of id ${locale.id}"
                                                 >${locale.label}</a>
                                         </c:forEach>
                                     </td>
                                     <td>
-                                        <c:set var="details_link_url" value="/urlmanager/rest/webpage/read?id=${webpage.id}"/>
+                                        <c:set var="details_link_url" value="${contextPath}/rest/webpage/read?id=${webpage.id}"/>
                                         <c:set var="details_link_title" value="Details of the webpage of id ${webpage.id}"/>
                                         <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                     </td>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row span12">
                         <div class="well">
-                            <a href="/urlmanager/rest/request/read?id=${request.id}">View list details</a>
+                            <a href="${contextPath}/rest/request/read?id=${request.id}">View list details</a>
                         </div>
                     </div>
                 </c:otherwise>

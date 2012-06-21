@@ -46,7 +46,7 @@
                                 </td>
                                 <td><a href="${webpage.URL}">${webpage.URL}</a></td>
                                 <td>
-                                    <c:set var="details_link_url" value="/urlmanager/rest/webpage/read?id=${webpage.id}"/>
+                                    <c:set var="details_link_url" value="${contextPath}/rest/webpage/read?id=${webpage.id}"/>
                                     <c:set var="details_link_title" value="Details of webpage of id ${webpage.id}"/>
                                     <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                 </td>

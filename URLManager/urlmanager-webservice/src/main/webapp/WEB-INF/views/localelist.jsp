@@ -51,12 +51,12 @@
                                         <td>${locale.longCountry}</td>
                                         <td>${locale.label}</td>
                                         <td>
-                                            <a href="/urlmanager/rest/request/list-matching-webpages?id=0&locales=${locale.id}"
+                                            <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales=${locale.id}"
                                             title="Consult the webpages having the locale ${locale.label} (id ${locale.id})"
                                             >Associated webpages</a>
                                         </td>
                                         <td>
-                                            <c:set var="details_link_url" value="/urlmanager/rest/locale/read?id=${locale.id}"/>
+                                            <c:set var="details_link_url" value="${contextPath}/rest/locale/read?id=${locale.id}"/>
                                             <c:set var="details_link_title" value="Detail for locale ${locale.label} (id ${locale.id})"/>
                                             <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                         </td>

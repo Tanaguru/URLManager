@@ -10,7 +10,7 @@
         <c:set var="default_locales_label"><c:set var="isFirstLoop" value="${true}"/><c:forEach var="locale" items="${request.locales}"><c:choose><c:when test="${isFirstLoop}"><c:set var="isFirstLoop" value="${false}"/></c:when><c:otherwise>, </c:otherwise></c:choose>${locale.label}</c:forEach></c:set>
     </c:otherwise>
 </c:choose>
-<form action="/urlmanager/rest/request/create"
+<form action="${contextPath}/rest/request/create"
       method="POST"
       class="well form-horizontal">
     <input type="hidden" name="id" value="0"/>

@@ -49,7 +49,7 @@
 
             <div class="row span12">
                 <h2>Search a webpages by tag and locale</h2>
-                <form action="/urlmanager/rest/request/list-matching-webpages"
+                <form action="${contextPath}/rest/request/list-matching-webpages"
                     method="POST" class="well form-horizontal">
                     <input type="hidden" name="id" value="0"/>
                     <div class="control-group">

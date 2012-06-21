@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8" %>
 
-<form action="/urlmanager/rest/tag/read-label"
+<form action="${contextPath}/rest/tag/read-label"
       method="POST"
       class="well form-search">
     <input type="hidden" name="id" value="0"/>

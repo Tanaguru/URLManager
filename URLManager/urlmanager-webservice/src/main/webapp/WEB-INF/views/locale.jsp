@@ -55,7 +55,7 @@
                 <div class="row span12">
                     <div>
                         View the
-                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags-label=&locales-label=${locale.label}"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=&locales-label=${locale.label}"
                         >list of webpages</a> having this locale.
                     </div>
                 </div>

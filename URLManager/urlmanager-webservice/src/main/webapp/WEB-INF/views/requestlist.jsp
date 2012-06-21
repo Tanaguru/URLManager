@@ -36,13 +36,13 @@
                             <td>${request.id}</td>
                             <td>${request.label}</td>
                             <td>
-                                <a href="/urlmanager/rest/request/list-matching-webpages?id=${request.id}"
+                                <a href="${contextPath}/rest/request/list-matching-webpages?id=${request.id}"
                                    title="Webpages in the list ${request.label} (id ${request.id})"
                                 >view list</a>
                             </td>
                             <td>
                                 <c:set var="details_link_url"
-                                    value="/urlmanager/rest/request/read?id=${request.id}"/>
+                                    value="${contextPath}/rest/request/read?id=${request.id}"/>
                                 <c:set var="details_link_title"
                                     value="Detail for request ${request.label} (id ${request.id})"/>
                                 <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>

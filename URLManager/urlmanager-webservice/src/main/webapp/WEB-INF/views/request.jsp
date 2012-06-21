@@ -56,7 +56,7 @@
                 <h1>Modify</h1>
             </div>
             <div class="row span12">
-                <form method="POST" action="/urlmanager/rest/request/update"
+                <form method="POST" action="${contextPath}/rest/request/update"
                     class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <input type="hidden" name="id" value="${request.id}"/>
@@ -81,7 +81,7 @@
             </div>
             <div class="row span12">
                 <c:set var="delete_entit_url"
-                    value="/urlmanager/rest/request/delete?id=${request.id}"/>
+                    value="${contextPath}/rest/request/delete?id=${request.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
@@ -90,7 +90,7 @@
             </div>
             <div class="row span12">
                 <div class="well">
-                    <a href="/urlmanager/rest/request/list-matching-webpages?id=${request.id}"
+                    <a href="${contextPath}/rest/request/list-matching-webpages?id=${request.id}"
                     >Consult webpage list</a>.
                 </div>
             </div>
@@ -129,12 +129,12 @@
                                 <tr>
                                     <td>${tag.id}</td>
                                     <td>
-                                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}"
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}"
                                            title="Consult webpages having the tag of id ${tag.id}"
                                            >${tag.label}</a>
                                     </td>
                                     <td>
-                                        <form action="/urlmanager/rest/request/update"
+                                        <form action="${contextPath}/rest/request/update"
                                             method="POST">
                                             <input type="hidden" name="id" value="${request.id}"/>
                                             <input type="hidden" name="label" value="${request.label}"/>
@@ -145,7 +145,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <c:set var="details_link_url" value="/urlmanager/rest/tag/read?id=${tag.id}"/>
+                                        <c:set var="details_link_url" value="${contextPath}/rest/tag/read?id=${tag.id}"/>
                                         <c:set var="details_link_title" value="Details of the tag ${tag.label} (id ${tag.id})"/>
                                         <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                     </td>
@@ -163,7 +163,7 @@
                 <h1>Add tags</h1>
             </div>
             <div class="row span12">
-                <form action="/urlmanager/rest/request/update"
+                <form action="${contextPath}/rest/request/update"
                     method="POST" class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <input type="hidden" name="id" value="${request.id}"/>
@@ -222,12 +222,12 @@
                                 <tr>
                                     <td>${locale.id}</td>
                                     <td>
-                                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&locales-label=${locale.label}"
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=${locale.label}"
                                            title="Consult webpages having the locale of id ${locale.id}"
                                            >${locale.label}</a>
                                     </td>
                                     <td>
-                                        <form action="/urlmanager/rest/request/update"
+                                        <form action="${contextPath}/rest/request/update"
                                             method="POST" class="form-inline">
                                             <input type="hidden" name="id" value="${request.id}"/>
                                             <input type="hidden" name="label" value="${request.label}"/>
@@ -238,7 +238,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <c:set var="details_link_url" value="/urlmanager/rest/locale/read?id=${locale.id}"/>
+                                        <c:set var="details_link_url" value="${contextPath}/rest/locale/read?id=${locale.id}"/>
                                         <c:set var="details_link_title" value="Details of the locale ${locale.label} (id ${locale.id})"/>
                                         <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>
                                     </td>
@@ -255,7 +255,7 @@
                 <h1>Add Locales</h1>
             </div>
             <div class="row span12">
-                <form action="/urlmanager/rest/request/update"
+                <form action="${contextPath}/rest/request/update"
                     method="POST" class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <input type="hidden" name="id" value="${request.id}"/>

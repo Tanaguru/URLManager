@@ -39,7 +39,7 @@
                     <h1>Modify</h1>
                 </div>
                 <div class="row span12">
-                    <form action="/urlmanager/rest/tag/update"
+                    <form action="${contextPath}/rest/tag/update"
                           accept-charset="UTF-8"
                           method="POST" class="well form-horizontal">
                         <input type="hidden" name="id" value="${tag.id}"/>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="row span12">
                     <c:set var="delete_entity_url"
-                        value="/urlmanager/rest/tag/delete?id=${tag.id}"/>
+                        value="${contextPath}/rest/tag/delete?id=${tag.id}"/>
                     <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
                 </div>
                 
@@ -76,7 +76,7 @@
                 <div class="row span12">
                     <p>
                         View the
-                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags=${tag.id}"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags=${tag.id}"
                            >list of the webpages</a> having this tag.
                     </p>
                 </div>

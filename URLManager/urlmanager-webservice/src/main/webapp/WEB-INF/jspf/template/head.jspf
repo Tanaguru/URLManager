@@ -1,8 +1,9 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="/urlmanager/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="/urlmanager/assets/css/urlmanager.css" rel="stylesheet">
+    <link href="${contextPath}/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="${contextPath}/assets/css/urlmanager.css" rel="stylesheet">
     <title>${title}</title>
 </head>

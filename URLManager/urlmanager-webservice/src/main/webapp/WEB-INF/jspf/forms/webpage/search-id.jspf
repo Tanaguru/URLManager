@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8" %>
 <%-- FIXME: do something more generic (see others search-id) --%>
-<form action="/urlmanager/rest/webpage/read"
+<form action="${contextPath}/rest/webpage/read"
       method="POST" class="well form-search">
     <input type="text" name="id" value="" class="search-query" title="Webpage id to look for"/>
     <c:set var="search_button_label" value="Search by id"/>
