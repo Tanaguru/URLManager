@@ -12,7 +12,7 @@
     <%@include file="/WEB-INF/jspf/template/head.jspf" %>
     <body>
         <c:set var="page" value="webpages"/>
-        <%@include file="../WEB-INF/jspf/template/header.jspf" %>
+        <%@include file="/WEB-INF/jspf/template/header.jspf" %>
         
         <div class="container">
             <div class="page-header">

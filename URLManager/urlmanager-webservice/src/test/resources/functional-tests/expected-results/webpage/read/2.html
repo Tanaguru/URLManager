@@ -1,0 +1,367 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/urlmanager/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/urlmanager/assets/css/urlmanager.css" rel="stylesheet">
+    <title>URLM - Webpage details</title>
+</head>
+
+    <body>
+        
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/urlmanager/">URLManager</a>
+            <ul class="nav">
+                <li ><a href="/urlmanager/">Home</a></li>
+                <li ><a href="/urlmanager/request.jsp">Lists</a></li>
+                <li ><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+                <li ><a href="/urlmanager/locale.jsp">Locales</a></li>
+                <li ><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+        
+         
+            
+            
+            <div class="page-header">
+                <h1>Webpage details</h1>
+            </div>
+            <div class="row span12">
+                <table class="data-table table">
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><abbr title="Uniform Resource Locator">URL</abbr></th>
+                        <td><a href="http://lol.com/app/">http://lol.com/app/</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Is a website root</th>
+                        <td>
+                            
+                                
+                                
+                                    <span class="icon-remove"></span> no
+                                
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="page-header">
+                <h1>Modify</h1>
+            </div>
+            <div class="row span12">
+                <form method="POST" action="/urlmanager/rest/webpage/update"
+                    class="well form-horizontal">
+                    <input type="hidden" name="id" value="2"/>
+                    <input type="hidden" name="locales" value="[4, 3]"/>
+                    <input type="hidden" name="tags" value="[1]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-isRoot">Is a website root</label>
+                        <div class="controls">
+                            <input id="update-webpage-isRoot" type="checkbox" name="isRoot" value="true"
+                                /><br/>                            
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-URL">
+                            <abbr title="Required field" class="mandatory">*</abbr>
+                            <abbr title="Uniform Resource Locator">URL</abbr>
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpage-URL" type="text" name="URL" value="http://lol.com/app/"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary"><span class="icon-white icon-refresh"></span> Update</button>
+                    </div>
+                </form>
+            </div>
+                        
+            <div class="page-header">
+                <h1>Delete</h1>
+            </div>
+            <div class="row span12">
+                
+                
+
+
+<p class="alert alert-danger">
+    <strong>WARNING !</strong>
+    This operation can not be undone : <a href="/urlmanager/rest/webpage/delete?id=2" class="btn btn-danger"
+    
+    ><span class="icon-white icon-remove"></span> Delete</a>
+
+</p>
+
+            </div>
+            
+            <div class="page-header">
+                <h1>Associated tags</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                    
+                        <table class="data-table table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Unlink</th>
+                                    <th scope="col">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags-label=lol"
+                                           title="Consult webpages having the tag of id 1"
+                                           >lol</a>
+                                    </td>
+                                    <td>
+                                        <form action="/urlmanager/rest/webpage/update"
+                                            method="POST">
+                                            <input type="hidden" name="id" value="2"/>
+                                            <input type="hidden" name="URL" value="http://lol.com/app/"/>
+                                            <input type="hidden" name="isRoot" value="false"/>
+                                            <input type="hidden" name="locales" value="[4, 3]"/>
+                                            <input type="hidden" name="tags" value="[]"/>
+                                            
+                                            <button class="btn btn-warning"
+        title="Unlink tag lol (id 1) of this webpage"
+    ><span class="icon-white icon-resize-full"></span> Unlink</button>
+                                        </form>  
+                                    </td>
+                                    <td>
+                                        
+                                        
+                                        <a href="/urlmanager/rest/tag/read?id=1" class="btn btn-info"
+    title="Details of the tag lol (id 1)"
+    ><span class="icon-white icon-list-alt"></span> Details</a>
+
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                
+            </div>
+            
+            <div class="page-header">
+                <h1>Add tags</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/webpage/update" accept-charset="utf-8"
+                      method="POST" class="well form-horizontal">
+                    <input type="hidden" name="id" value="2"/>
+                    <input type="hidden" name="URL" value="http://lol.com/app/"/>
+                    <input type="hidden" name="isRoot" value="false"/>
+                    <input type="hidden" name="tags" value="[1]"/>
+                    <input type="hidden" name="locales" value="[4, 3]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpages-tags-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Tags
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpages-tags-label" type="text" name="tags-label" value=""/>
+                            <p class="help-block">
+                                Comma separated tags, exemple <code>tv,&nbsp;sport</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add tags</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="page-header">
+                <h1>Webpage's locales</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                    
+                        <table class="data-table table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Locale</th>
+                                    <th scope="col">Unlink</th>
+                                    <th scope="col">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&locales-label=en_US"
+                                           title="Consult webpages having the locale of id 4"
+                                           >en_US</a>
+                                    </td>
+                                    <td>
+                                        <form action="/urlmanager/rest/webpage/update"
+                                            method="POST">
+                                            <input type="hidden" name="id" value="2"/>
+                                            <input type="hidden" name="URL" value="http://lol.com/app/"/>
+                                            <input type="hidden" name="isRoot" value="false"/>
+                                            <input type="hidden" name="locales" value="[3]"/>
+                                            <input type="hidden" name="tags" value="[1]"/>
+                                            
+                                            <button class="btn btn-warning"
+        title="Unlink locale en_US (id 4) of this webpage"
+    ><span class="icon-white icon-resize-full"></span> Unlink</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        
+                                        
+                                        <a href="/urlmanager/rest/locale/read?id=4" class="btn btn-info"
+    title="Details of the locale en_US (id 4)"
+    ><span class="icon-white icon-list-alt"></span> Details</a>
+
+                                    </td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&locales-label=en_GB"
+                                           title="Consult webpages having the locale of id 3"
+                                           >en_GB</a>
+                                    </td>
+                                    <td>
+                                        <form action="/urlmanager/rest/webpage/update"
+                                            method="POST">
+                                            <input type="hidden" name="id" value="2"/>
+                                            <input type="hidden" name="URL" value="http://lol.com/app/"/>
+                                            <input type="hidden" name="isRoot" value="false"/>
+                                            <input type="hidden" name="locales" value="[4]"/>
+                                            <input type="hidden" name="tags" value="[1]"/>
+                                            
+                                            <button class="btn btn-warning"
+        title="Unlink locale en_GB (id 3) of this webpage"
+    ><span class="icon-white icon-resize-full"></span> Unlink</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        
+                                        
+                                        <a href="/urlmanager/rest/locale/read?id=3" class="btn btn-info"
+    title="Details of the locale en_GB (id 3)"
+    ><span class="icon-white icon-list-alt"></span> Details</a>
+
+                                    </td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    
+                
+            </div>
+                        
+            <div class="page-header">
+                <h1>Add locales</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/webpage/update" method="POST"
+                  class="well form-horizontal">
+                    <input type="hidden" name="id" value="2"/>
+                    <input type="hidden" name="URL" value="http://lol.com/app/"/>
+                    <input type="hidden" name="isRoot" value="false"/>
+                    <input type="hidden" name="locales" value="[4, 3]"/>
+                    <input type="hidden" name="tags" value="[1]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-locales-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Locales
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpage-locales-label" type="text" name="locales-label" value=""/>
+                            <p class="help-block">
+                                Comma separated locales, exemple <code>fr_FR,&nbsp;fr_CA</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add locales</button>
+                    </div>
+                </form>
+            </div>
+        
+        
+        </div>
+
+        
+
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            Links
+            <ul class="unstyled">
+            <li><a href="/urlmanager/">Home</a><br/></li>
+            </ul>
+        </div>
+        <div class="span4">
+            Manage entity
+            <ul class="unstyled">
+            <li><a href="/urlmanager/request.jsp">Lists</a></li>
+            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
+            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            External links
+            <ul class="unstyled">
+            <li><a href="http://www.open-s.com">Open-S</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

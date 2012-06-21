@@ -111,7 +111,7 @@
             </div>
             <div class="row span12">
                 <c:choose>
-                    <c:when test="${webpage.tags.isEmpty()}">
+                    <c:when test="${empty webpage.tags}">
                         <p class="alert alert-info">
                             This webpage has no tags.
                         </p>
@@ -203,7 +203,7 @@
             </div>
             <div class="row span12">
                 <c:choose>
-                    <c:when test="${webpage.locales.isEmpty()}">
+                    <c:when test="${empty webpage.locales}">
                         <p class="alert alert-info">
                             This webpages has no locales.
                         </p>

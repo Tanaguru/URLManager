@@ -1,0 +1,254 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/urlmanager/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/urlmanager/assets/css/urlmanager.css" rel="stylesheet">
+    <title>URLM - Webpage details</title>
+</head>
+
+    <body>
+        
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/urlmanager/">URLManager</a>
+            <ul class="nav">
+                <li ><a href="/urlmanager/">Home</a></li>
+                <li ><a href="/urlmanager/request.jsp">Lists</a></li>
+                <li ><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+                <li ><a href="/urlmanager/locale.jsp">Locales</a></li>
+                <li ><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+        
+         
+            
+            
+            <div class="page-header">
+                <h1>Webpage details</h1>
+            </div>
+            <div class="row span12">
+                <table class="data-table table">
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><abbr title="Uniform Resource Locator">URL</abbr></th>
+                        <td><a href="http://foreveralone.com/">http://foreveralone.com/</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Is a website root</th>
+                        <td>
+                            
+                                
+                                    <span class="icon-ok"></span> yes
+                                
+                                
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="page-header">
+                <h1>Modify</h1>
+            </div>
+            <div class="row span12">
+                <form method="POST" action="/urlmanager/rest/webpage/update"
+                    class="well form-horizontal">
+                    <input type="hidden" name="id" value="5"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-isRoot">Is a website root</label>
+                        <div class="controls">
+                            <input id="update-webpage-isRoot" type="checkbox" name="isRoot" value="true"
+                                checked=""/><br/>                            
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-URL">
+                            <abbr title="Required field" class="mandatory">*</abbr>
+                            <abbr title="Uniform Resource Locator">URL</abbr>
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpage-URL" type="text" name="URL" value="http://foreveralone.com/"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary"><span class="icon-white icon-refresh"></span> Update</button>
+                    </div>
+                </form>
+            </div>
+                        
+            <div class="page-header">
+                <h1>Delete</h1>
+            </div>
+            <div class="row span12">
+                
+                
+
+
+<p class="alert alert-danger">
+    <strong>WARNING !</strong>
+    This operation can not be undone : <a href="/urlmanager/rest/webpage/delete?id=5" class="btn btn-danger"
+    
+    ><span class="icon-white icon-remove"></span> Delete</a>
+
+</p>
+
+            </div>
+            
+            <div class="page-header">
+                <h1>Associated tags</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                        <p class="alert alert-info">
+                            This webpage has no tags.
+                        </p>
+                    
+                    
+                
+            </div>
+            
+            <div class="page-header">
+                <h1>Add tags</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/webpage/update" accept-charset="utf-8"
+                      method="POST" class="well form-horizontal">
+                    <input type="hidden" name="id" value="5"/>
+                    <input type="hidden" name="URL" value="http://foreveralone.com/"/>
+                    <input type="hidden" name="isRoot" value="true"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpages-tags-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Tags
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpages-tags-label" type="text" name="tags-label" value=""/>
+                            <p class="help-block">
+                                Comma separated tags, exemple <code>tv,&nbsp;sport</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add tags</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="page-header">
+                <h1>Webpage's locales</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                        <p class="alert alert-info">
+                            This webpages has no locales.
+                        </p>
+                    
+                    
+                
+            </div>
+                        
+            <div class="page-header">
+                <h1>Add locales</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/webpage/update" method="POST"
+                  class="well form-horizontal">
+                    <input type="hidden" name="id" value="5"/>
+                    <input type="hidden" name="URL" value="http://foreveralone.com/"/>
+                    <input type="hidden" name="isRoot" value="true"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <div class="control-group">
+                        <label class="control-label" for="update-webpage-locales-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Locales
+                        </label>
+                        <div class="controls">
+                            <input id="update-webpage-locales-label" type="text" name="locales-label" value=""/>
+                            <p class="help-block">
+                                Comma separated locales, exemple <code>fr_FR,&nbsp;fr_CA</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add locales</button>
+                    </div>
+                </form>
+            </div>
+        
+        
+        </div>
+
+        
+
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            Links
+            <ul class="unstyled">
+            <li><a href="/urlmanager/">Home</a><br/></li>
+            </ul>
+        </div>
+        <div class="span4">
+            Manage entity
+            <ul class="unstyled">
+            <li><a href="/urlmanager/request.jsp">Lists</a></li>
+            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
+            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            External links
+            <ul class="unstyled">
+            <li><a href="http://www.open-s.com">Open-S</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

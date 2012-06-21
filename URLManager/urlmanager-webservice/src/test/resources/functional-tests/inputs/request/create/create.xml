@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+  <id>0</id>
+  <label>new</label>
+  <tags>
+    <tag>
+      <!-- id tag "lol" -->
+      <id>1</id>
+    </tag>
+  </tags>
+  <locales>
+    <locale>
+      <!-- id locale en_GB -->
+      <id>3</id>
+    </locale>
+    <locale>
+      <!-- id locale en_US -->
+      <id>4</id>
+    </locale>
+  </locales>
+</request>

@@ -1,0 +1,239 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/urlmanager/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/urlmanager/assets/css/urlmanager.css" rel="stylesheet">
+    <title>URLM - List details</title>
+</head>
+
+    <body>
+        
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/urlmanager/">URLManager</a>
+            <ul class="nav">
+                <li ><a href="/urlmanager/">Home</a></li>
+                <li ><a href="/urlmanager/request.jsp">Lists</a></li>
+                <li ><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+                <li ><a href="/urlmanager/locale.jsp">Locales</a></li>
+                <li ><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+        
+         
+            
+            
+            <div class="page-header">
+                <h1>List details</h1>
+            </div>
+            <div class="row span12">
+                <table class="data-table table">
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>joker</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="page-header">
+                <h1>Modify</h1>
+            </div>
+            <div class="row span12">
+                <form method="POST" action="/urlmanager/rest/request/update"
+                    class="well form-horizontal">
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <input type="hidden" name="id" value="1"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    <div class="control-group">
+                        <label class="control-label" for="update-request-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Name
+                        </label>
+                        <div class="controls">
+                            <input id="update-request-label" type="text" name="label" value="joker"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary"><span class="icon-white icon-refresh"></span> Update</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="page-header">
+                <h1>Delete</h1>
+            </div>
+            <div class="row span12">
+                
+                
+
+
+<p class="alert alert-danger">
+    <strong>WARNING !</strong>
+    This operation can not be undone : <a href="" class="btn btn-danger"
+    
+    ><span class="icon-white icon-remove"></span> Delete</a>
+
+</p>
+
+            </div>
+            
+            <div class="page-header">
+                <h1>Show content</h1>
+            </div>
+            <div class="row span12">
+                <div class="well">
+                    <a href="/urlmanager/rest/request/list-matching-webpages?id=1"
+                    >Consult webpage list</a>.
+                </div>
+            </div>
+
+            <div class="page-header">
+                <h1>Associated tags</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                        <p class="alert alert-info">This list has no tags.</p>
+                    
+                    
+                
+            </div>
+                    
+            <div class="page-header">
+                <h1>Add tags</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/request/update"
+                    method="POST" class="well form-horizontal">
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <input type="hidden" name="id" value="1"/>
+                    <input type="hidden" name="label" value="joker"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    <div class="control-group">
+                        <label class="control-label" for="update-request-tags-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Tags
+                        </label>
+                        <div class="controls">
+                            <input id="update-request-tags-label" type="text" name="tags-label" value=""/>
+                            <p class="help-block">
+                                Comma serparated, exemple <code>tv,&nbsp;sport</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add tags</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="page-header">
+                <h1>Associated locales</h1>
+            </div>
+            <div class="row span12">
+                
+                    
+                        <p class="alert alert-info">This list has no locales.</p>
+                    
+                    
+                
+            </div>
+            <div class="page-header">
+                <h1>Add Locales</h1>
+            </div>
+            <div class="row span12">
+                <form action="/urlmanager/rest/request/update"
+                    method="POST" class="well form-horizontal">
+                    
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                    <input type="hidden" name="id" value="1"/>
+                    <input type="hidden" name="label" value="joker"/>
+                    <input type="hidden" name="tags" value="[]"/>
+                    <input type="hidden" name="locales" value="[]"/>
+                    <div class="control-group">
+                        <label class="control-label" for="update-request-locales-label">
+                            <abbr title="Required field" class="mandatory">*</abbr> Locales
+                        </label>
+                        <div class="controls">
+                            <input id="update-request-locales-label" type="text" name="locales-label" value=""/>
+                            <p class="help-block">
+                                Comma separated locales, exemple <code>fr_FR,&nbsp;fr_CA</code>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        
+                        
+<button class="btn btn-primary"><span class="icon-white icon-plus"></span> Add locales</button>
+                    </div>
+                </form>
+            </div>
+
+        
+        
+        </div>
+            
+        
+
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            Links
+            <ul class="unstyled">
+            <li><a href="/urlmanager/">Home</a><br/></li>
+            </ul>
+        </div>
+        <div class="span4">
+            Manage entity
+            <ul class="unstyled">
+            <li><a href="/urlmanager/request.jsp">Lists</a></li>
+            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
+            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            External links
+            <ul class="unstyled">
+            <li><a href="http://www.open-s.com">Open-S</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

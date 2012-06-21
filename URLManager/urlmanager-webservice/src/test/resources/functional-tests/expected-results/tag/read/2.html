@@ -1,0 +1,149 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/urlmanager/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/urlmanager/assets/css/urlmanager.css" rel="stylesheet">
+    <title>URLM - Tag details</title>
+</head>
+
+    <body>
+        
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/urlmanager/">URLManager</a>
+            <ul class="nav">
+                <li ><a href="/urlmanager/">Home</a></li>
+                <li ><a href="/urlmanager/request.jsp">Lists</a></li>
+                <li ><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+                <li ><a href="/urlmanager/locale.jsp">Locales</a></li>
+                <li ><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        
+        <div class="container">
+            
+            
+            
+                <div class="page-header">
+                    <h1>Tag details</h1>
+                </div>
+                <div class="row span12">
+                    <table class="data-table table">
+                        <tr>
+                            <th scope="row">Id</th>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>lil</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="page-header">
+                    <h1>Modify</h1>
+                </div>
+                <div class="row span12">
+                    <form action="/urlmanager/rest/tag/update"
+                          accept-charset="UTF-8"
+                          method="POST" class="well form-horizontal">
+                        <input type="hidden" name="id" value="2"/>
+                        
+<p class="alert alert-info">
+    Fields marked with a red asterisk (<span class="mandatory">*</span>) are required.
+</p>
+
+                        <div class="control-group">
+                            <label class="control-label" for="update-tag-label">
+                                <abbr title="Required field" class="mandatory">*</abbr> Name
+                            </label>
+                            <div class="controls">
+                                <input id="update-tag-label" type="text" name="label" value="lil"/>
+                                <p class="help-block">
+                                    Mandatory field
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-primary"><span class="icon-white icon-refresh"></span> Update</button>
+                        </div>
+                    </form>
+                </div>
+                            
+                <div class="page-header">
+                    <h1>Delete</h1>
+                </div>
+                <div class="row span12">
+                    
+                    
+
+
+<p class="alert alert-danger">
+    <strong>WARNING !</strong>
+    This operation can not be undone : <a href="/urlmanager/rest/tag/delete?id=2" class="btn btn-danger"
+    
+    ><span class="icon-white icon-remove"></span> Delete</a>
+
+</p>
+
+                </div>
+                
+                <div class="page-header">
+                    <h1>Associated Webpages</h1>
+                </div>
+                <div class="row span12">
+                    <p>
+                        View the
+                        <a href="/urlmanager/rest/request/list-matching-webpages?id=0&tags=2"
+                           >list of the webpages</a> having this tag.
+                    </p>
+                </div>
+            
+            
+        </div>
+                
+        
+
+<hr/>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            Links
+            <ul class="unstyled">
+            <li><a href="/urlmanager/">Home</a><br/></li>
+            </ul>
+        </div>
+        <div class="span4">
+            Manage entity
+            <ul class="unstyled">
+            <li><a href="/urlmanager/request.jsp">Lists</a></li>
+            <li><a href="/urlmanager/webpage.jsp">Webpages</a></li>
+            <li><a href="/urlmanager/locale.jsp">Locales</a></li>
+            <li><a href="/urlmanager/tag.jsp">Tags</a></li>
+            </ul>
+        </div>
+        <div class="span4">
+            External links
+            <ul class="unstyled">
+            <li><a href="http://www.open-s.com">Open-S</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

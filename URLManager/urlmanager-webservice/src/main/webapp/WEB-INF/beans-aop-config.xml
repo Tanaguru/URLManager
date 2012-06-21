@@ -19,12 +19,22 @@
                 expression="execution(* org.opens.urlmanager.entity.service.*.*.*(..))"
                 />
             <aop:after-throwing
-                method="inhibitException"
+                method="inhibitDataServiceException"
                 throwing="e"
                 pointcut-ref="servicePointcut"
                 />
             <aop:after-throwing
-                method="inhibitException"
+                method="inhibitDataServiceException"
+                throwing="e"
+                pointcut-ref="genericServicePointcut"
+                />
+            <aop:after-throwing
+                method="inhibitPersistenceException"
+                throwing="e"
+                pointcut-ref="servicePointcut"
+                />
+            <aop:after-throwing
+                method="inhibitPersistenceException"
                 throwing="e"
                 pointcut-ref="genericServicePointcut"
                 />

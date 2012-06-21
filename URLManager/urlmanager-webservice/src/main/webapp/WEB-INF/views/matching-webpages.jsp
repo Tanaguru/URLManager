@@ -3,7 +3,7 @@
     Created on : 12 juin 2012, 08:45:12
     Author     : bcareil
 --%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,10 +26,10 @@
         </c:otherwise>
     </c:choose>
     <%-- Concant the tags and locales --%>
-    <c:if test="${tagsAsString.isEmpty() == false}">
+    <c:if test="${not empty tagsAsString}">
         <c:set var="title" value="${title}, ${tagsAsString}"/>
     </c:if>
-    <c:if test="${localesAsString.isEmpty() == false}">
+    <c:if test="${not empty localesAsString}">
         <c:set var="title" value="${title}, ${localesAsString}"/>
     </c:if>
     <%-- Concant the end of the title --%>
@@ -51,12 +51,12 @@
                             list <em>${request.label}</em>
                         </c:otherwise>
                     </c:choose>
-                    <c:if test="${tagsAsString.isEmpty() == false}">
+                    <c:if test="${not empty tagsAsString}">
                         of webpages containing the tags ${tagsAsString}
                     </c:if>
-                    <c:if test="${localesAsString.isEmpty() == false}">
+                    <c:if test="${not empty localesAsString}">
                         <c:choose>
-                            <c:when test="${tagsAsString.isEmpty() }">
+                            <c:when test="${empty tagsAsString }">
                                 of webpages containing one of the locales
                             </c:when>
                             <c:otherwise>
@@ -69,14 +69,14 @@
             </div>
             <div class="row span12">
                 <c:choose>
-                    <c:when test="${webpageList.list.isEmpty()}">
+                    <c:when test="${empty webpageList.list}">
                         <p class="alert alert-info">
                             <strong>Empty</strong> : No webpages match the list criteria.
                         </p>
                     </c:when>
                     <c:otherwise>
                         <p class="alert alert-info">
-                            <strong>${webpageList.list.size()}</strong> webpages in this list.
+                            <strong>${fn:length(webpageList.list)}</strong> webpages in this list.
                         </p>
                         <table class="data-table table table-striped">
                             <thead>

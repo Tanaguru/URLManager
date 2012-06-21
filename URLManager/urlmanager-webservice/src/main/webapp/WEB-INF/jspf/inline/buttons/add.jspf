@@ -1,2 +1,2 @@
-<c:if test="${add_button_label == null || add_button_label.isEmpty()}"><c:set var="add_button_label" value="Add"/></c:if>
+<c:if test="${add_button_label == null || empty add_button_label}"><c:set var="add_button_label" value="Add"/></c:if>
 <button class="btn btn-primary"><span class="icon-white icon-plus"></span> ${add_button_label}</button>

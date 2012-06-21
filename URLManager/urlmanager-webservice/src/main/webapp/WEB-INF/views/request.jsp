@@ -100,7 +100,7 @@
             </div>
             <div class="row span12">
                 <c:choose>
-                    <c:when test="${request.tags.isEmpty()}">
+                    <c:when test="${empty request.tags}">
                         <p class="alert alert-info">This list has no tags.</p>
                     </c:when>
                     <c:otherwise>
@@ -193,7 +193,7 @@
             </div>
             <div class="row span12">
                 <c:choose>
-                    <c:when test="${request.locales.isEmpty()}">
+                    <c:when test="${empty request.locales}">
                         <p class="alert alert-info">This list has no locales.</p>
                     </c:when>
                     <c:otherwise>

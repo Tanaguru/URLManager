@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webpage>
+  <id>0</id>
+  <isRoot>true</isRoot>
+  <URL>http://new-04.com/</URL>
+  <tags>
+    <tag>
+      <label>this tag does not exist (yet)</label>
+    </tag>
+  </tags>
+  <locales>
+    <locale>
+      <id>1</id>
+    </locale>
+  </locales>
+</webpage>

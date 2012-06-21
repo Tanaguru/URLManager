@@ -25,7 +25,7 @@ package org.opens.urlmanager.entity.service.exception;
  *
  * @author bcareil
  */
-public class EntityNotFoundException extends RuntimeException {
+public class EntityNotFoundException extends DataServiceException {
 
     private static String createMessage(String entity, String supMessage) {
         StringBuilder message = new StringBuilder();

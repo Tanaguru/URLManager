@@ -25,7 +25,7 @@ package org.opens.urlmanager.entity.service.exception;
  *
  * @author bcareil
  */
-public class CannotIdentifyEntityException extends RuntimeException {
+public class CannotIdentifyEntityException extends DataServiceException {
 
     private static String createMessage(String entity) {
         StringBuilder message = new StringBuilder();

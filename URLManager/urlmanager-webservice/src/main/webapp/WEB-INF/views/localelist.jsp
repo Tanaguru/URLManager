@@ -3,7 +3,7 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,11 +23,11 @@
                 </div>
                 <div class="row span12">
                     <c:choose>
-                        <c:when test="${localeList.list.isEmpty()}">
+                        <c:when test="${empty localeList.list}">
                             <p class="alert alert-info"><strong>Empty !</strong> There are no locales in database.</p>
                         </c:when>
                         <c:otherwise>
-                            <p class="alert alert-info"><strong>${localeList.list.size()}</strong> locales in database.</p>
+                            <p class="alert alert-info"><strong>${fn:length(localeList.list)}</strong> locales in database.</p>
                             <table class="data-table table table-striped">
                                 <thead>
                                     <tr>

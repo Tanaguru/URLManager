@@ -3,7 +3,7 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
             </div>            
             <div class="row">
                 <p class="alert alert-info">
-                    <strong>${requestList.list.size()}</strong> lists in database.
+                    <strong>${fn:length(requestList.list)}</strong> lists in database.
                 </p>
                 <table class="data-table table table-striped">
                     <thead>

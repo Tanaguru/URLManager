@@ -26,6 +26,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.exception.SQLGrammarException;
 import org.opens.urlmanager.entity.service.exception.CannotIdentifyEntityException;
+import org.opens.urlmanager.entity.service.exception.DataServiceException;
 import org.opens.urlmanager.entity.service.exception.EntityNotFoundException;
 import org.opens.urlmanager.rest.exception.BadClientRequestException;
 import org.opens.urlmanager.rest.exception.InternalErrorException;
@@ -42,23 +43,26 @@ public class AEPersistenceInhibitor {
      * @see beans-aop-config.xml
      * @param e The exception to handle
      */
-    public void inhibitException(Exception e) {
-        LogFactory.getLog(AEPersistenceInhibitor.class).debug("Inhibiting exception", e);
-        if (e instanceof PersistenceException) {
-            if (e.getCause() instanceof ConstraintViolationException) {
-                // TODO : create the appropriate exception with its appropriate HTTP error code
-                throw new InternalErrorException("Constraint violation exception", e);
-            } else if (e.getCause() instanceof SQLGrammarException) {
-                throw new InternalErrorException("SQL grammar error", e);
-            } else {
-                throw new InternalErrorException("Persistence error : " + e.getMessage(), e);
-            }
-        } else  if (e instanceof CannotIdentifyEntityException) {
+    public void inhibitDataServiceException(DataServiceException e) {
+        LogFactory.getLog(AEPersistenceInhibitor.class).debug("Inhibiting data service exception", e);
+        if (e instanceof CannotIdentifyEntityException) {
             throw new BadClientRequestException("One of the supplied entity can not be identified : " + e.getMessage(), e);
         } else if (e instanceof EntityNotFoundException) {
             throw new ResourceNotFoundException("Entity not found : " + e.getMessage(), e);
         } else {
             throw new InternalErrorException("Error : " + e.getMessage(), e);
         }
+    }
+
+    public void inhibitPersistenceException(PersistenceException e) {
+        LogFactory.getLog(AEPersistenceInhibitor.class).debug("Inhibiting persistence exception", e);
+        if (e.getCause() instanceof ConstraintViolationException) {
+            // TODO : create the appropriate exception with its appropriate HTTP error code
+            throw new InternalErrorException("Constraint violation exception", e);
+        } else if (e.getCause() instanceof SQLGrammarException) {
+            throw new InternalErrorException("SQL grammar error", e);
+        } else {
+            throw new InternalErrorException("Persistence error : " + e.getMessage(), e);
+        }        
     }
 }
