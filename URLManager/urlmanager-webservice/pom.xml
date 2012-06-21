@@ -25,11 +25,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>runtime</scope>
@@ -293,6 +288,10 @@
                                     <configfile>
                                         <file>${project.basedir}/src/test/conf/application-context.xml</file>
                                         <toDir>webapps/urlmanager/WEB-INF/</toDir>
+                                    </configfile>
+                                    <configfile>
+                                        <file>${project.basedir}/src/test/resources/log4j.properties</file>
+                                        <toDir>webapps/urlmanager/WEB-INF/classes/</toDir>
                                     </configfile>
                                 </configfiles>
                                 <deployables>
