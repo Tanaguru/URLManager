@@ -80,8 +80,8 @@
                 <h1>Delete</h1>
             </div>
             <div class="row span12">
-                <c:set var="delete_entit_url"
-                    value="${contextPath}/rest/request/delete?id='${request.id}"/>
+                <c:set var="delete_entity_url"
+                    value="${contextPath}/rest/request/delete?id=${request.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
