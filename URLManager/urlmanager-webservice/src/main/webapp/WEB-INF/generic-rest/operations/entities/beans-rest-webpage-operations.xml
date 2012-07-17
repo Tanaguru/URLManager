@@ -63,7 +63,12 @@
         id="webpageOperationCreate"
         parent="webpageOperation"
     >
-        <property name="postUnserializeControl" ref="controlOperationSetIdNull"/>
+        <property name="postUnserializeControl">
+            <bean class="org.opens.urlmanager.rest.operation.command.control.unserialize.generic.ControlOperationSetNullBooleanToFalse">
+                <property name="decoratedControlOperation"
+                          ref="controlOperationSetIdNull"/>
+            </bean>
+        </property>
 <!--        <property name="postDataServiceOperationControl"/>-->
         <property name="dataServiceOperation" ref="dataServiceOperationCreate"/>
 
