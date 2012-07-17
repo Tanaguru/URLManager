@@ -33,7 +33,7 @@
                     <tbody>
                         <c:forEach var="webpage" items="${webpageList.list}">
                             <tr>
-                                <td>${webpage.id}</td>
+                                <td><c:out value='${webpage.id}'/></td>
                                 <td>
                                     <c:choose>
                                         <c:when test="${webpage.isRoot}">
@@ -44,7 +44,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td><a href="${webpage.URL}">${webpage.URL}</a></td>
+                                <td><a href="<c:out value='${webpage.URL}'/>"><c:out value='${webpage.URL}'/></a></td>
                                 <td>
                                     <c:set var="details_link_url" value="${contextPath}/rest/webpage/read?id=${webpage.id}"/>
                                     <c:set var="details_link_title" value="Details of webpage of id ${webpage.id}"/>

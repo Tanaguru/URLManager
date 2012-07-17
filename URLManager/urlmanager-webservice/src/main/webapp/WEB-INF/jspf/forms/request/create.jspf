@@ -1,13 +1,15 @@
 <%@ page pageEncoding="UTF-8" %>
 <c:choose>
     <c:when test="${request == null}">
-        <c:set var="default_tags_label" value=""/>
-        <c:set var="default_locales_label" value=""/>
+        <c:set var="tagsAsString" value=""/>
+        <c:set var="localesAsString" value=""/>
     </c:when>
     <c:otherwise>
         <%-- Create a comma separated list of tag's label and locale's label --%>
-        <c:set var="default_tags_label"><c:set var="isFirstLoop" value="${true}"/><c:forEach var="tag" items="${request.tags}"><c:choose><c:when test="${isFirstLoop}"><c:set var="isFirstLoop" value="${false}"/></c:when><c:otherwise>, </c:otherwise></c:choose>${tag.label}</c:forEach></c:set>
-        <c:set var="default_locales_label"><c:set var="isFirstLoop" value="${true}"/><c:forEach var="locale" items="${request.locales}"><c:choose><c:when test="${isFirstLoop}"><c:set var="isFirstLoop" value="${false}"/></c:when><c:otherwise>, </c:otherwise></c:choose>${locale.label}</c:forEach></c:set>
+        <c:set var="tagsAsString_tags" value="${request.tags}"/>
+        <%@include file="/WEB-INF/jspf/setter/tags-as-string.jspf" %>
+        <c:set var="localesAsString_locales" value="${request.locales}"/>
+        <%@include file="/WEB-INF/jspf/setter/locales-as-string.jspf" %>
     </c:otherwise>
 </c:choose>
 <form action="${contextPath}/rest/request/create"
@@ -25,14 +27,14 @@
     <div class="control-group">
         <label class="control-label" for="create-request-tags-label">Tags</label>
         <div class="controls">
-            <input id="create-request-tags-label" type="text" name="tags-label" value="${default_tags_label}" class="input-large"/>
+            <input id="create-request-tags-label" type="text" name="tags-label" value="<c:out value='${tagsAsString}'/>" class="input-large"/>
             <p class="help-block">comma separated tags, exemple : <code>tv,&nbsp;sport</code></p>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="create-request-locales-label">Locales</label>
         <div class="controls">
-            <input id="create-request-locales-label" type="text" name="locales-label" value="${default_locales_label}" class="input-large"/>
+            <input id="create-request-locales-label" type="text" name="locales-label" value="<c:out value='${localesAsString}'/>" class="input-large"/>
             <p class="help-block">comma separated locale, exemple : <code>fr_FR,&nbsp;fr_CA</code></p>
         </div>
     </div>

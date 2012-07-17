@@ -25,27 +25,27 @@
                     <table class="data-table table">
                         <tr>
                             <th scope="row">Id</th>
-                            <td>${locale.id}</td>
+                            <td><c:out value="${locale.id}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">Language</th>
-                            <td>${locale.language}</td>
+                            <td><c:out value="${locale.language}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">Full language name</th>
-                            <td>${locale.longLanguage}</td>
+                            <td><c:out value="${locale.longLanguage}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">Country</th>
-                            <td>${locale.country}</td>
+                            <td><c:out value="${locale.country}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">Full country name</th>
-                            <td>${locale.longCountry}</td>
+                            <td><c:out value="${locale.longCountry}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">Representation</th>
-                            <td>${locale.label}</td>
+                            <td><c:out value="${locale.label}"/></td>
                         </tr>
                     </table>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="row span12">
                     <div>
                         View the
-                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=&locales-label=${locale.label}"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=&amp;locales-label=<c:out value='${locale.label}'/>"
                         >list of webpages</a> having this locale.
                     </div>
                 </div>

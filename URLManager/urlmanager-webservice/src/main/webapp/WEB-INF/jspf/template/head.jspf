@@ -5,5 +5,5 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="${contextPath}/assets/css/bootstrap.css" rel="stylesheet">
     <link href="${contextPath}/assets/css/urlmanager.css" rel="stylesheet">
-    <title>${title}</title>
+    <title><c:out value="${title}"/></title>
 </head>

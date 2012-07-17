@@ -25,7 +25,7 @@
             <c:set var="title" value="URLM - List ${request.label}"/>
         </c:otherwise>
     </c:choose>
-    <%-- Concant the tags and locales --%>
+    <%-- Concat the tags and locales --%>
     <c:if test="${not empty tagsAsString}">
         <c:set var="title" value="${title}, ${tagsAsString}"/>
     </c:if>
@@ -48,11 +48,11 @@
                             a custom list
                         </c:when>
                         <c:otherwise>
-                            list <em>${request.label}</em>
+                            list <em><c:out value="${request.label}"/></em>
                         </c:otherwise>
                     </c:choose>
                     <c:if test="${not empty tagsAsString}">
-                        of webpages containing the tags ${tagsAsString}
+                        of webpages containing the tags <c:out value="${tagsAsString}"/>
                     </c:if>
                     <c:if test="${not empty localesAsString}">
                         <c:choose>
@@ -63,7 +63,7 @@
                                 and one of the locales
                             </c:otherwise>
                         </c:choose>
-                        ${localesAsString}
+                        <c:out value="${localesAsString}"/>
                     </c:if>
                 </h1>
             </div>
@@ -92,7 +92,7 @@
                             <tbody>
                     <c:forEach var="webpage" items="${webpageList.list}">
                                 <tr>
-                                    <td>${webpage.id}</td>
+                                    <td><c:out value="${webpage.id}"/></td>
                                     <td>
                                         <c:choose>
                                             <c:when test="${webpage.isRoot}">
@@ -103,7 +103,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td><a href="${webpage.URL}">${webpage.URL}</a></td>
+                                    <td><a href=<c:out value='"${webpage.URL}"'/>><c:out value="${webpage.URL}"/></a></td>
                                     <td>
                                         <c:set var="isFirstLoop" value="${true}"/>
                                         <c:forEach var="tag" items="${webpage.tags}">
@@ -113,9 +113,9 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=${tag.label}"
-                                                title="Webpages having the tag of id ${tag.id}"
-                                                >${tag.label}</a>
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=<c:out value='${tag.label}'/>"
+                                                   title="Webpages having the tag of id <c:out value='${tag.id}'/>"
+                                                ><c:out value="${tag.label}"/></a>
                                         </c:forEach>
                                     </td>
                                     <td>
@@ -127,9 +127,9 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=${locale.label}"
-                                                title="Webpages having the locale of id ${locale.id}"
-                                                >${locale.label}</a>
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=<c:out value='${locale.label}'/>"
+                                                title="Webpages having the locale of id <c:out value='${locale.id}'/>"
+                                                ><c:out value="${locale.label}"/></a>
                                         </c:forEach>
                                     </td>
                                     <td>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="row span12">
                         <div class="well">
-                            <a href="${contextPath}/rest/request/read?id=${request.id}">View list details</a>
+                            <a href="${contextPath}/rest/request/read?id=<c:out value='${request.id}'/>">View list details</a>
                         </div>
                     </div>
                 </c:otherwise>

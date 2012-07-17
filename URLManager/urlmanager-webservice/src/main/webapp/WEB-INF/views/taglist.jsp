@@ -32,11 +32,11 @@
                     <tbody>
                         <c:forEach var="tag" items="${tagList.list}">
                             <tr>
-                                <td>${tag.id}</td>
-                                <td>${tag.label}</td>
+                                <td><c:out value='${tag.id}'/></td>
+                                <td><c:out value='${tag.label}'/></td>
                                 <td>
-                                    <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}&locales-label="
-                                       title="Webpages associated with the tag ${tag.label} (id ${tag.id})"
+                                    <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=<c:out value='${tag.label}'/>&locales-label="
+                                       title="Webpages associated with the tag <c:out value='${tag.label} (id ${tag.id})'/>"
                                        >Associated Webpages</a>
                                 </td>
                                 <td>

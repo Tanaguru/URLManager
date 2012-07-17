@@ -1,3 +1,3 @@
-<a href="${details_link_url}" class="btn btn-info"
-    <c:if test="${not empty details_link_title}">title="${details_link_title}"</c:if>
+<a href="<c:out value='${details_link_url}'/>" class="btn btn-info"
+    <c:if test="${not empty details_link_title}">title="<c:out value='${details_link_title}'/>"</c:if>
     ><span class="icon-white icon-list-alt"></span> Details</a>

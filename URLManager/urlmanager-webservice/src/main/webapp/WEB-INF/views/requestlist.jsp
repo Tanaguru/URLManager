@@ -33,16 +33,16 @@
                     <tbody>
                     <c:forEach var="request" items="${requestList.list}">
                         <tr>
-                            <td>${request.id}</td>
-                            <td>${request.label}</td>
+                            <td><c:out value="${request.id}"/></td>
+                            <td><c:out value="${request.label}"/></td>
                             <td>
-                                <a href="${contextPath}/rest/request/list-matching-webpages?id=${request.id}"
-                                   title="Webpages in the list ${request.label} (id ${request.id})"
+                                <a href="${contextPath}/rest/request/list-matching-webpages?id=<c:out value='${request.id}'/>"
+                                   title="Webpages in the list <c:out value='${request.label} (id ${request.id})'/>"
                                 >view list</a>
                             </td>
                             <td>
                                 <c:set var="details_link_url"
-                                    value="${contextPath}/rest/request/read?id=${request.id}"/>
+                                    value="${contextPath}/rest/request/read?id='${request.id}"/>
                                 <c:set var="details_link_title"
                                     value="Detail for request ${request.label} (id ${request.id})"/>
                                 <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>

@@ -44,15 +44,15 @@
                                 <tbody>
                                 <c:forEach var="locale" items="${localeList.list}">
                                     <tr>
-                                        <td>${locale.id}</td>
-                                        <td>${locale.language}</td>
-                                        <td>${locale.longLanguage}</td>
-                                        <td>${locale.country}</td>
-                                        <td>${locale.longCountry}</td>
-                                        <td>${locale.label}</td>
+                                        <td><c:out value="${locale.id}"/></td>
+                                        <td><c:out value="${locale.language}"/></td>
+                                        <td><c:out value="${locale.longLanguage}"/></td>
+                                        <td><c:out value="${locale.country}"/></td>
+                                        <td><c:out value="${locale.longCountry}"/></td>
+                                        <td><c:out value="${locale.label}"/></td>
                                         <td>
-                                            <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales=${locale.id}"
-                                            title="Consult the webpages having the locale ${locale.label} (id ${locale.id})"
+                                            <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales=<c:out value='${locale.id}'/>"
+                                               title="Consult the webpages having the locale <c:out value='${locale.label} (id ${locale.id})'/>"
                                             >Associated webpages</a>
                                         </td>
                                         <td>

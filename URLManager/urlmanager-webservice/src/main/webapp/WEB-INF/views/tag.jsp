@@ -26,11 +26,11 @@
                     <table class="data-table table">
                         <tr>
                             <th scope="row">Id</th>
-                            <td>${tag.id}</td>
+                            <td><c:out value='${tag.id}'/></td>
                         </tr>
                         <tr>
                             <th scope="row">Name</th>
-                            <td>${tag.label}</td>
+                            <td><c:out value='${tag.label}'/></td>
                         </tr>
                     </table>
                 </div>
@@ -42,14 +42,14 @@
                     <form action="${contextPath}/rest/tag/update"
                           accept-charset="UTF-8"
                           method="POST" class="well form-horizontal">
-                        <input type="hidden" name="id" value="${tag.id}"/>
+                        <input type="hidden" name="id" value="<c:out value='${tag.id}'/>"/>
                         <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                         <div class="control-group">
                             <label class="control-label" for="update-tag-label">
                                 <abbr title="Required field" class="mandatory">*</abbr> Name
                             </label>
                             <div class="controls">
-                                <input id="update-tag-label" type="text" name="label" value="${tag.label}"/>
+                                <input id="update-tag-label" type="text" name="label" value="<c:out value='${tag.label}'/>"/>
                                 <p class="help-block">
                                     Mandatory field
                                 </p>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="row span12">
                     <c:set var="delete_entity_url"
-                        value="${contextPath}/rest/tag/delete?id=${tag.id}"/>
+                        value="${contextPath}/rest/tag/delete?id=${tag.id}/>"/>
                     <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
                 </div>
                 
@@ -76,7 +76,7 @@
                 <div class="row span12">
                     <p>
                         View the
-                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags=${tag.id}"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags=<c:out value='${tag.id}'/>"
                            >list of the webpages</a> having this tag.
                     </p>
                 </div>

@@ -43,11 +43,11 @@
                 <table class="data-table table">
                     <tr>
                         <th scope="row">Id</th>
-                        <td>${request.id}</td>
+                        <td><c:out value="${request.id}"/></td>
                     </tr>
                     <tr>
                         <th scope="row">Name</th>
-                        <td>${request.label}</td>
+                        <td><c:out value="${request.label}"/></td>
                     </tr>
                 </table>
             </div>
@@ -59,15 +59,15 @@
                 <form method="POST" action="${contextPath}/rest/request/update"
                     class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
-                    <input type="hidden" name="id" value="${request.id}"/>
-                    <input type="hidden" name="tags" value="${requestTagsId}"/>
-                    <input type="hidden" name="locales" value="${requestLocalesId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${request.id}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${requestTagsId}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${requestLocalesId}'/>"/>
                     <div class="control-group">
                         <label class="control-label" for="update-request-label">
                             <abbr title="Required field" class="mandatory">*</abbr> Name
                         </label>
                         <div class="controls">
-                            <input id="update-request-label" type="text" name="label" value="${request.label}"/>
+                            <input id="update-request-label" type="text" name="label" value="<c:out value='${request.label}'/>"/>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -81,7 +81,7 @@
             </div>
             <div class="row span12">
                 <c:set var="delete_entit_url"
-                    value="${contextPath}/rest/request/delete?id=${request.id}"/>
+                    value="${contextPath}/rest/request/delete?id='${request.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
@@ -90,7 +90,7 @@
             </div>
             <div class="row span12">
                 <div class="well">
-                    <a href="${contextPath}/rest/request/list-matching-webpages?id=${request.id}"
+                    <a href="${contextPath}/rest/request/list-matching-webpages?id=<c:out value='${request.id}'/>"
                     >Consult webpage list</a>.
                 </div>
             </div>
@@ -127,19 +127,19 @@
                                 request.setAttribute("tag", tag);
                                 %>
                                 <tr>
-                                    <td>${tag.id}</td>
+                                    <td><c:out value="${tag.id}"/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}"
-                                           title="Consult webpages having the tag of id ${tag.id}"
-                                           >${tag.label}</a>
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=<c:out value='${tag.label}'/>"
+                                           title="Consult webpages having the tag of id <c:out value='${tag.id}'/>"
+                                           ><c:out value='${tag.label}'/></a>
                                     </td>
                                     <td>
                                         <form action="${contextPath}/rest/request/update"
                                             method="POST">
-                                            <input type="hidden" name="id" value="${request.id}"/>
-                                            <input type="hidden" name="label" value="${request.label}"/>
-                                            <input type="hidden" name="tags" value="${requestTagsIdWOCurrent}"/>
-                                            <input type="hidden" name="locales" value="${requestLocalesId}"/>
+                                            <input type="hidden" name="id" value="<c:out value='${request.id}'/>"/>
+                                            <input type="hidden" name="label" value="<c:out value='${request.label}'/>"/>
+                                            <input type="hidden" name="tags" value="<c:out value='${requestTagsIdWOCurrent}'/>"/>
+                                            <input type="hidden" name="locales" value="<c:out value='${requestLocalesId}'/>"/>
                                             <c:set var="unlink_button_title" value="Unlink tag ${tag.label} (id ${tag.id}) of this list"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
                                         </form>
@@ -166,10 +166,10 @@
                 <form action="${contextPath}/rest/request/update"
                     method="POST" class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
-                    <input type="hidden" name="id" value="${request.id}"/>
-                    <input type="hidden" name="label" value="${request.label}"/>
-                    <input type="hidden" name="tags" value="${requestTagsId}"/>
-                    <input type="hidden" name="locales" value="${requestLocalesId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${request.id}'/>"/>
+                    <input type="hidden" name="label" value="<c:out value='${request.label}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${requestTagsId}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${requestLocalesId}'/>"/>
                     <div class="control-group">
                         <label class="control-label" for="update-request-tags-label">
                             <abbr title="Required field" class="mandatory">*</abbr> Tags
@@ -220,19 +220,19 @@
                                 request.setAttribute("locale", locale);
                                 %>
                                 <tr>
-                                    <td>${locale.id}</td>
+                                    <td><c:out value="${locale.id}"/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=${locale.label}"
-                                           title="Consult webpages having the locale of id ${locale.id}"
-                                           >${locale.label}</a>
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=<c:out value='${locale.label}'/>"
+                                           title="Consult webpages having the locale of id <c:out value='${locale.id}'/>"
+                                           ><c:out value="${locale.label}"/></a>
                                     </td>
                                     <td>
                                         <form action="${contextPath}/rest/request/update"
                                             method="POST" class="form-inline">
-                                            <input type="hidden" name="id" value="${request.id}"/>
-                                            <input type="hidden" name="label" value="${request.label}"/>
-                                            <input type="hidden" name="tags" value="${requestTagsId}"/>
-                                            <input type="hidden" name="locales" value="${requestLocalesIdWOCurrent}"/>
+                                            <input type="hidden" name="id" value="<c:out value='${request.id}'/>"/>
+                                            <input type="hidden" name="label" value="<c:out value='${request.label}'/>"/>
+                                            <input type="hidden" name="tags" value="<c:out value='${requestTagsId}'/>"/>
+                                            <input type="hidden" name="locales" value="<c:out value='${requestLocalesIdWOCurrent}'/>"/>
                                             <c:set var="unlink_button_title" value="Unlink locale ${locale.label} (id ${locale.id}) of this list"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
                                         </form>
@@ -258,10 +258,10 @@
                 <form action="${contextPath}/rest/request/update"
                     method="POST" class="well form-horizontal">
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
-                    <input type="hidden" name="id" value="${request.id}"/>
-                    <input type="hidden" name="label" value="${request.label}"/>
-                    <input type="hidden" name="tags" value="${requestTagsId}"/>
-                    <input type="hidden" name="locales" value="${requestLocalesId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${request.id}'/>"/>
+                    <input type="hidden" name="label" value="<c:out value='${request.label}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${requestTagsId}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${requestLocalesId}'/>"/>
                     <div class="control-group">
                         <label class="control-label" for="update-request-locales-label">
                             <abbr title="Required field" class="mandatory">*</abbr> Locales

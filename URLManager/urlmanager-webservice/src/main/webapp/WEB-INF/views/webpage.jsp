@@ -43,11 +43,11 @@
                 <table class="data-table table">
                     <tr>
                         <th scope="row">Id</th>
-                        <td>${webpage.id}</td>
+                        <td><c:out value='${webpage.id}'/></td>
                     </tr>
                     <tr>
                         <th scope="row"><abbr title="Uniform Resource Locator">URL</abbr></th>
-                        <td><a href="${webpage.URL}">${webpage.URL}</a></td>
+                        <td><a href="<c:out value='${webpage.URL}'/>"><c:out value='${webpage.URL}'/></a></td>
                     </tr>
                     <tr>
                         <th scope="row">Is a website root</th>
@@ -71,9 +71,9 @@
             <div class="row span12">
                 <form method="POST" action="${contextPath}/rest/webpage/update"
                     class="well form-horizontal">
-                    <input type="hidden" name="id" value="${webpage.id}"/>
-                    <input type="hidden" name="locales" value="${webpageLocalesId}"/>
-                    <input type="hidden" name="tags" value="${webpageTagsId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${webpageLocalesId}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${webpageTagsId}'/>"/>
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <div class="control-group">
                         <label class="control-label" for="update-webpage-isRoot">Is a website root</label>
@@ -88,7 +88,7 @@
                             <abbr title="Uniform Resource Locator">URL</abbr>
                         </label>
                         <div class="controls">
-                            <input id="update-webpage-URL" type="text" name="URL" value="${webpage.URL}"/>
+                            <input id="update-webpage-URL" type="text" name="URL" value="<c:out value='${webpage.URL}'/>"/>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -102,7 +102,7 @@
             </div>
             <div class="row span12">
                 <c:set var="delete_entity_url"
-                    value="${contextPath}/rest/webpage/delete?id=${webpage.id}"/>
+                    value="${contextPath}/rest/webpage/delete?id='${webpage.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
@@ -135,20 +135,20 @@
                                 request.setAttribute("tag", tag);
                             %>
                                 <tr>
-                                    <td>${tag.id}</td>
+                                    <td><c:out value='${tag.id}'/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=${tag.label}"
-                                           title="Consult webpages having the tag of id ${tag.id}"
-                                           >${tag.label}</a>
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=<c:out value='${tag.label}'/>"
+                                           title="Consult webpages having the tag of id <c:out value='${tag.id}'/>"
+                                           ><c:out value='${tag.label}'/></a>
                                     </td>
                                     <td>
                                         <form action="${contextPath}/rest/webpage/update"
                                             method="POST">
-                                            <input type="hidden" name="id" value="${webpage.id}"/>
-                                            <input type="hidden" name="URL" value="${webpage.URL}"/>
-                                            <input type="hidden" name="isRoot" value="${webpage.isRoot}"/>
-                                            <input type="hidden" name="locales" value="${webpageLocalesId}"/>
-                                            <input type="hidden" name="tags" value="<%= webpageTagsIdWOCurrent.toString()%>"/>
+                                            <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
+                                            <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
+                                            <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
+                                            <input type="hidden" name="locales" value="<c:out value='${webpageLocalesId}'/>"/>
+                                            <input type="hidden" name="tags" value="<c:out value='${webpageTagsIdWOCurrent}'/>"/>
                                             <c:set var="unlink_button_title" value="Unlink tag ${tag.label} (id ${tag.id}) of this webpage"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
                                         </form>  
@@ -174,11 +174,11 @@
             <div class="row span12">
                 <form action="${contextPath}/rest/webpage/update" accept-charset="utf-8"
                       method="POST" class="well form-horizontal">
-                    <input type="hidden" name="id" value="${webpage.id}"/>
-                    <input type="hidden" name="URL" value="${webpage.URL}"/>
-                    <input type="hidden" name="isRoot" value="${webpage.isRoot}"/>
-                    <input type="hidden" name="tags" value="${webpageTagsId}"/>
-                    <input type="hidden" name="locales" value="${webpageLocalesId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
+                    <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
+                    <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${webpageTagsId}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${webpageLocalesId}'/>"/>
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <div class="control-group">
                         <label class="control-label" for="update-webpages-tags-label">
@@ -227,20 +227,20 @@
                                 request.setAttribute("locale", locale);
                                 %>
                                 <tr>
-                                    <td>${locale.id}</td>
+                                    <td><c:out value='${locale.id}'/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=${locale.label}"
-                                           title="Consult webpages having the locale of id ${locale.id}"
-                                           >${locale.label}</a>
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=<c:out value='${locale.label}'/>"
+                                           title="Consult webpages having the locale of id <c:out value='${locale.id}'/>"
+                                           ><c:out value='${locale.label}'/></a>
                                     </td>
                                     <td>
                                         <form action="${contextPath}/rest/webpage/update"
                                             method="POST">
-                                            <input type="hidden" name="id" value="${webpage.id}"/>
-                                            <input type="hidden" name="URL" value="${webpage.URL}"/>
-                                            <input type="hidden" name="isRoot" value="${webpage.isRoot}"/>
-                                            <input type="hidden" name="locales" value="<%=webpageLocalesIdWOCurrent.toString()%>"/>
-                                            <input type="hidden" name="tags" value="${webpageTagsId}"/>
+                                            <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
+                                            <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
+                                            <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
+                                            <input type="hidden" name="locales" value="<c:out value='${webpageLocalesIdWOCurrent}'/>"/>
+                                            <input type="hidden" name="tags" value="<c:out value='${webpageTagsId}'/>"/>
                                             <c:set var="unlink_button_title" value="Unlink locale ${locale.label} (id ${locale.id}) of this webpage"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
                                         </form>
@@ -266,11 +266,11 @@
             <div class="row span12">
                 <form action="${contextPath}/rest/webpage/update" method="POST"
                   class="well form-horizontal">
-                    <input type="hidden" name="id" value="${webpage.id}"/>
-                    <input type="hidden" name="URL" value="${webpage.URL}"/>
-                    <input type="hidden" name="isRoot" value="${webpage.isRoot}"/>
-                    <input type="hidden" name="locales" value="${webpageLocalesId}"/>
-                    <input type="hidden" name="tags" value="${webpageTagsId}"/>
+                    <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
+                    <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
+                    <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
+                    <input type="hidden" name="locales" value="<c:out value='${webpageLocalesId}'/>"/>
+                    <input type="hidden" name="tags" value="<c:out value='${webpageTagsId}'/>"/>
                     <%@include file="/WEB-INF/jspf/blocks/required-fields-alert.jspf" %>
                     <div class="control-group">
                         <label class="control-label" for="update-webpage-locales-label">
