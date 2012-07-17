@@ -180,13 +180,13 @@ public class LocaleImpl implements Locale, Serializable {
     
     @XmlTransient
     @JsonIgnore
-    public Collection<? extends Webpage> getWebpages() {
-        return this.webpages;
+    public Collection<Webpage> getWebpages() {
+        return (Collection) this.webpages;
     }
 
-    public void setWebpages(Collection<? extends Webpage> webpages) {
+    public void setWebpages(Collection<Webpage> webpages) {
         this.webpages.clear();
-        this.webpages.addAll((Collection<WebpageImpl>) webpages);
+        this.webpages.addAll((Collection) webpages);
     }
 
     public void addWebpage(Webpage webpage) {
@@ -195,13 +195,13 @@ public class LocaleImpl implements Locale, Serializable {
 
     @XmlTransient
     @JsonIgnore
-    public Collection<? extends Request> getRequests() {
-        return this.requests;
+    public Collection<Request> getRequests() {
+        return (Collection) this.requests;
     }
 
-    public void setRequests(Collection<? extends Request> requests) {
+    public void setRequests(Collection<Request> requests) {
         this.requests.clear();
-        this.requests.addAll((Collection<RequestImpl>) requests);
+        this.requests.addAll((Collection) requests);
     }
 
     public void addRequest(Request request) {

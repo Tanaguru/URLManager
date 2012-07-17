@@ -44,8 +44,8 @@ public class LocaleAndTagAssociatedDataService <T extends Entity> extends Abstra
     private LocaleDataService localeDataService;
 
     // TODO: merge with the same method in RequestDataService
-    protected Collection<? extends Tag> preprocessTags(
-            Collection<? extends Tag> tags,
+    protected Collection<Tag> preprocessTags(
+            Collection<Tag> tags,
             boolean createTagIfNotExists
             ) {
         Collection<Tag> persistedTags = new ArrayList<Tag>(tags.size());
@@ -81,7 +81,7 @@ public class LocaleAndTagAssociatedDataService <T extends Entity> extends Abstra
     }
     
     // TODO: merge with the same method in RequestDataService
-    protected Collection<? extends Locale> preprocessLocales(Collection<? extends Locale> locales) {
+    protected Collection<Locale> preprocessLocales(Collection<Locale> locales) {
         Collection<Locale> persistedLocales = new ArrayList<Locale>(locales.size());
         
         for (Locale locale : locales) {

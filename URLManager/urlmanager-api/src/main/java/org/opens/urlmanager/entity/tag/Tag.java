@@ -47,12 +47,12 @@ public interface Tag extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Webpage> getWebpages();
+    Collection<Webpage> getWebpages();
     /**
      * 
      * @param webpages 
      */
-    void setWebpages(Collection<? extends Webpage> webpages);
+    void setWebpages(Collection<Webpage> webpages);
     /**
      * 
      * @param webpage 
@@ -63,12 +63,12 @@ public interface Tag extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Request> getRequests();
+    Collection<Request> getRequests();
     /**
      * 
      * @param researches 
      */
-    void setRequests(Collection<? extends Request> researches);
+    void setRequests(Collection<Request> researches);
     /**
      * 
      * @param request 

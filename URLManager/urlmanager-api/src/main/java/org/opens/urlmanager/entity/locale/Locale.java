@@ -94,12 +94,12 @@ public interface Locale extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Webpage> getWebpages();
+    Collection<Webpage> getWebpages();
     /**
      * 
      * @param webpages 
      */
-    void setWebpages(Collection<? extends Webpage> webpages);
+    void setWebpages(Collection<Webpage> webpages);
     /**
      * 
      * @param webpage 
@@ -110,12 +110,12 @@ public interface Locale extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Request> getRequests();
+    Collection<Request> getRequests();
     /**
      * 
      * @param requests 
      */
-    void setRequests(Collection<? extends Request> requests);
+    void setRequests(Collection<Request> requests);
     /**
      * 
      * @param request 

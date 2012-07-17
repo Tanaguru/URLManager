@@ -46,12 +46,12 @@ public interface Request extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Tag> getTags();
+    Collection<Tag> getTags();
     /**
      * 
      * @param tags 
      */
-    void setTags(Collection<? extends Tag> tags);
+    void setTags(Collection<Tag> tags);
     /**
      * 
      * @param tag 
@@ -62,12 +62,12 @@ public interface Request extends Entity {
      * 
      * @return 
      */
-    Collection<? extends Locale> getLocales();
+    Collection<Locale> getLocales();
     /**
      * 
      * @param locales 
      */
-    void setLocales(Collection<? extends Locale> locales);
+    void setLocales(Collection<Locale> locales);
     /**
      * 
      * @param locale 

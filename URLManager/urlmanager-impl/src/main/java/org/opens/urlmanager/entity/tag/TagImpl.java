@@ -125,14 +125,14 @@ public class TagImpl implements Tag, Serializable {
     @Override
     @XmlTransient
     @JsonIgnore
-    public Collection<? extends Request> getRequests() {
-        return requests;
+    public Collection<Request> getRequests() {
+        return (Collection) requests;
     }
 
     @Override
-    public void setRequests(Collection<? extends Request> requests) {
+    public void setRequests(Collection<Request> requests) {
         this.requests.clear();
-        this.requests.addAll((Collection<RequestImpl>)requests);
+        this.requests.addAll((Collection) requests);
     }
 
     @Override
@@ -143,14 +143,14 @@ public class TagImpl implements Tag, Serializable {
     @Override
     @XmlTransient
     @JsonIgnore
-    public Collection<? extends Webpage> getWebpages() {
-        return webpages;
+    public Collection<Webpage> getWebpages() {
+        return (Collection) webpages;
     }
 
     @Override
-    public void setWebpages(Collection<? extends Webpage> webpages) {
+    public void setWebpages(Collection<Webpage> webpages) {
         this.webpages.clear();
-        this.webpages.addAll((Collection<WebpageImpl>)webpages);
+        this.webpages.addAll((Collection) webpages);
     }
 
     @Override

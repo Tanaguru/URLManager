@@ -124,13 +124,13 @@ public class RequestImpl implements Request, Serializable {
 
     @XmlElementWrapper(name = "locales")
     @XmlElement(name = "locale", type = LocaleImpl.class)
-    public Collection<? extends Locale> getLocales() {
-        return locales;
+    public Collection<Locale> getLocales() {
+        return (Collection) locales;
     }
 
-    public void setLocales(Collection<? extends Locale> locales) {
+    public void setLocales(Collection<Locale> locales) {
         this.locales.clear();
-        this.locales.addAll((Collection<LocaleImpl>)locales);
+        this.locales.addAll((Collection) locales);
     }
 
     public void addLocale(Locale locale) {
@@ -139,13 +139,13 @@ public class RequestImpl implements Request, Serializable {
 
     @XmlElementWrapper(name = "tags")
     @XmlElement(name = "tag", type = TagImpl.class)
-    public Collection<? extends Tag> getTags() {
-        return tags;
+    public Collection<Tag> getTags() {
+        return (Collection) tags;
     }
 
-    public void setTags(Collection<? extends Tag> tags) {
+    public void setTags(Collection<Tag> tags) {
         this.tags.clear();
-        this.tags.addAll((Collection<TagImpl>)tags);
+        this.tags.addAll((Collection) tags);
     }
     
     public void addTag(Tag tag) {
