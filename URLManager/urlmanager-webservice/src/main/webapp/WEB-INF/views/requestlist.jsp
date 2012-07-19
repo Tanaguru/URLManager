@@ -42,7 +42,7 @@
                             </td>
                             <td>
                                 <c:set var="details_link_url"
-                                    value="${contextPath}/rest/request/read?id='${request.id}"/>
+                                    value="${contextPath}/rest/request/read?id=${request.id}"/>
                                 <c:set var="details_link_title"
                                     value="Detail for request ${request.label} (id ${request.id})"/>
                                 <%@include file="/WEB-INF/jspf/inline/links/details.jspf" %>

@@ -102,7 +102,7 @@
             </div>
             <div class="row span12">
                 <c:set var="delete_entity_url"
-                    value="${contextPath}/rest/webpage/delete?id='${webpage.id}"/>
+                    value="${contextPath}/rest/webpage/delete?id=${webpage.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
