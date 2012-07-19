@@ -26,9 +26,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -39,7 +36,6 @@ import org.opens.urlmanager.entity.webpage.WebpageImpl;
  * @author bcareil
  */
 @Entity
-@XmlRootElement(name = "locale")
 @Table(name = "LOCALE")
 public class LocaleImpl implements Locale, Serializable {
 
@@ -150,36 +146,7 @@ public class LocaleImpl implements Locale, Serializable {
     public void setLongLanguage(String longLanguage) {
         this.longLanguage = longLanguage;
     }
-
-    @XmlTransient
-    @JsonIgnore
-    public String getLabel() {
-        StringBuilder sb = new StringBuilder(language);
-        
-        if (country != null && country.isEmpty() == false) {
-            sb.append("_").append(country);
-        }
-        return sb.toString();
-    }
-
-    public void setLabel(String label) {
-        String[] tokens = label.split("_");
-        
-        if (tokens.length == 1) {
-            language = tokens[0];
-            country = "";
-        } else if (tokens.length == 2) {
-            language = tokens[0];
-            country = tokens[1];            
-        } else {
-            throw new IllegalArgumentException(
-                    "Invalid locale label \"" + label + "\""
-                    );
-        }
-    }
     
-    @XmlTransient
-    @JsonIgnore
     public Collection<Webpage> getWebpages() {
         return (Collection) this.webpages;
     }
@@ -193,8 +160,6 @@ public class LocaleImpl implements Locale, Serializable {
         this.webpages.add((WebpageImpl)webpage);
     }
 
-    @XmlTransient
-    @JsonIgnore
     public Collection<Request> getRequests() {
         return (Collection) this.requests;
     }

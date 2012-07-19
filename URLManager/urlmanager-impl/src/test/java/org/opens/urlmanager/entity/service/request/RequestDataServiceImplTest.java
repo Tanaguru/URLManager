@@ -24,6 +24,8 @@ package org.opens.urlmanager.entity.service.request;
 import junit.framework.TestCase;
 import static org.easymock.EasyMock.*;
 import org.opens.urlmanager.entity.dao.request.RequestDAO;
+import org.opens.urlmanager.entity.request.Request;
+import org.opens.urlmanager.entity.service.EntityDTOWrapper;
 
 /**
  *
@@ -31,7 +33,8 @@ import org.opens.urlmanager.entity.dao.request.RequestDAO;
  */
 public class RequestDataServiceImplTest extends TestCase {
     
-    RequestDAO mock;
+    RequestDAO requestDao;
+    EntityDTOWrapper wrapper;
     
     public RequestDataServiceImplTest(String testName) {
         super(testName);
@@ -41,12 +44,22 @@ public class RequestDataServiceImplTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        mock = createMock(RequestDAO.class);
+        requestDao = createMock(RequestDAO.class);
+        wrapper = createMock(EntityDTOWrapper.class);
     }
     
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
+    }
+    
+    private RequestDataServiceImpl getInstance() {
+        RequestDataServiceImpl ret;
+        
+        ret = new RequestDataServiceImpl();
+        ret.setEntityDao(requestDao);
+        ret.setWrapper(wrapper);
+        return ret;
     }
 
     /**
@@ -55,22 +68,35 @@ public class RequestDataServiceImplTest extends TestCase {
     public void testGetRequestFromLabel() {
         System.out.println("getRequestFromLabel");
         String label = "lol related";
-        RequestDataServiceImpl instance = new RequestDataServiceImpl();
+        RequestDataServiceImpl instance = getInstance();
+        Request requestEntity = createMock(Request.class);
+        Request requestDto = createMock(Request.class);
+        Request result;
 
         /*
          * set-up mock
          */
-        // We dont care of the return value since getRequestFromLabel is just a return
-        expect(mock.findRequestFromLabel(label)).andReturn(null);
-        replay(mock);
+        expect(requestDao.findRequestFromLabel(label)).andReturn(requestEntity);
+        expect(wrapper.entityToDto(requestEntity)).andReturn(requestDto);
+        
+        replay(requestDao);
+        replay(requestEntity);
+        replay(requestDto);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getRequestFromLabel(label);
+        result = instance.getRequestFromLabel(label);
+        /*
+         * asserts
+         */
+        assertEquals(requestDto, result);
         /*
          * check mock state
          */
-        verify(mock);
+        verify(requestDao);
+        verify(requestEntity);
+        verify(requestDto);
+        verify(wrapper);
     }
 }

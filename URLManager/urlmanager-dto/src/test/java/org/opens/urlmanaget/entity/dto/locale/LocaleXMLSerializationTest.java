@@ -19,26 +19,26 @@
  *
  * Contact us by mail: open-s AT open-s DOT com
  */
-package org.opens.urlmanager.entity.locale;
+package org.opens.urlmanaget.entity.dto.locale;
 
 import java.io.ByteArrayOutputStream;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import org.custommonkey.xmlunit.*;
-import org.opens.urlmanager.entity.request.RequestImpl;
-import org.opens.urlmanager.entity.tag.TagImpl;
-import org.opens.urlmanager.entity.webpage.WebpageImpl;
-import org.opens.urlmanager.test.utils.XMLUtils;
-import org.w3c.dom.Document;
+import junit.framework.TestCase;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTO;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTOImpl;
+import org.opens.urlmanager.entity.dto.request.RequestDTO;
+import org.opens.urlmanager.entity.dto.request.RequestDTOImpl;
+import org.opens.urlmanager.entity.dto.tag.TagDTO;
+import org.opens.urlmanager.entity.dto.tag.TagDTOImpl;
+import org.opens.urlmanager.entity.dto.webpage.WebpageDTO;
+import org.opens.urlmanager.entity.dto.webpage.WebpageDTOImpl;
 
 /**
  *
  * @author bcareil
  */
-public class LocaleXMLSerializationTest extends XMLTestCase {
-
-    private static final String EXPECTED_OUTPUT_FILENAME =
-            "src/test/resources/locale/expected-output.xml";
+public class LocaleXMLSerializationTest extends TestCase {
 
     public LocaleXMLSerializationTest(String name) {
         super(name);
@@ -47,9 +47,6 @@ public class LocaleXMLSerializationTest extends XMLTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-
-        XMLUnit.setIgnoreComments(true);
-        XMLUnit.setIgnoreAttributeOrder(true);
     }
 
     @Override
@@ -61,44 +58,41 @@ public class LocaleXMLSerializationTest extends XMLTestCase {
             throws Exception {
         System.out.println("testLocaleSerialization");
         JAXBContext jc = JAXBContext.newInstance(
-                TagImpl.class, LocaleImpl.class,
-                WebpageImpl.class, RequestImpl.class);
+                TagDTO.class, LocaleDTO.class,
+                WebpageDTO.class, RequestDTO.class
+                );
         Marshaller marshaller = jc.createMarshaller();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        LocaleImpl locale = createLocale();
+        LocaleDTO locale = createLocale();
         String output, expOutput;
-        Document genDoc, expDoc;
-
 
         marshaller.marshal(locale, os);
         output = os.toString();
-        expOutput = XMLUtils.getFileContent(EXPECTED_OUTPUT_FILENAME);
-
-        System.out.println("-> locale entity marshalled :");
-        System.out.println(output);
-
-        expDoc = XMLUtils.createDocumentFromXMLContent(expOutput);
-        genDoc = XMLUtils.createDocumentFromXMLContent(output);
         
-        Diff diff = new Diff(expDoc, genDoc);
+        expOutput =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+                "<locale>" +
+                "<id>0</id>" +
+                "<country>FR</country>" +
+                "<language>fr</language>" +
+                "<longCountry>France</longCountry>" +
+                "<longLanguage>french</longLanguage>" +
+                "</locale>"
+                ;
         
-        assertXMLEqual(diff, diff.identical());
+        assertEquals(expOutput, output);
     }
 
-    private LocaleImpl createLocale() {
-        TagImpl tag = new TagImpl(1L, "label");
-        RequestImpl request = new RequestImpl(1L, "request");
-        LocaleImpl locale = new LocaleImpl(0L, "fr", "french", "FR", "France");
-        WebpageImpl webpage = new WebpageImpl(1L, "http://lol.com/", Boolean.TRUE);
+    private LocaleDTO createLocale() {
+        TagDTO tag = new TagDTOImpl(1L, "label");
+        RequestDTO request = new RequestDTOImpl(1L, "request");
+        LocaleDTO locale = new LocaleDTOImpl(0L, "fr", "french", "FR", "France");
+        WebpageDTO webpage = new WebpageDTOImpl(1L, "http://lol.com/", Boolean.TRUE);
 
         request.addLocale(locale);
         request.addTag(tag);
         webpage.addLocale(locale);
         webpage.addTag(tag);
-        locale.addRequest(request);
-        locale.addWebpage(webpage);
-        tag.addRequest(request);
-        tag.addWebpage(webpage);
         return locale;
     }
 }

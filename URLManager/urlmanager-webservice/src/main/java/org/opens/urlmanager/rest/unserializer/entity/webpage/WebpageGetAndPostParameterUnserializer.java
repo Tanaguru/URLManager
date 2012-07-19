@@ -24,11 +24,11 @@ package org.opens.urlmanager.rest.unserializer.entity.webpage;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTO;
+import org.opens.urlmanager.entity.dto.tag.TagDTO;
+import org.opens.urlmanager.entity.dto.webpage.WebpageDTO;
 import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.tag.Tag;
-import org.opens.urlmanager.entity.tag.TagImpl;
-import org.opens.urlmanager.entity.webpage.WebpageImpl;
 import org.opens.urlmanager.rest.exception.BadClientRequestException;
 import org.opens.urlmanager.rest.unserializer.generic.GenericGetAndPostParameterUnserializer;
 import org.opens.urlmanager.rest.unserializer.utils.UnserializerUtils;
@@ -40,43 +40,43 @@ import org.opens.urlmanager.rest.unserializer.utils.UnserializerUtils;
  * @author bcareil
  */
 public class WebpageGetAndPostParameterUnserializer
-        extends GenericGetAndPostParameterUnserializer<WebpageImpl> {
+        extends GenericGetAndPostParameterUnserializer<WebpageDTO> {
 
     public WebpageGetAndPostParameterUnserializer() {
         super();
         
-        setTargetClass(WebpageImpl.class);
+        setTargetClass(WebpageDTO.class);
     }
     
     @Override
-    protected void prePopulate(WebpageImpl bean, Map<String, String[]> parameters) {
+    protected void prePopulate(WebpageDTO bean, Map<String, String[]> parameters) {
         try {
             UnserializerUtils.unserializeListParameter(
                     bean,
                     bean.getClass().getMethod("addTag", Tag.class),
                     parameters.remove("tags"),
-                    TagImpl.class,
+                    TagDTO.class,
                     "id"
                     );
             UnserializerUtils.unserializeListParameter(
                     bean,
                     bean.getClass().getMethod("addLocale", Locale.class),
                     parameters.remove("locales"),
-                    LocaleImpl.class,
+                    LocaleDTO.class,
                     "id"
                     );
             UnserializerUtils.unserializeListParameter(
                     bean,
                     bean.getClass().getMethod("addTag", Tag.class),
                     parameters.remove("tags-label"),
-                    TagImpl.class,
+                    TagDTO.class,
                     "label"
                     );
             UnserializerUtils.unserializeListParameter(
                     bean,
                     bean.getClass().getMethod("addLocale", Locale.class),
                     parameters.remove("locales-label"),
-                    LocaleImpl.class,
+                    LocaleDTO.class,
                     "label"
                     );
         } catch (Exception ex) {

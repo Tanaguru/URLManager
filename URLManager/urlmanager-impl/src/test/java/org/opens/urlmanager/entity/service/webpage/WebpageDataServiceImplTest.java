@@ -21,11 +21,16 @@
  */
 package org.opens.urlmanager.entity.service.webpage;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import static org.easymock.EasyMock.*;
 import org.opens.urlmanager.entity.dao.webpage.WebpageDAO;
+import org.opens.urlmanager.entity.service.EntityDTOWrapper;
+import org.opens.urlmanager.entity.webpage.Webpage;
 
 /**
  *
@@ -33,7 +38,8 @@ import org.opens.urlmanager.entity.dao.webpage.WebpageDAO;
  */
 public class WebpageDataServiceImplTest extends TestCase {
 
-    WebpageDAO mock;
+    WebpageDAO webpageDao;
+    EntityDTOWrapper wrapper;
     
     public WebpageDataServiceImplTest(String testName) {
         super(testName);
@@ -48,7 +54,8 @@ public class WebpageDataServiceImplTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        mock = createMock(WebpageDAO.class);
+        webpageDao = createMock(WebpageDAO.class);
+        wrapper = createMock(EntityDTOWrapper.class);
     }
     
     @Override
@@ -56,29 +63,51 @@ public class WebpageDataServiceImplTest extends TestCase {
         super.tearDown();
     }
 
+    private WebpageDataServiceImpl getInstance() {
+        WebpageDataServiceImpl ret;
+        
+        ret = new WebpageDataServiceImpl();
+        ret.setEntityDao(webpageDao);
+        ret.setWrapper(wrapper);
+        return ret;
+    }
+    
     /**
      * Test of getWebpageFromURL method, of class WebpageDataServiceImpl.
      */
     public void testGetWebpageFromURL() {
         System.out.println("getWebpageFromURL");
         String url = "http://lol.com";
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
+        WebpageDataServiceImpl instance = getInstance();
+        Webpage webpageEntity = createMock(Webpage.class);
+        Webpage webpageDto = createMock(Webpage.class);
+        Webpage result;
         
         /*
          * set-up mock
          */
-        // We dont care of the return value since getWebpageFromURL is just a return
-        expect(mock.findWebpageFromURL(url)).andReturn(null);
-        replay(mock);
+        expect(webpageDao.findWebpageFromURL(url)).andReturn(webpageEntity);
+        expect(wrapper.entityToDto(webpageEntity)).andReturn(webpageDto);
+        //
+        replay(webpageDao);
+        replay(webpageDto);
+        replay(webpageEntity);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getWebpageFromURL(url);
+        result = instance.getWebpageFromURL(url);
+        /*
+         * asserts
+         */
+        assertEquals(webpageDto, result);
         /*
          * verify mock
          */
-        verify(mock);
+        verify(webpageDao);
+        verify(webpageDto);
+        verify(webpageEntity);
+        verify(wrapper);
     }
 
     /**
@@ -86,23 +115,36 @@ public class WebpageDataServiceImplTest extends TestCase {
      */
     public void testGetRootWebpageList() {
         System.out.println("getRootWebpageList");
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
+        WebpageDataServiceImpl instance = getInstance();
+        Set<Webpage> webpageEntity = createMock(Set.class);
+        Set<Webpage> webpageDto = createMock(Set.class);
+        Set<Webpage> result;
         
         /*
          * set-up mock
          */
-        // We dont care of the return value since getRootWebpageList is just a return
-        expect(mock.findRootWebpageList()).andReturn(null);
-        replay(mock);
+        expect(webpageDao.findRootWebpageList()).andReturn(webpageEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) webpageEntity)).andReturn((Collection) webpageDto);
+        //
+        replay(webpageDao);
+        replay(webpageDto);
+        replay(webpageEntity);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getRootWebpageList();
+        result = instance.getRootWebpageList();
+        /*
+         * asserts
+         */
+        assertEquals(webpageDto, result);
         /*
          * verify mock
          */
-        verify(mock);
+        verify(webpageDao);
+        verify(webpageDto);
+        verify(webpageEntity);
+        verify(wrapper);
     }
 
     /**
@@ -110,23 +152,36 @@ public class WebpageDataServiceImplTest extends TestCase {
      */
     public void testGetWebpagesWithoutTag() {
         System.out.println("getWebpagesWithoutTag");
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
+        WebpageDataServiceImpl instance = getInstance();
+        List<Webpage> webpageEntity = createMock(List.class);
+        List<Webpage> webpageDto = createMock(List.class);
+        List<Webpage> result;
         
         /*
          * set-up mock
          */
-        // We dont care of the return value since getWebpagesWithoutTag is just a return
-        expect(mock.findWebpagesWithoutTag()).andReturn(null);
-        replay(mock);
+        expect(webpageDao.findWebpagesWithoutTag()).andReturn(webpageEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) webpageEntity)).andReturn((Collection) webpageDto);
+        //
+        replay(webpageDao);
+        replay(webpageDto);
+        replay(webpageEntity);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getWebpagesWithoutTag();
+        result = instance.getWebpagesWithoutTag();
+        /*
+         * asserts
+         */
+        assertEquals(webpageDto, result);
         /*
          * verify mock
          */
-        verify(mock);
+        verify(webpageDao);
+        verify(webpageDto);
+        verify(webpageEntity);
+        verify(wrapper);
     }
 
     /**
@@ -134,23 +189,36 @@ public class WebpageDataServiceImplTest extends TestCase {
      */
     public void testGetWebpagesWithoutLocale() {
         System.out.println("getWebpagesWithoutLocale");
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
+        WebpageDataServiceImpl instance = getInstance();
+        List<Webpage> webpageEntity = createMock(List.class);
+        List<Webpage> webpageDto = createMock(List.class);
+        List<Webpage> result;
         
         /*
          * set-up mock
          */
-        // We dont care of the return value since getWebpagesWithoutLocale is just a return
-        expect(mock.findWebpagesWithoutLocale()).andReturn(null);
-        replay(mock);
+        expect(webpageDao.findWebpagesWithoutLocale()).andReturn(webpageEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) webpageEntity)).andReturn((Collection) webpageDto);
+        //
+        replay(webpageDao);
+        replay(webpageDto);
+        replay(webpageEntity);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getWebpagesWithoutLocale();
+        result = instance.getWebpagesWithoutLocale();
+        /*
+         * asserts
+         */
+        assertEquals(webpageDto, result);
         /*
          * verify mock
          */
-        verify(mock);
+        verify(webpageDao);
+        verify(webpageDto);
+        verify(webpageEntity);
+        verify(wrapper);
     }
 
     /**
@@ -158,22 +226,35 @@ public class WebpageDataServiceImplTest extends TestCase {
      */
     public void testGetWebpagesWithoutRelations() {
         System.out.println("getWebpagesWithoutRelations");
-        WebpageDataServiceImpl instance = new WebpageDataServiceImpl();
+        WebpageDataServiceImpl instance = getInstance();
+        List<Webpage> webpageEntity = createMock(List.class);
+        List<Webpage> webpageDto = createMock(List.class);
+        List<Webpage> result;
         
         /*
          * set-up mock
          */
-        // We dont care of the return value since getWebpagesWithoutRelations is just a return
-        expect(mock.findWebpagesWithoutRelations()).andReturn(null);
-        replay(mock);
+        expect(webpageDao.findWebpagesWithoutRelations()).andReturn(webpageEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) webpageEntity)).andReturn((Collection) webpageDto);
+        //
+        replay(webpageDao);
+        replay(webpageDto);
+        replay(webpageEntity);
+        replay(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getWebpagesWithoutRelations();
+        result = instance.getWebpagesWithoutRelations();
+        /*
+         * asserts
+         */
+        assertEquals(webpageDto, result);
         /*
          * verify mock
          */
-        verify(mock);
+        verify(webpageDao);
+        verify(webpageDto);
+        verify(webpageEntity);
+        verify(wrapper);
     }
 }

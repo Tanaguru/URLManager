@@ -22,7 +22,7 @@
 package org.opens.urlmanager.rest.operation.command.transform.entity.locale;
 
 import java.util.List;
-import org.opens.urlmanager.entity.locale.LocaleImpl;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTO;
 import org.opens.urlmanager.rest.operation.command.api.ITransformerCommand;
 import org.opens.urlmanager.rest.utils.jaxb.entity.locale.LocaleList;
 
@@ -31,11 +31,11 @@ import org.opens.urlmanager.rest.utils.jaxb.entity.locale.LocaleList;
  * @author bcareil
  */
 public class TransformToLocaleList
-        implements ITransformerCommand<LocaleImpl> {
+        implements ITransformerCommand<LocaleDTO> {
 
     @Override
     public Object process(Object attribute) {
-        return new LocaleList((List<LocaleImpl>)(attribute));
+        return new LocaleList((List<LocaleDTO>)(attribute));
     }
     
 }

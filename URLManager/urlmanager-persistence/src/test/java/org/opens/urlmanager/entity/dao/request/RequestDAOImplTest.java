@@ -173,8 +173,8 @@ public class RequestDAOImplTest extends AbstractDaoTestCase {
     public void testFindMatchingWebpages() {
         System.out.println("findMatchingWebpages");
         Request request;
-        Collection<? extends Locale> locales;
-        Collection<? extends Tag> tags;
+        Collection<Locale> locales;
+        Collection<Tag> tags;
         List<Webpage> result;
         List<Webpage> expResult;
 

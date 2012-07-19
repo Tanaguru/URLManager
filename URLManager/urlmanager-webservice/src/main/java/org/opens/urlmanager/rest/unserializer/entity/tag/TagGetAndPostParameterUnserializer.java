@@ -23,10 +23,10 @@ package org.opens.urlmanager.rest.unserializer.entity.tag;
 
 import java.util.Map;
 import java.util.StringTokenizer;
+import org.opens.urlmanager.entity.dto.tag.TagDTO;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.tag.Tag;
-import org.opens.urlmanager.entity.tag.TagImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
 import org.opens.urlmanager.entity.webpage.WebpageImpl;
 import org.opens.urlmanager.rest.unserializer.generic.GenericGetAndPostParameterUnserializer;
@@ -40,16 +40,16 @@ import org.opens.urlmanager.rest.unserializer.utils.UnserializerUtils;
  * @author bcareil
  */
 public class TagGetAndPostParameterUnserializer
-        extends GenericGetAndPostParameterUnserializer<TagImpl> {
+        extends GenericGetAndPostParameterUnserializer<TagDTO> {
 
     public TagGetAndPostParameterUnserializer() {
         super();
         
-        this.setTargetClass(TagImpl.class);
+        this.setTargetClass(TagDTO.class);
     }
     
     @Override
-    protected void prePopulate(TagImpl bean, Map<String, String[]> parameters) {
+    protected void prePopulate(TagDTO bean, Map<String, String[]> parameters) {
         if (parameters.get("webpages") != null) {
             unserializeWebpagesParameter(bean, parameters.get("webpages")[0]);
             parameters.remove("webpages");

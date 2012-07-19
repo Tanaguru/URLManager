@@ -11,7 +11,8 @@
         <module>urlmanager-impl</module>
         <module>urlmanager-persistence</module>
         <module>urlmanager-webservice</module>
-    </modules>
+    <module>urlmanager-dto</module>
+  </modules>
     <build>
         <plugins>
             <plugin>
@@ -289,7 +290,7 @@
                 </exclusions>
             </dependency>
             
-            <!-- slf4j dependencies -->
+            <!-- logging dependencies -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -299,6 +300,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.0.4</version>
             </dependency>
 
             <!-- dbunit and hsqldb dependencies -->
@@ -383,6 +389,12 @@
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>1.8.3</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
+                <type>jar</type>
             </dependency>
             
             <!-- xml test utils -->

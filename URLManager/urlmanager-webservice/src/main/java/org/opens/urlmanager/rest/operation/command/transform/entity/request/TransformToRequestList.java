@@ -22,7 +22,7 @@
 package org.opens.urlmanager.rest.operation.command.transform.entity.request;
 
 import java.util.List;
-import org.opens.urlmanager.entity.request.RequestImpl;
+import org.opens.urlmanager.entity.dto.request.RequestDTO;
 import org.opens.urlmanager.rest.operation.command.api.ITransformerCommand;
 import org.opens.urlmanager.rest.utils.jaxb.entity.request.RequestList;
 
@@ -31,11 +31,11 @@ import org.opens.urlmanager.rest.utils.jaxb.entity.request.RequestList;
  * @author bcareil
  */
 public class TransformToRequestList
-        implements ITransformerCommand<RequestImpl> {
+        implements ITransformerCommand<RequestDTO> {
 
     @Override
     public Object process(Object attribute) {
-        return new RequestList((List<RequestImpl>)(attribute));
+        return new RequestList((List<RequestDTO>)(attribute));
     }
     
 }

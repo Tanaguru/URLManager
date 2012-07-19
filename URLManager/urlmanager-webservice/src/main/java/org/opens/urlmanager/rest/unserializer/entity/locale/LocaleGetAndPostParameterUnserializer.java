@@ -23,8 +23,8 @@ package org.opens.urlmanager.rest.unserializer.entity.locale;
 
 import java.util.Map;
 import java.util.StringTokenizer;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTO;
 import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -40,16 +40,16 @@ import org.opens.urlmanager.rest.unserializer.utils.UnserializerUtils;
  * @author bcareil
  */
 public class LocaleGetAndPostParameterUnserializer
-        extends GenericGetAndPostParameterUnserializer<LocaleImpl> {
+        extends GenericGetAndPostParameterUnserializer<LocaleDTO> {
 
     public LocaleGetAndPostParameterUnserializer() {
         super();
         
-        this.setTargetClass(LocaleImpl.class);
+        this.setTargetClass(LocaleDTO.class);
     }
     
     @Override
-    protected void prePopulate(LocaleImpl bean, Map<String, String[]> parameters) {
+    protected void prePopulate(LocaleDTO bean, Map<String, String[]> parameters) {
         if (parameters.get("webpages") != null) {
             unserializeWebpagesParameter(bean, parameters.get("webpages")[0]);
             parameters.remove("webpages");

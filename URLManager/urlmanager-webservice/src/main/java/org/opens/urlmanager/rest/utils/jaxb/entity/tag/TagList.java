@@ -24,7 +24,7 @@ package org.opens.urlmanager.rest.utils.jaxb.entity.tag;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.opens.urlmanager.entity.tag.TagImpl;
+import org.opens.urlmanager.entity.dto.tag.TagDTO;
 import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
 
 /**
@@ -32,19 +32,19 @@ import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
  * @author bcareil
  */
 @XmlRootElement(name = "tags")
-public class TagList extends JaxbList<TagImpl> {
+public class TagList extends JaxbList<TagDTO> {
 
     public TagList() {
         super();
     }
 
-    public TagList(List<TagImpl> list) {
+    public TagList(List<TagDTO> list) {
         super(list);
     }
 
     @Override
     @XmlElement(name = "tag")
-    public List<TagImpl> getList() {
+    public List<TagDTO> getList() {
         return this.list;
     }
     

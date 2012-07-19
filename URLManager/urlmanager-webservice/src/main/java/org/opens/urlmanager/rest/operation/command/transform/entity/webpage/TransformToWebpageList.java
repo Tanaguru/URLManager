@@ -22,7 +22,7 @@
 package org.opens.urlmanager.rest.operation.command.transform.entity.webpage;
 
 import java.util.List;
-import org.opens.urlmanager.entity.webpage.WebpageImpl;
+import org.opens.urlmanager.entity.dto.webpage.WebpageDTO;
 import org.opens.urlmanager.rest.operation.command.api.ITransformerCommand;
 import org.opens.urlmanager.rest.utils.jaxb.entity.webpage.WebpageList;
 
@@ -31,11 +31,11 @@ import org.opens.urlmanager.rest.utils.jaxb.entity.webpage.WebpageList;
  * @author bcareil
  */
 public class TransformToWebpageList
-        implements ITransformerCommand<WebpageImpl> {
+        implements ITransformerCommand<WebpageDTO> {
 
     @Override
     public Object process(Object attribute) {
-        return new WebpageList((List<WebpageImpl>)(attribute));
+        return new WebpageList((List<WebpageDTO>)(attribute));
     }
     
 }

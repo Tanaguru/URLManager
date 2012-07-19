@@ -21,9 +21,13 @@
  */
 package org.opens.urlmanager.entity.service.locale;
 
+import java.util.Collection;
+import java.util.List;
 import junit.framework.TestCase;
 import static org.easymock.EasyMock.*;
 import org.opens.urlmanager.entity.dao.locale.LocaleDAO;
+import org.opens.urlmanager.entity.locale.Locale;
+import org.opens.urlmanager.entity.service.EntityDTOWrapper;
 
 /**
  *
@@ -31,7 +35,8 @@ import org.opens.urlmanager.entity.dao.locale.LocaleDAO;
  */
 public class LocaleDataServiceImplTest extends TestCase {
     
-    LocaleDAO mock;
+    LocaleDAO localeDao;
+    EntityDTOWrapper wrapper;
     
     public LocaleDataServiceImplTest(String testName) {
         super(testName);
@@ -41,12 +46,21 @@ public class LocaleDataServiceImplTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        mock = createMock(LocaleDAO.class);
+        localeDao = createMock(LocaleDAO.class);
+        wrapper = createMock(EntityDTOWrapper.class);
     }
     
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
+    }
+    
+    private LocaleDataServiceImpl getInstance() {
+        LocaleDataServiceImpl ret = new LocaleDataServiceImpl();
+        
+        ret.setEntityDao(localeDao);
+        ret.setWrapper(wrapper);
+        return ret;
     }
 
     /**
@@ -55,23 +69,36 @@ public class LocaleDataServiceImplTest extends TestCase {
     public void testGetLocaleListFromLanguage() {
         System.out.println("getLocaleListFromLanguage");
         String language = "fr";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        List<Locale> localeEntity = createMock(List.class);
+        List<Locale> localeDto = createMock(List.class);
+        List<Locale> result;
 
         /*
          * set-up mock
          */
-        // ignore return value since getLocaleListFromLanguage is just a return
-        expect(mock.findLocaleListFromLanguage(language)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleListFromLanguage(language)).andReturn(localeEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) localeEntity)).andReturn((Collection) localeDto);
+        
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleListFromLanguage(language);
+        result = instance.getLocaleListFromLanguage(language);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
     }
 
     /**
@@ -80,24 +107,37 @@ public class LocaleDataServiceImplTest extends TestCase {
     public void testGetLocaleListFromCountry() {
         System.out.println("getLocaleListFromCountry");
         String country = "FR";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        List<Locale> localeEntity = createMock(List.class);
+        List<Locale> localeDto = createMock(List.class);
+        List<Locale> result;
 
         /*
          * set-up mock
          */
-        // ignore return value since getLocaleListFromCountry is just a return
-        expect(mock.findLocaleListFromCountry(country)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleListFromCountry(country)).andReturn(localeEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) localeEntity)).andReturn((Collection) localeDto);
+
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleListFromCountry(country);
+        result = instance.getLocaleListFromCountry(country);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
-}
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
+    }
 
     /**
      * Test of getLocaleListFromLongLanguage method, of class LocaleDataServiceImpl.
@@ -105,24 +145,37 @@ public class LocaleDataServiceImplTest extends TestCase {
     public void testGetLocaleListFromLongLanguage() {
         System.out.println("getLocaleListFromLongLanguage");
         String longLanguage = "french";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        List<Locale> localeEntity = createMock(List.class);
+        List<Locale> localeDto = createMock(List.class);
+        List<Locale> result;
 
         /*
          * set-up mock
          */
-        // ignore return value since getLocaleListFromLongLanguage is just a return
-        expect(mock.findLocaleListFromLongLanguage(longLanguage)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleListFromLongLanguage(longLanguage)).andReturn(localeEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) localeEntity)).andReturn((Collection) localeDto);
+
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleListFromLongLanguage(longLanguage);
+        result = instance.getLocaleListFromLongLanguage(longLanguage);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
-}
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
+    }
 
     /**
      * Test of getLocaleListFromLongCountry method, of class LocaleDataServiceImpl.
@@ -130,24 +183,37 @@ public class LocaleDataServiceImplTest extends TestCase {
     public void testGetLocaleListFromLongCountry() {
         System.out.println("getLocaleListFromLongCountry");
         String longCountry = "France";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        List<Locale> localeEntity = createMock(List.class);
+        List<Locale> localeDto = createMock(List.class);
+        List<Locale> result;
 
         /*
          * set-up mock
          */
-        // ignore return value since findLocaleListFromLongCountry is just a return
-        expect(mock.findLocaleListFromLongCountry(longCountry)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleListFromLongCountry(longCountry)).andReturn(localeEntity);
+        expect(wrapper.entityCollectionToDtoCollection((Collection) localeEntity)).andReturn((Collection) localeDto);
+
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleListFromLongCountry(longCountry);
+        result = instance.getLocaleListFromLongCountry(longCountry);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
-}
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
+    }
 
     /**
      * Test of getLocaleFromLanguageAndCountry method, of class LocaleDataServiceImpl.
@@ -156,24 +222,37 @@ public class LocaleDataServiceImplTest extends TestCase {
         System.out.println("getLocaleFromLanguageAndCountry");
         String language = "fr";
         String country = "FR";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        Locale localeEntity = createMock(Locale.class);
+        Locale localeDto = createMock(Locale.class);
+        Locale result;
 
         /*
          * set-up mock
          */
-        // ignore return value since getLocaleFromLanguageAndCountry is just a return
-        expect(mock.findLocaleFromLanguageAndCountry(language, country)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleFromLanguageAndCountry(language, country)).andReturn(localeEntity);
+        expect(wrapper.entityToDto(localeEntity)).andReturn(localeDto);
+
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleFromLanguageAndCountry(language, country);
+        result = instance.getLocaleFromLanguageAndCountry(language, country);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
-}
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
+    }
 
     /**
      * Test of getLocaleFromLongLanguageAndLongCountry method, of class LocaleDataServiceImpl.
@@ -182,22 +261,36 @@ public class LocaleDataServiceImplTest extends TestCase {
         System.out.println("getLocaleFromLongLanguageAndLongCountry");
         String longLanguage = "french";
         String longCountry = "France";
-        LocaleDataServiceImpl instance = new LocaleDataServiceImpl();
+        LocaleDataServiceImpl instance = getInstance();
+        Locale localeEntity = createMock(Locale.class);
+        Locale localeDto = createMock(Locale.class);
+        Locale result;
 
         /*
          * set-up mock
          */
         // ignore return value since getLocaleFromLongLanguageAndLongCountry is just a return
-        expect(mock.findLocaleFromLongLanguageAndLongCountry(longLanguage, longCountry)).andReturn(null);
-        replay(mock);
+        expect(localeDao.findLocaleFromLongLanguageAndLongCountry(longLanguage, longCountry)).andReturn(localeEntity);
+        expect(wrapper.entityToDto(localeEntity)).andReturn(localeDto);
+
+        replay(localeDao);
+        replay(wrapper);
+        replay(localeEntity);
+        replay(localeDto);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getLocaleFromLongLanguageAndLongCountry(longLanguage, longCountry);
+        result = instance.getLocaleFromLongLanguageAndLongCountry(longLanguage, longCountry);
+        /*
+         * asserts
+         */
+        assertEquals(localeDto, result);
         /*
          * check mock state
          */
-        verify(mock);
+        verify(localeDao);
+        verify(wrapper);
+        verify(localeEntity);
+        verify(localeDto);
     }
 }

@@ -24,7 +24,7 @@ package org.opens.urlmanager.rest.utils.jaxb.entity.request;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.opens.urlmanager.entity.request.RequestImpl;
+import org.opens.urlmanager.entity.dto.request.RequestDTO;
 import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
 
 /**
@@ -32,19 +32,19 @@ import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
  * @author bcareil
  */
 @XmlRootElement(name = "requests")
-public class RequestList extends JaxbList<RequestImpl> {
+public class RequestList extends JaxbList<RequestDTO> {
 
     public RequestList() {
         super();
     }
 
-    public RequestList(List<RequestImpl> list) {
+    public RequestList(List<RequestDTO> list) {
         super(list);
     }
 
     @Override
     @XmlElement(name = "request")
-    public List<RequestImpl> getList() {
+    public List<RequestDTO> getList() {
         return this.list;
     }
     

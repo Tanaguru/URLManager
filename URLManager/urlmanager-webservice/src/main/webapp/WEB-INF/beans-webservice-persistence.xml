@@ -66,7 +66,7 @@
  
      <aop:config>
 	<!--<aop:pointcut id="transactionalMethods" expression="execution(* org.opens.kbaccess.controller.*.*(..)) || bean(*Service)"/>-->
-        <aop:pointcut id="transactionalMethods" expression="bean(*Service) || bean(*DAO)"/>
+        <aop:pointcut id="transactionalMethods" expression="bean(*Dao)"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalMethods"/>
     </aop:config>
 

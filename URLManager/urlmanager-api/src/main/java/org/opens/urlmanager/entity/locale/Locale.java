@@ -75,21 +75,7 @@ public interface Locale extends Entity {
      * @param longCountry Country full name
      */
     void setLongCountry(String longCountry);
-    
-    /**
-     * 
-     * @return The language concatained with the country and separated
-     *         with an underscore. Exemple : fr_FR.
-     */
-    String getLabel();
-
-    /**
-     * 
-     * @param label The contatenation of the language and the country
-     *              separeted by an underscore. Exemple fr_FR.
-     */
-    void setLabel(String label);
-    
+        
     /**
      * 
      * @return 

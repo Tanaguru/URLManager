@@ -21,16 +21,17 @@
  */
 package org.opens.urlmanager.entity.service.locale;
 
+import java.util.Collection;
 import java.util.List;
-import org.opens.tanaguru.sdk.entity.service.AbstractGenericDataService;
 import org.opens.urlmanager.entity.dao.locale.LocaleDAO;
 import org.opens.urlmanager.entity.locale.Locale;
+import org.opens.urlmanager.entity.service.AbstractGenericDataServiceWithDTO;
 
 /**
  *
  * @author bcareil
  */
-public class LocaleDataServiceImpl extends AbstractGenericDataService<Locale, Long>
+public class LocaleDataServiceImpl extends AbstractGenericDataServiceWithDTO<Locale>
     implements LocaleDataService {
 
     public static class Comparator implements java.util.Comparator<Locale> {
@@ -51,35 +52,41 @@ public class LocaleDataServiceImpl extends AbstractGenericDataService<Locale, Lo
     }
 
     public List<Locale> getLocaleListFromLanguage(String language) {
-        return ((LocaleDAO)entityDao).findLocaleListFromLanguage(language);
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((LocaleDAO)entityDao).findLocaleListFromLanguage(language));
     }
 
     public List<Locale> getLocaleListFromCountry(String country) {
-        return ((LocaleDAO)entityDao).findLocaleListFromCountry(country);
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((LocaleDAO)entityDao).findLocaleListFromCountry(country));
     }
 
     public List<Locale> getLocaleListFromLongLanguage(String longLanguage) {
-        return ((LocaleDAO)entityDao).findLocaleListFromLongLanguage(longLanguage);
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((LocaleDAO)entityDao).findLocaleListFromLongLanguage(longLanguage));
     }
 
     public List<Locale> getLocaleListFromLongCountry(String longCountry) {
-        return ((LocaleDAO)entityDao).findLocaleListFromLongCountry(longCountry);
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((LocaleDAO)entityDao).findLocaleListFromLongCountry(longCountry));
     }
 
     public Locale getLocaleFromLanguageAndCountry(
             String language,
             String country) {
-        return ((LocaleDAO)entityDao).findLocaleFromLanguageAndCountry(
-                language,
-                country);
+        return (Locale) wrapper.entityToDto(
+                ((LocaleDAO)entityDao).findLocaleFromLanguageAndCountry(
+                    language,
+                    country
+                    )
+                );
     }
 
     public Locale getLocaleFromLongLanguageAndLongCountry(
             String longLanguage,
             String longCountry) {
-        return ((LocaleDAO)entityDao).findLocaleFromLongLanguageAndLongCountry(
-                longLanguage,
-                longCountry);
+        return (Locale) wrapper.entityToDto(
+                ((LocaleDAO)entityDao).findLocaleFromLongLanguageAndLongCountry(
+                    longLanguage,
+                    longCountry
+                    )
+                );
     }
     
 }

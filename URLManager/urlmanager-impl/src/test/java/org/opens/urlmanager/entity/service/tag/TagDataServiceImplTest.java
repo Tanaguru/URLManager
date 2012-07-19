@@ -26,6 +26,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import static org.easymock.EasyMock.*;
 import org.opens.urlmanager.entity.dao.tag.TagDAO;
+import org.opens.urlmanager.entity.service.EntityDTOWrapper;
+import org.opens.urlmanager.entity.tag.Tag;
 
 /**
  *
@@ -33,7 +35,8 @@ import org.opens.urlmanager.entity.dao.tag.TagDAO;
  */
 public class TagDataServiceImplTest extends TestCase {
     
-    TagDAO mock;
+    TagDAO tagDao;
+    EntityDTOWrapper wrapper;
     
     public TagDataServiceImplTest(String testName) {
         super(testName);
@@ -48,7 +51,8 @@ public class TagDataServiceImplTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        mock = createMock(TagDAO.class);
+        tagDao = createMock(TagDAO.class);
+        wrapper = createMock(EntityDTOWrapper.class);
     }
     
     @Override
@@ -63,21 +67,37 @@ public class TagDataServiceImplTest extends TestCase {
         System.out.println("getTagFromLabel");
         String label = "";
         TagDataServiceImpl instance = new TagDataServiceImpl();
+        Tag tagEntity = createMock(Tag.class);
+        Tag tagDto = createMock(Tag.class);
+        Tag result;
 
         /*
          * set-up mock
          */
-        // We dont care of the return value since getTagFromLabel is just a return
-        expect(mock.findTagFromLabel(label)).andReturn(null);
-        replay(mock);
+        expect(tagDao.findTagFromLabel(label)).andReturn(tagEntity);
+        expect(wrapper.entityToDto(tagEntity)).andReturn(tagDto);
+        //
+        replay(tagDao);
+        replay(wrapper);
+        replay(tagEntity);
+        replay(tagDto);
+        /*
+         * set up instance
+         */
+        instance.setEntityDao(tagDao);
+        instance.setWrapper(wrapper);
         /*
          * run test
          */
-        instance.setEntityDao(mock);
-        instance.getTagFromLabel(label);
+        result = instance.getTagFromLabel(label);
+        /*
+         * asserts
+         */
+        assertEquals(result, tagDto);
         /*
          * check mock state
          */
-        verify(mock);
-        }
+        verify(tagDao);
+        verify(wrapper);
+    }
 }

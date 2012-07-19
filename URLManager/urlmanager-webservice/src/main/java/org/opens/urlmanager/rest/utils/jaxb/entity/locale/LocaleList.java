@@ -24,7 +24,7 @@ package org.opens.urlmanager.rest.utils.jaxb.entity.locale;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.opens.urlmanager.entity.locale.LocaleImpl;
+import org.opens.urlmanager.entity.dto.locale.LocaleDTO;
 import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
 
 /**
@@ -32,19 +32,19 @@ import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
  * @author bcareil
  */
 @XmlRootElement(name = "locales")
-public class LocaleList extends JaxbList<LocaleImpl> {
+public class LocaleList extends JaxbList<LocaleDTO> {
 
     public LocaleList() {
         super();
     }
 
-    public LocaleList(List<LocaleImpl> list) {
+    public LocaleList(List<LocaleDTO> list) {
         super(list);
     }
 
     @Override
     @XmlElement(name = "locale")
-    public List<LocaleImpl> getList() {
+    public List<LocaleDTO> getList() {
         return this.list;
     }
     

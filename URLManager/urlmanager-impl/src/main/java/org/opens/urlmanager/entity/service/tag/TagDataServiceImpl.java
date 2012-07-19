@@ -21,15 +21,15 @@
  */
 package org.opens.urlmanager.entity.service.tag;
 
-import org.opens.tanaguru.sdk.entity.service.AbstractGenericDataService;
 import org.opens.urlmanager.entity.dao.tag.TagDAO;
+import org.opens.urlmanager.entity.service.AbstractGenericDataServiceWithDTO;
 import org.opens.urlmanager.entity.tag.Tag;
 
 /**
  *
  * @author bcareil
  */
-public class TagDataServiceImpl extends AbstractGenericDataService<Tag, Long>
+public class TagDataServiceImpl extends AbstractGenericDataServiceWithDTO<Tag>
     implements TagDataService {
 
     public TagDataServiceImpl() {
@@ -37,6 +37,7 @@ public class TagDataServiceImpl extends AbstractGenericDataService<Tag, Long>
     }
 
     public Tag getTagFromLabel(String label) {
-        return ((TagDAO)entityDao).findTagFromLabel(label);
+        return (Tag) wrapper.entityToDto(((TagDAO)entityDao).findTagFromLabel(label));
     }
+    
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+/*
  * URLManager - URL Indexer
  * Copyright (C) 2008-2012  Open-S Company
  *
@@ -19,35 +18,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Contact us by mail: open-s AT open-s DOT com
--->
+ */
+package org.opens.urlmanager.entity.dto.tag;
 
-<webpage>
-    <id>1</id>
-    <isRoot>true</isRoot>
-    <URL>http://lol.com/</URL>
+import java.io.Serializable;
 
-    <locales>
-        <locale>
-            <id>1</id>
-            <language>fr</language>
-            <longLanguage>french</longLanguage>
-            <country>FR</country>
-            <longCountry>France</longCountry>
-        </locale>
-        <locale>
-            <id>2</id>
-            <language>en</language>
-            <longLanguage>english</longLanguage>
-            <country>GB</country>
-            <longCountry>Great Britain</longCountry>
-        </locale>
-    </locales>
 
-    <tags>
-        <tag>
-            <id>1</id>
-            <label>label</label>
-        </tag>
-    </tags>
+/**
+ *
+ * @author bcareil
+ */
+public interface TagDTO extends Serializable {
 
-</webpage>
+    public Long getId();
+    public void setId(Long id);
+    
+    public String getLabel();
+    public String getHtmlEncodedLabel();
+    public String getUrlEncodedLabel();
+    public void setLabel(String label);
+
+}

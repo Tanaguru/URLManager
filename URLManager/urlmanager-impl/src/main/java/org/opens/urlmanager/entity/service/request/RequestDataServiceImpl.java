@@ -21,12 +21,7 @@
  */
 package org.opens.urlmanager.entity.service.request;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.logging.LogFactory;
 import org.opens.urlmanager.entity.dao.request.RequestDAO;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.service.LocaleAndTagAssociatedDataService;
@@ -39,48 +34,46 @@ import org.opens.urlmanager.entity.webpage.Webpage;
  */
 public class RequestDataServiceImpl extends LocaleAndTagAssociatedDataService<Request>
     implements RequestDataService {
-    
+
     public Request getRequestFromLabel(String label) {
-        return ((RequestDAO)entityDao).findRequestFromLabel(label);
+        return (Request) wrapper.entityToDto(((RequestDAO)entityDao).findRequestFromLabel(label));
     }
 
     public Collection<Webpage> getMatchingWebpages(Request request) {
         if (request.getId() != null && request.getId() != 0) {
-            preprocessRequest(request);
+            request = preprocessRequest(request);
         } else {
             request.setTags(preprocessTags(request.getTags(), false));
             request.setLocales(preprocessLocales(request.getLocales()));
         }
-        return ((RequestDAO)entityDao).findMatchingWebpages(request);
+        return (Collection) wrapper.entityCollectionToDtoCollection(
+                (Collection) ((RequestDAO)entityDao).findMatchingWebpages(
+                    (Request) wrapper.dtoToEntity(request)
+                    )
+                );
     }
 
     @Override
     public void create(Request entity) {
         entity.setTags(preprocessTags(entity.getTags(), false));
         entity.setLocales(preprocessLocales(entity.getLocales()));
-        super.create(entity);
+        super.create((Request) wrapper.dtoToEntity(entity));
     }
 
     @Override
     public Request update(Request entity) {
         entity.setTags(preprocessTags(entity.getTags(), false));
         entity.setLocales(preprocessLocales(entity.getLocales()));
-        return super.update(entity);
+        return (Request) wrapper.entityToDto(super.update((Request) wrapper.dtoToEntity(entity)));
     }
-
     
-    
-    private void preprocessRequest(Request request) {
+    private Request preprocessRequest(Request request) {
         Request persistedRequest = this.read(request.getId());
 
         if (persistedRequest == null) {
             throw new EntityNotFoundException("request", "invalid id");
         }
-        try {
-            BeanUtils.copyProperties(request, persistedRequest);
-        } catch (Exception ex) {
-            LogFactory.getLog(RequestDataServiceImpl.class).error("Unable to copy 'Request' bean", ex);
-        }
+        return (Request) wrapper.entityToDto(persistedRequest);
     }    
     
 }

@@ -24,27 +24,28 @@ package org.opens.urlmanager.rest.utils.jaxb.entity.webpage;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.opens.urlmanager.entity.webpage.WebpageImpl;
+import org.opens.urlmanager.entity.dto.webpage.WebpageDTO;
 import org.opens.urlmanager.rest.utils.jaxb.JaxbList;
+
 
 /**
  *
  * @author bcareil
  */
 @XmlRootElement(name = "webpages")
-public class WebpageList extends JaxbList<WebpageImpl> {
+public class WebpageList extends JaxbList<WebpageDTO> {
 
     public WebpageList() {
         super();
     }
 
-    public WebpageList(List<WebpageImpl> list) {
+    public WebpageList(List<WebpageDTO> list) {
         super(list);
     }
 
     @Override
     @XmlElement(name = "webpage")
-    public List<WebpageImpl> getList() {
+    public List<WebpageDTO> getList() {
         return this.list;
     }
     

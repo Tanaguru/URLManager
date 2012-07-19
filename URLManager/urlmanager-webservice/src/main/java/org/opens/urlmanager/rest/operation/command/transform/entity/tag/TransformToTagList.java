@@ -22,7 +22,7 @@
 package org.opens.urlmanager.rest.operation.command.transform.entity.tag;
 
 import java.util.List;
-import org.opens.urlmanager.entity.tag.TagImpl;
+import org.opens.urlmanager.entity.dto.tag.TagDTO;
 import org.opens.urlmanager.rest.operation.command.api.ITransformerCommand;
 import org.opens.urlmanager.rest.utils.jaxb.entity.tag.TagList;
 
@@ -31,11 +31,11 @@ import org.opens.urlmanager.rest.utils.jaxb.entity.tag.TagList;
  * @author bcareil
  */
 public class TransformToTagList
-        implements ITransformerCommand<TagImpl> {
+        implements ITransformerCommand<TagDTO> {
 
     @Override
     public Object process(Object attribute) {
-        return new TagList((List<TagImpl>)(attribute));
+        return new TagList((List<TagDTO>)(attribute));
     }
     
 }

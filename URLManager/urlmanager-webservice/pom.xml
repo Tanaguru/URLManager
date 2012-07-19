@@ -15,12 +15,10 @@
     <name>urlmanager-webservice</name>
 
     <properties>
-        <functional-test-script>src/test/sh/functional-tests/run-all.sh</functional-test-script>
-        <functional-test.jetty.port>8084</functional-test.jetty.port>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
         <my.hibernate.ddl.file>hibernate-model.ddl</my.hibernate.ddl.file>
+        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
 
     <dependencies>
@@ -82,6 +80,11 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>urlmanager-dto</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

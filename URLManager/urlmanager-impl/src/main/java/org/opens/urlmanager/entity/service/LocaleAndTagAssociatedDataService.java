@@ -25,9 +25,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import org.apache.commons.logging.LogFactory;
 import org.opens.tanaguru.sdk.entity.Entity;
-import org.opens.tanaguru.sdk.entity.service.AbstractGenericDataService;
 import org.opens.urlmanager.entity.locale.Locale;
-import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.service.exception.CannotIdentifyEntityException;
 import org.opens.urlmanager.entity.service.exception.EntityNotFoundException;
 import org.opens.urlmanager.entity.service.locale.LocaleDataService;
@@ -38,7 +36,7 @@ import org.opens.urlmanager.entity.tag.Tag;
  *
  * @author bcareil
  */
-public class LocaleAndTagAssociatedDataService <T extends Entity> extends AbstractGenericDataService<T, Long> {
+public abstract class LocaleAndTagAssociatedDataService <T extends Entity> extends AbstractGenericDataServiceWithDTO<T> {
 
     private TagDataService tagDataService;
     private LocaleDataService localeDataService;
@@ -106,7 +104,8 @@ public class LocaleAndTagAssociatedDataService <T extends Entity> extends Abstra
 
                     if (othLocale == null) {
                         LogFactory.getLog(LocaleAndTagAssociatedDataService.class).debug(
-                                "Invalid locale : " + locale.getLabel());
+                                "Invalid locale : " + locale.getLanguage() + "_" + locale.getCountry()
+                                );
                         throw new EntityNotFoundException("locale", "invalid language or country");
                     } else {
                         persistedLocales.add(othLocale);

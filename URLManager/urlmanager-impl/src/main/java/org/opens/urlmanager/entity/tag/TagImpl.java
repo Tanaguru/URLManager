@@ -26,9 +26,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.opens.urlmanager.entity.request.Request;
 import org.opens.urlmanager.entity.request.RequestImpl;
 import org.opens.urlmanager.entity.webpage.Webpage;
@@ -40,7 +37,6 @@ import org.opens.urlmanager.entity.webpage.WebpageImpl;
  * @author bcareil
  */
 @Entity
-@XmlRootElement(name = "tag")
 @Table(name = "TAG")
 public class TagImpl implements Tag, Serializable {
 
@@ -123,8 +119,6 @@ public class TagImpl implements Tag, Serializable {
     }
 
     @Override
-    @XmlTransient
-    @JsonIgnore
     public Collection<Request> getRequests() {
         return (Collection) requests;
     }
@@ -141,8 +135,6 @@ public class TagImpl implements Tag, Serializable {
     }
 
     @Override
-    @XmlTransient
-    @JsonIgnore
     public Collection<Webpage> getWebpages() {
         return (Collection) webpages;
     }

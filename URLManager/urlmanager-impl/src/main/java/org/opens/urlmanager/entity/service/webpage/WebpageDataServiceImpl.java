@@ -21,6 +21,7 @@
  */
 package org.opens.urlmanager.entity.service.webpage;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import org.opens.urlmanager.entity.dao.webpage.WebpageDAO;
@@ -46,34 +47,34 @@ public class WebpageDataServiceImpl extends LocaleAndTagAssociatedDataService<We
     public void create(Webpage entity) {
         entity.setTags(preprocessTags(entity.getTags(), true));
         entity.setLocales(preprocessLocales(entity.getLocales()));
-        super.create(entity);
+        super.create((Webpage) wrapper.dtoToEntity(entity));
     }
     
     @Override
     public Webpage update(Webpage entity) {
         entity.setTags(preprocessTags(entity.getTags(), true));
         entity.setLocales(preprocessLocales(entity.getLocales()));
-        return super.update(entity);
+        return (Webpage) wrapper.entityToDto(super.update((Webpage) wrapper.dtoToEntity(entity)));
     }
 
     public Webpage getWebpageFromURL(String url) {
-        return ((WebpageDAO)entityDao).findWebpageFromURL(url);
+        return (Webpage) wrapper.entityToDto(((WebpageDAO)entityDao).findWebpageFromURL(url));
     }
 
     public Set<Webpage> getRootWebpageList() {
-        return ((WebpageDAO)entityDao).findRootWebpageList();
+        return (Set) wrapper.entityCollectionToDtoCollection((Collection) ((WebpageDAO)entityDao).findRootWebpageList());
     }
 
     public List<Webpage> getWebpagesWithoutTag() {
-        return ((WebpageDAO)entityDao).findWebpagesWithoutTag();
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((WebpageDAO)entityDao).findWebpagesWithoutTag());
     }
 
     public List<Webpage> getWebpagesWithoutLocale() {
-        return ((WebpageDAO)entityDao).findWebpagesWithoutLocale();
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((WebpageDAO)entityDao).findWebpagesWithoutLocale());
     }
 
     public List<Webpage> getWebpagesWithoutRelations() {
-        return ((WebpageDAO)entityDao).findWebpagesWithoutRelations();
+        return (List) wrapper.entityCollectionToDtoCollection((Collection) ((WebpageDAO)entityDao).findWebpagesWithoutRelations());
     }
     
 }

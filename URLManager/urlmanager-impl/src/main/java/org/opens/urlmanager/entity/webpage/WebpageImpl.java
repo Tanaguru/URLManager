@@ -28,7 +28,6 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 import org.opens.urlmanager.entity.locale.Locale;
 import org.opens.urlmanager.entity.locale.LocaleImpl;
 import org.opens.urlmanager.entity.tag.Tag;
@@ -39,7 +38,6 @@ import org.opens.urlmanager.entity.tag.TagImpl;
  * @author bcareil
  */
 @Entity
-@XmlRootElement(name = "webpage")
 @Table(name = "WEBPAGE")
 public class WebpageImpl implements Webpage, Serializable {
     
@@ -127,8 +125,6 @@ public class WebpageImpl implements Webpage, Serializable {
         this.isRoot = isRoot;
     }
 
-    @XmlElementWrapper(name = "locales")
-    @XmlElement(name = "locale", type = LocaleImpl.class)
     public Collection<Locale> getLocales() {
         return (Collection)locales;
     }
@@ -142,8 +138,6 @@ public class WebpageImpl implements Webpage, Serializable {
         this.locales.add((LocaleImpl)locale);
     }
 
-    @XmlElementWrapper(name = "tags")
-    @XmlElement(name = "tag", type = TagImpl.class)
     public Collection<Tag> getTags() {
         return (Collection) tags;
     }
