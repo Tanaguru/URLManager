@@ -6,11 +6,11 @@
         <div class="container">
             <a class="brand" href="${contextPath}/">URLManager</a>
             <ul class="nav">
-                <li <c:if test="${page == 'home'}">class=\"active\"</c:if>><a href="${contextPath}/">Home</a></li>
-                <li <c:if test="${page == 'lists'}">class=\"active\"</c:if>><a href="${contextPath}/request.jsp">Lists</a></li>
-                <li <c:if test="${page == 'webpages'}">class=\"active\"</c:if>><a href="${contextPath}/webpage.jsp">Webpages</a></li>
-                <li <c:if test="${page == 'locales'}">class=\"active\"</c:if>><a href="${contextPath}/locale.jsp">Locales</a></li>
-                <li <c:if test="${page == 'tags'}">class=\"active\"</c:if>><a href="${contextPath}/tag.jsp">Tags</a></li>
+                <li <c:if test="${page == 'home'}">class="active"</c:if>><a href="${contextPath}/">Home</a></li>
+                <li <c:if test="${page == 'lists'}">class="active"</c:if>><a href="${contextPath}/request.jsp">Lists</a></li>
+                <li <c:if test="${page == 'webpages'}">class="active"</c:if>><a href="${contextPath}/webpage.jsp">Webpages</a></li>
+                <li <c:if test="${page == 'locales'}">class="active"</c:if>><a href="${contextPath}/locale.jsp">Locales</a></li>
+                <li <c:if test="${page == 'tags'}">class="active"</c:if>><a href="${contextPath}/tag.jsp">Tags</a></li>
             </ul>
         </div>
     </div>

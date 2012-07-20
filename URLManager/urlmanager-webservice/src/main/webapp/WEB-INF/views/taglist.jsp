@@ -3,6 +3,7 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
+<%@taglib prefix="my" uri="/WEB-INF/t/my-tl.tld"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +36,7 @@
                                 <td><c:out value='${tag.id}'/></td>
                                 <td><c:out value='${tag.label}'/></td>
                                 <td>
-                                    <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=<c:out value='${tag.label}'/>&locales-label="
+                                    <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=<my:urlEncode value='${tag.label}'/>&amp;locales-label="
                                        title="Webpages associated with the tag <c:out value='${tag.label} (id ${tag.id})'/>"
                                        >Associated Webpages</a>
                                 </td>

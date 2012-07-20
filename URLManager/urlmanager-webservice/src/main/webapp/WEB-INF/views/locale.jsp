@@ -3,8 +3,8 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="my" uri="/WEB-INF/t/my-tl.tld"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@
                 <div class="row span12">
                     <div>
                         View the
-                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=&amp;locales-label=<c:out value='${locale.label}'/>"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=&amp;locales-label=<my:urlEncode value='${locale.label}'/>"
                         >list of webpages</a> having this locale.
                     </div>
                 </div>

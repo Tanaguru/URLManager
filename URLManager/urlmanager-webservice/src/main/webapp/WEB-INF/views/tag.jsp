@@ -65,8 +65,8 @@
                     <h1>Delete</h1>
                 </div>
                 <div class="row span12">
-                    <c:set var="delete_entity_url"
-                        value="${contextPath}/rest/tag/delete?id=${tag.id}/>"/>
+                    <c:set var="delete_entity_url" value="${contextPath}/rest/tag/delete"/>
+                    <c:set var="delete_entity_id" value="${tag.id}"/>
                     <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
                 </div>
                 
@@ -76,7 +76,7 @@
                 <div class="row span12">
                     <p>
                         View the
-                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags=<c:out value='${tag.id}'/>"
+                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags=${tag.id}"
                            >list of the webpages</a> having this tag.
                     </p>
                 </div>

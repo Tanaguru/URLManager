@@ -36,7 +36,7 @@
                             <td><c:out value="${request.id}"/></td>
                             <td><c:out value="${request.label}"/></td>
                             <td>
-                                <a href="${contextPath}/rest/request/list-matching-webpages?id=<c:out value='${request.id}'/>"
+                                <a href="${contextPath}/rest/request/list-matching-webpages?id=${request.id}"
                                    title="Webpages in the list <c:out value='${request.label} (id ${request.id})'/>"
                                 >view list</a>
                             </td>

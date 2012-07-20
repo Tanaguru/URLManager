@@ -3,7 +3,7 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
-
+<%@ taglib prefix="my" uri="/WEB-INF/t/my-tl.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"
         import="java.util.ArrayList,java.util.Collection"
@@ -101,8 +101,8 @@
                 <h1>Delete</h1>
             </div>
             <div class="row span12">
-                <c:set var="delete_entity_url"
-                    value="${contextPath}/rest/webpage/delete?id=${webpage.id}"/>
+                <c:set var="delete_entity_url" value="${contextPath}/rest/webpage/delete"/>
+                <c:set var="delete_entity_id" value="${webpage.id}"/>
                 <%@include file="/WEB-INF/jspf/blocks/delete-entity.jspf" %>
             </div>
             
@@ -137,8 +137,8 @@
                                 <tr>
                                     <td><c:out value='${tag.id}'/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&tags-label=<c:out value='${tag.label}'/>"
-                                           title="Consult webpages having the tag of id <c:out value='${tag.id}'/>"
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=<my:urlEncode value='${tag.label}'/>"
+                                           title="Consult webpages having the tag of id ${tag.id}"
                                            ><c:out value='${tag.label}'/></a>
                                     </td>
                                     <td>
@@ -229,8 +229,8 @@
                                 <tr>
                                     <td><c:out value='${locale.id}'/></td>
                                     <td>
-                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&locales-label=<c:out value='${locale.label}'/>"
-                                           title="Consult webpages having the locale of id <c:out value='${locale.id}'/>"
+                                        <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=<my:urlEncode value='${locale.label}'/>"
+                                           title="Consult webpages having the locale of id ${locale.id}"
                                            ><c:out value='${locale.label}'/></a>
                                     </td>
                                     <td>

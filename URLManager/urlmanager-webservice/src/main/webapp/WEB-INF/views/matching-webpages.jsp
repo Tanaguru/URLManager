@@ -3,8 +3,9 @@
     Created on : 12 juin 2012, 08:45:12
     Author     : bcareil
 --%>
+<%@taglib prefix="my" uri="/WEB-INF/t/my-tl.tld"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,7 +104,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td><a href=<c:out value='"${webpage.URL}"'/>><c:out value="${webpage.URL}"/></a></td>
+                                    <td><a href="<c:out value='${webpage.URL}'/>"><c:out value="${webpage.URL}"/></a></td>
                                     <td>
                                         <c:set var="isFirstLoop" value="${true}"/>
                                         <c:forEach var="tag" items="${webpage.tags}">
@@ -113,7 +114,7 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=<c:out value='${tag.label}'/>"
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;tags-label=<my:urlEncode value='${tag.label}'/>"
                                                    title="Webpages having the tag of id <c:out value='${tag.id}'/>"
                                                 ><c:out value="${tag.label}"/></a>
                                         </c:forEach>
@@ -127,7 +128,7 @@
                                                 </c:when>
                                                 <c:otherwise>,</c:otherwise>
                                             </c:choose>
-                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=<c:out value='${locale.label}'/>"
+                                                <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales-label=<my:urlEncode value='${locale.label}'/>"
                                                 title="Webpages having the locale of id <c:out value='${locale.id}'/>"
                                                 ><c:out value="${locale.label}"/></a>
                                         </c:forEach>
@@ -159,7 +160,7 @@
                     </div>
                     <div class="row span12">
                         <div class="well">
-                            <a href="${contextPath}/rest/request/read?id=<c:out value='${request.id}'/>">View list details</a>
+                            <a href="${contextPath}/rest/request/read?id=${request.id}">View list details</a>
                         </div>
                     </div>
                 </c:otherwise>

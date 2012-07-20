@@ -1,3 +1,5 @@
-<a href="<c:out value='${delete_link_url}'/>" class="btn btn-danger"
-    <c:if test="${not empty delete_link_title}">title="<c:out value='${delete_link_title}'/>"</c:if>
-    ><span class="icon-white icon-remove"></span> Delete</a>
+<button class="btn btn-danger" name="delete" value="delete"
+        <c:if test="${not empty delete_link_title}"><c:out value='title="${delete_link_title}"'/></c:if>
+>
+    <span class="icon-white icon-remove"></span>&nbsp;Delete
+</button>

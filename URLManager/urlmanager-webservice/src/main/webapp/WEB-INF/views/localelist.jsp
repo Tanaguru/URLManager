@@ -3,8 +3,9 @@
     Created on : 23 mai 2012, 15:42:22
     Author     : bcareil
 --%>
+<%@taglib prefix="my" uri="/WEB-INF/t/my-tl.tld"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@
                                         <td><c:out value="${locale.longCountry}"/></td>
                                         <td><c:out value="${locale.label}"/></td>
                                         <td>
-                                            <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales=<c:out value='${locale.id}'/>"
+                                            <a href="${contextPath}/rest/request/list-matching-webpages?id=0&amp;locales=${locale.id}"
                                                title="Consult the webpages having the locale <c:out value='${locale.label} (id ${locale.id})'/>"
                                             >Associated webpages</a>
                                         </td>
