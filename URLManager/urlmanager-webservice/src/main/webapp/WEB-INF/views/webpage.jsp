@@ -148,7 +148,7 @@
                                             <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
                                             <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
                                             <input type="hidden" name="locales" value="<c:out value='${webpageLocalesId}'/>"/>
-                                            <input type="hidden" name="tags" value="<c:out value='${webpageTagsIdWOCurrent}'/>"/>
+                                            <input type="hidden" name="tags" value="<%= webpageTagsIdWOCurrent.toString() %>"/>
                                             <c:set var="unlink_button_title" value="Unlink tag ${tag.label} (id ${tag.id}) of this webpage"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
                                         </form>  
@@ -239,7 +239,7 @@
                                             <input type="hidden" name="id" value="<c:out value='${webpage.id}'/>"/>
                                             <input type="hidden" name="URL" value="<c:out value='${webpage.URL}'/>"/>
                                             <input type="hidden" name="isRoot" value="<c:out value='${webpage.isRoot}'/>"/>
-                                            <input type="hidden" name="locales" value="<c:out value='${webpageLocalesIdWOCurrent}'/>"/>
+                                            <input type="hidden" name="locales" value="<c:out value='<%= webpageLocalesIdWOCurrent.toString() %>'/>"/>
                                             <input type="hidden" name="tags" value="<c:out value='${webpageTagsId}'/>"/>
                                             <c:set var="unlink_button_title" value="Unlink locale ${locale.label} (id ${locale.id}) of this webpage"/>
                                             <%@include file="/WEB-INF/jspf/inline/buttons/unlink.jspf" %>
